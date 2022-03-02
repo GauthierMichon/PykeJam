@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mer. 09 fév. 2022 à 14:50
+-- Généré le :  mer. 02 mars 2022 à 13:35
 -- Version du serveur :  10.1.36-MariaDB
 -- Version de PHP :  7.2.11
 
@@ -473,6 +473,25 @@ CREATE TABLE `item` (
   `res` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `item`
+--
+
+INSERT INTO `item` (`id`, `name`, `heal`, `buff`, `res`) VALUES
+(1, 'Attaque +', 0, 1, 0),
+(2, 'Défense +', 0, 1, 0),
+(3, 'Atq. Spé. +', 0, 1, 0),
+(4, 'Déf. Spé. +', 0, 1, 0),
+(5, 'Vitesse +', 0, 1, 0),
+(6, 'Précision +', 0, 1, 0),
+(7, 'Eau Fraîche', 1, 0, 0),
+(8, 'Super Potion', 1, 0, 0),
+(9, 'Hyper Potion', 1, 0, 0),
+(10, 'Potion Max', 1, 0, 0),
+(11, 'Lait Meumeu', 1, 0, 0),
+(12, 'Rappel', 0, 0, 1),
+(13, 'Rappel Max', 0, 0, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -484,6 +503,18 @@ CREATE TABLE `itembuff` (
   `itemId` int(11) DEFAULT NULL,
   `StatBuff` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `itembuff`
+--
+
+INSERT INTO `itembuff` (`id`, `itemId`, `StatBuff`) VALUES
+(1, 1, 'Att'),
+(2, 2, 'Def'),
+(3, 3, 'AttSpe'),
+(4, 4, 'DefSpe'),
+(5, 5, 'Speed'),
+(6, 6, 'accuracy');
 
 -- --------------------------------------------------------
 
@@ -497,6 +528,17 @@ CREATE TABLE `itemheal` (
   `PVHeal` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `itemheal`
+--
+
+INSERT INTO `itemheal` (`id`, `itemId`, `PVHeal`) VALUES
+(1, 7, 130),
+(2, 8, 60),
+(3, 9, 120),
+(4, 10, 500),
+(5, 11, 100);
+
 -- --------------------------------------------------------
 
 --
@@ -508,6 +550,14 @@ CREATE TABLE `itemres` (
   `itemId` int(11) DEFAULT NULL,
   `PV` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `itemres`
+--
+
+INSERT INTO `itemres` (`id`, `itemId`, `PV`) VALUES
+(1, 12, 50),
+(2, 13, 100);
 
 -- --------------------------------------------------------
 
@@ -566,6 +616,7 @@ CREATE TABLE `pokemon` (
   `spriteDos` varchar(255) DEFAULT NULL,
   `typeId` int(11) DEFAULT NULL,
   `typeId2` int(11) DEFAULT NULL,
+  `natureId` int(11) NOT NULL,
   `PV` int(11) DEFAULT NULL,
   `Att` int(11) DEFAULT NULL,
   `Def` int(11) DEFAULT NULL,
@@ -584,8 +635,85 @@ CREATE TABLE `pokemon` (
 -- Déchargement des données de la table `pokemon`
 --
 
-INSERT INTO `pokemon` (`id`, `name`, `sprite`, `spriteDos`, `typeId`, `typeId2`, `PV`, `Att`, `Def`, `AttSpe`, `DefSpe`, `Speed`, `accuracy`, `AttaqueId1`, `AttaqueId2`, `AttaqueId3`, `AttaqueId4`, `Poids`) VALUES
-(1, 'Dracaufeu', 'dracaufeu.gif', 'dracaufeu.png', 2, 10, 78, 84, 78, 109, 85, 100, 0, NULL, NULL, NULL, NULL, 90);
+INSERT INTO `pokemon` (`id`, `name`, `sprite`, `spriteDos`, `typeId`, `typeId2`, `natureId`, `PV`, `Att`, `Def`, `AttSpe`, `DefSpe`, `Speed`, `accuracy`, `AttaqueId1`, `AttaqueId2`, `AttaqueId3`, `AttaqueId4`, `Poids`) VALUES
+(1, 'Aéromite', 'Aeromite.gif', 'Aeromite.png', 12, 8, 25, 70, 65, 60, 90, 75, 90, 0, 73, 88, 16, 14, 13),
+(2, 'Akwakwak', 'Akwakwak.gif', 'Akwakwak.png', 3, NULL, 16, 80, 82, 78, 95, 80, 85, 0, 34, 54, 62, 93, 76),
+(3, 'Alakazam', 'Alakazam.gif', 'Alakazam.png', 11, NULL, 25, 55, 50, 45, 135, 95, 120, 0, 92, 45, 102, 10, 48),
+(4, 'Amonistar', 'Amonistar.gif', 'Amonistar.png', 13, 3, 25, 70, 60, 125, 115, 70, 55, 0, 47, 54, 62, 93, 35),
+(5, 'Aquiali', 'Aquali.gif', 'Aquali.png', 3, NULL, 4, 130, 65, 60, 110, 95, 65, 0, 40, 127, 1, 62, 29),
+(6, 'Arbok', 'Arbok.gif', 'Arbok.png', 8, NULL, 22, 60, 85, 69, 65, 79, 80, 0, 38, 44, 28, 55, 65),
+(7, 'Arcanin', 'Arcanin.gif', 'Arcanin.png', 2, NULL, 22, 90, 110, 80, 100, 80, 95, 0, 17, 125, 41, 6, 155),
+(8, 'Artikodin', 'Artikodin.gif', 'Artikodin.png', 6, 10, 16, 90, 85, 100, 95, 125, 85, 0, 4, 64, 51, 2, 55),
+(9, 'Canarticho', 'Canarticho.gif', 'Canarticho.png', 1, 10, 22, 52, 90, 55, 58, 62, 60, 0, 33, 94, 59, 126, 15),
+(10, 'Colossinge', 'Colossinge.gif', 'Colossinge.png', 7, NULL, 11, 65, 105, 60, 60, 70, 95, 0, 25, 35, 58, 110, 32),
+(11, 'Crustabri', 'Crustabri.gif', 'Crustabri.png', 3, 6, 11, 50, 95, 180, 85, 45, 70, 0, 75, 47, 105, 114, 132),
+(12, 'Dardagnan', 'Dardagnan.gif', 'Dardagnan.png', 12, 8, 11, 65, 80, 40, 45, 80, 75, 0, 76, 43, 121, 81, 30),
+(13, 'Dodrio', 'Dodrio.gif', 'Dodrio.png', 1, 10, 11, 60, 110, 70, 60, 60, 110, 0, 94, 99, 77, 100, 85),
+(14, 'Dracaufeu', 'Dracaufeu.gif', 'Dracaufeu.png', 2, 10, 11, 78, 84, 78, 109, 85, 100, 0, 32, 26, 17, 110, 90),
+(15, 'Dracolosse', 'Dracolosse.gif', 'Dracolosse.png', 15, 10, 22, 91, 134, 95, 100, 100, 80, 0, 26, 125, 85, 110, 210),
+(16, 'Ectoplasma', 'Ectoplasma.gif', 'Ectoplasma.png', 14, 8, 25, 60, 65, 60, 130, 75, 110, 0, 10, 30, 45, 113, 40),
+(17, 'Electhor', 'Electhor.gif', 'Electhor.png', 5, 10, 25, 90, 90, 85, 125, 90, 100, 0, 29, 93, 18, 4, 52),
+(18, 'Electrode', 'Electrode.gif', 'Electrode.png', 5, NULL, 16, 60, 50, 70, 80, 80, 150, 0, 25, 35, 58, 110, 66),
+(19, 'Elekable', 'Elekable.gif', 'Elekable.png', 5, NULL, 17, 75, 123, 67, 95, 85, 95, 0, 112, 21, 95, 93, 138),
+(20, 'Empiflor', 'Empiflor.gif', 'Empiflor.png', 4, 8, 16, 80, 105, 65, 100, 70, 70, 0, 61, 14, 9, 88, 15),
+(21, 'Excelangue', 'Excelangue.gif', 'Excelangue.png', 1, NULL, 13, 90, 55, 75, 60, 75, 30, 0, 127, 1, 82, 100, 65),
+(22, 'Feunard', 'Feunard.gif', 'Feunard.png', 2, NULL, 25, 73, 76, 75, 81, 100, 100, 0, 106, 37, 61, 93, 19),
+(23, 'Flagadoss', 'Flagadoss.gif', 'Flagadoss.png', 3, 11, 1, 95, 75, 110, 100, 80, 30, 0, 40, 62, 74, 115, 78),
+(24, 'Florizarre', 'Florizarre.gif', 'Florizarre.png', 4, 88, 1, 80, 82, 83, 100, 100, 80, 0, 119, 115, 109, 71, 100),
+(25, 'Galopa', 'Galopa.gif', 'Galopa.png', 2, NULL, 11, 65, 100, 70, 80, 80, 105, 0, 17, 41, 6, 49, 95),
+(26, 'Grodoudou', 'Grodoudou.gif', 'Grodoudou.png', 1, 18, 25, 140, 70, 45, 75, 50, 45, 0, 80, 70, 42, 37, 12),
+(27, 'Grolem', 'Grolem.gif', 'Grolem.png', 9, 13, 22, 80, 120, 130, 55, 65, 45, 0, 80, 110, 58, 46, 300),
+(28, 'Grotadmorv', 'Grotadmorv.gif', 'Grotadmorv.png', 8, NULL, 22, 105, 105, 75, 65, 100, 50, 0, 38, 72, 86, 84, 30),
+(29, 'Hypnomade', 'Hypnomade.gif', 'Hypnomade.png', 11, NULL, 4, 85, 73, 70, 73, 115, 67, 0, 127, 1, 115, 116, 75),
+(30, 'Hyporoi', 'Hyporoi.gif', 'Hyporoi.png', 3, 15, 16, 75, 95, 95, 95, 95, 85, 0, 54, 36, 62, 107, 152),
+(31, 'Insecateur', 'Insecateur.gif', 'Insecateur.png', 12, 10, 11, 70, 110, 80, 55, 80, 105, 0, 35, 7, 20, 100, 56),
+(32, 'Kabutops', 'Kabutops.gif', 'Kabutops.png', 13, 3, 22, 60, 115, 105, 65, 70, 80, 0, 58, 3, 33, 108, 40),
+(33, 'Kangourex', 'Kangourex.gif', 'Kangourex.png', 1, NULL, 22, 105, 95, 80, 40, 80, 90, 0, 13, 31, 110, 28, 80),
+(34, 'Kicklee', 'Kicklee.gif', 'Kicklee.png', 7, NULL, 11, 50, 120, 53, 35, 110, 87, 0, 100, 78, 52, 23, 50),
+(35, 'Krabboss', 'Krabboss.gif', 'Krabboss.png', 3, NULL, 11, 55, 130, 115, 50, 50, 75, 0, 33, 3, 100, 56, 60),
+(36, 'Lamantine', 'Lamantine.gif', 'Lamantine.png', 3, 6, 4, 90, 70, 80, 70, 97, 70, 0, 101, 98, 34, 97, 120),
+(37, 'Leveinard', 'Leveinard.gif', 'Leveinard.png', 1, NULL, 1, 250, 5, 5, 35, 105, 50, 0, 50, 115, 80, 39, 34),
+(38, 'Leviator', 'Leviator.gif', 'Leviator.png', 3, 10, 11, 95, 125, 79, 60, 100, 81, 0, 32, 68, 110, 24, 235),
+(39, 'Lippoutou', 'Lippoutou.gif', 'Lippoutou.png', 6, 11, 25, 65, 50, 35, 115, 95, 95, 0, 62, 92, 45, 53, 40),
+(40, 'Lokhlass', 'Lokhlass.gif', 'Lokhlass.png', 3, 6, 16, 130, 85, 80, 85, 95, 60, 0, 64, 54, 62, 93, 220),
+(41, 'Mackogneur', 'Mackogneur.gif', 'Mackogneur.png', 7, NULL, 22, 90, 130, 80, 65, 85, 55, 0, 25, 100, 48, 79, 130),
+(42, 'Magmar', 'Magmar.gif', 'Magmar.png', 2, NULL, 25, 65, 95, 57, 100, 85, 93, 0, 37, 112, 45, 93, 45),
+(43, 'Magnéton', 'Magneton.gif', 'Magneton.png', 5, 17, 25, 50, 60, 95, 120, 70, 70, 0, 21, 112, 63, 93, 60),
+(44, 'Mélodelfe', 'Melodelfe.gif', 'Melodelfe.png', 18, NULL, 1, 95, 70, 73, 85, 90, 60, 0, 83, 90, 39, 80, 40),
+(45, 'Mew', 'Mew.gif', 'Mew.png', 11, NULL, 16, 100, 100, 100, 100, 100, 100, 0, 66, 92, 37, 87, 4),
+(46, 'Mewtwo', 'Mewtwo.gif', 'Mewtwo.png', 11, NULL, 25, 106, 110, 90, 154, 90, 130, 0, 92, 37, 45, 10, 122),
+(47, 'Nidoking', 'Nidoking.gif', 'Nidoking.png', 8, 9, 25, 81, 102, 77, 85, 75, 85, 0, 111, 30, 62, 24, 62),
+(48, 'Nidoqueen', 'Nidoqueen.gif', 'Nidoqueen.png', 8, 9, 1, 90, 92, 87, 75, 85, 76, 0, 111, 76, 62, 30, 60),
+(49, 'Noadkoko', 'Noadkoko.gif', 'Noadkoko.png', 4, 11, 16, 95, 95, 85, 125, 75, 55, 0, 61, 22, 93, 88, 120),
+(50, 'Nosferalto', 'Nosferalto.gif', 'Nosferalto.png', 8, 10, 19, 75, 80, 70, 65, 75, 90, 0, 4, 2, 94, 115, 55),
+(51, 'Onix', 'Onix.gif', 'Onix.png', 9, 13, 11, 35, 45, 160, 30, 45, 70, 0, 80, 15, 110, 46, 210),
+(52, 'Ossatueur', 'Ossatueur.gif', 'Ossatueur.png', 9, NULL, 22, 60, 80, 110, 50, 80, 45, 0, 110, 100, 33, 24, 45),
+(53, 'Papilusion', 'Papilusion.gif', 'Papilusion.png', 10, 12, 25, 60, 45, 50, 90, 80, 70, 0, 73, 88, 16, 57, 32),
+(54, 'Parasect', 'Parasect.gif', 'Parasect.png', 4, 12, 19, 60, 95, 80, 60, 80, 30, 0, 120, 104, 100, 109, 30),
+(55, 'Persian', 'Persian.gif', 'Persian.png', 1, NULL, 25, 65, 70, 60, 65, 65, 115, 0, 66, 70, 93, 123, 32),
+(56, 'Poissoroy', 'Poissoroy.gif', 'Poissoroy.png', 3, NULL, 22, 80, 92, 65, 65, 80, 68, 0, 19, 100, 117, 69, 39),
+(57, 'Porygon', 'Porygon.gif', 'Porygon.png', 1, NULL, 25, 65, 60, 70, 85, 75, 40, 0, 112, 62, 102, 27, 37),
+(58, 'Ptéra', 'Ptera.gif', 'Ptera.png', 10, 13, 11, 80, 105, 65, 60, 75, 130, 0, 58, 110, 89, 55, 59),
+(59, 'Pyroli', 'Pyroli.gif', 'Pyroli.png', 2, NULL, 22, 65, 130, 60, 95, 110, 65, 0, 17, 108, 126, 31, 25),
+(60, 'Rafflésia', 'Rafflesia.gif', 'Rafflesia.png', 4, 8, 1, 75, 80, 85, 100, 90, 50, 0, 14, 128, 88, 93, 19),
+(61, 'Raichu', 'Raichu.gif', 'Raichu.png', 5, NULL, 25, 60, 90, 55, 90, 80, 110, 0, 66, 112, 62, 93, 30),
+(62, 'Rapasdepic', 'Rapasdepic.gif', 'Rapasdepic.png', 1, 10, 11, 65, 90, 65, 61, 61, 100, 0, 11, 31, 117, 35, 38),
+(63, 'Rattatac', 'Rattatac.gif', 'Rattatac.png', 1, NULL, 11, 55, 81, 60, 50, 70, 97, 0, 48, 28, 1, 35, 19),
+(64, 'Rhinoféros', 'Rhinoferos.gif', 'Rhinoferos.png', 9, 13, 22, 105, 130, 120, 45, 45, 40, 0, 80, 110, 15, 33, 120),
+(65, 'Ronflex', 'Ronflex.gif', 'Ronflex.png', 1, NULL, 19, 160, 110, 65, 65, 110, 30, 0, 67, 99, 97, 12, 460),
+(66, 'Roucarnage', 'Roucarnage.gif', 'Roucarnage.png', 1, 10, 25, 83, 80, 75, 70, 70, 101, 0, 122, 18, 4, 35, 40),
+(67, 'Sablaireau', 'Sablaireau.gif', 'Sablaireau.png', 9, NULL, 22, 75, 100, 110, 45, 55, 65, 0, 110, 33, 100, 58, 30),
+(68, 'Scarabrute', 'Scarabrute.gif', 'Scarabrute.png', 12, NULL, 11, 65, 125, 100, 55, 70, 85, 0, 33, 81, 110, 58, 55),
+(69, 'Smogogo', 'Smogogo.gif', 'Smogogo.png', 8, NULL, 1, 65, 90, 120, 85, 70, 60, 0, 14, 49, 8, 76, 10),
+(70, 'Staross', 'Staross.gif', 'Staross.png', 3, 11, 25, 60, 75, 85, 100, 85, 110, 0, 40, 115, 102, 114, 80),
+(71, 'Sulfura', 'Sulfura.gif', 'Sulfura.png', 2, 10, 25, 90, 100, 90, 125, 85, 90, 0, 24, 4, 4, 60, 60),
+(72, 'Tartard', 'Tartard.gif', 'Tartard.png', 3, 7, 21, 90, 95, 95, 70, 90, 70, 0, 40, 97, 12, 91, 54),
+(73, 'Tauros', 'Tauros.gif', 'Tauros.png', 1, NULL, 17, 75, 100, 95, 40, 70, 110, 0, 82, 37, 96, 110, 89),
+(74, 'Tentacruel', 'Tentacruel.gif', 'Tentacruel.png', 3, 8, 4, 80, 70, 65, 80, 120, 100, 0, 40, 76, 114, 1, 55),
+(75, 'Tortank', 'Tortank.gif', 'Tortank.png', 3, NULL, 16, 79, 83, 100, 85, 105, 78, 0, 123, 124, 5, 62, 86),
+(76, 'Triopikeur', 'Triopikeur.gif', 'Triopikeur.png', 9, NULL, 11, 35, 100, 50, 50, 70, 120, 0, 110, 58, 103, 80, 34),
+(77, 'Tygnon', 'Tygnon.gif', 'Tygnon.png', 7, NULL, 22, 50, 105, 79, 35, 110, 76, 0, 118, 65, 86, 114, 50),
+(78, 'Voltali', 'Voltali.gif', 'Voltali.png', 5, NULL, 25, 65, 65, 60, 110, 95, 130, 0, 112, 21, 93, 10, 25);
 
 -- --------------------------------------------------------
 
@@ -752,7 +880,7 @@ ALTER TABLE `types`
 -- AUTO_INCREMENT pour la table `attaqueautres`
 --
 ALTER TABLE `attaqueautres`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT pour la table `attaquebuff`
@@ -800,25 +928,25 @@ ALTER TABLE `climat`
 -- AUTO_INCREMENT pour la table `item`
 --
 ALTER TABLE `item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT pour la table `itembuff`
 --
 ALTER TABLE `itembuff`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `itemheal`
 --
 ALTER TABLE `itemheal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `itemres`
 --
 ALTER TABLE `itemres`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `nature`
@@ -830,7 +958,7 @@ ALTER TABLE `nature`
 -- AUTO_INCREMENT pour la table `pokemon`
 --
 ALTER TABLE `pokemon`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT pour la table `statuts`
