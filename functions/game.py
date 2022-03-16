@@ -3,4 +3,4 @@ from functions.initiation import init
 
 def game() :
     
-    init()
+    pokemonList = init()

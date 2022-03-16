@@ -11,6 +11,8 @@ def init() :
     attaqueList = initAttaque()
     pokemonList = initPokemon(attaqueList)
 
+    return pokemonList
+
 
 
 
