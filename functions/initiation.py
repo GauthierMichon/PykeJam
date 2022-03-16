@@ -9,7 +9,7 @@ from classes.pokemon import Pokemon
 
 def init() :
     attaqueList = initAttaque()
-    initPokemon(attaqueList)
+    pokemonList = initPokemon(attaqueList)
 
 
 
@@ -127,4 +127,4 @@ def initPokemon(attaqueList) :
 
         pokemonList.append(Pokemon(id, name, sprite, spriteDos, Type, Type2, nature, PV, Att, Def, AttSpe, DefSpe, Speed, accuracy, Attaques, Poids))
 
-    print(pokemonList)
+    return pokemonList
