@@ -1,6 +1,6 @@
 from classes.dresseur import Dresseur
 from functions.combat import combat
-from random import random
+from random import randint
 from functions.initiation import init
 
 
@@ -8,7 +8,7 @@ def game() :
     
     pokemonList = init()
 
-    pseudo      = input('Quel est votre pseudo de dresseur ?')
+    pseudo      = input('Quel est votre pseudo de dresseur ? ')
 
     pokemon_1   = input('Id de votre premier pokemon : ')
     pokemon_2   = input('Id de votre deuxième pokemon : ')
@@ -26,12 +26,12 @@ def game() :
 
     adversaire = 'quentin'
 
-    adversaire_1 = random.randint(0, 77)
-    adversaire_2 = random.randint(0, 77)
-    adversaire_3 = random.randint(0, 77)
-    adversaire_4 = random.randint(0, 77)
-    adversaire_5 = random.randint(0, 77)
-    adversaire_6 = random.randint(0, 77)
+    adversaire_1 = randint(0, 77)
+    adversaire_2 = randint(0, 77)
+    adversaire_3 = randint(0, 77)
+    adversaire_4 = randint(0, 77)
+    adversaire_5 = randint(0, 77)
+    adversaire_6 = randint(0, 77)
 
     adversaire_1 = pokemonList[adversaire_1]
     adversaire_2 = pokemonList[adversaire_2]    
@@ -40,8 +40,8 @@ def game() :
     adversaire_5 = pokemonList[adversaire_5]    
     adversaire_6 = pokemonList[adversaire_6]
 
-    player = Dresseur(pseudo, pokemon_1, pokemon_2, pokemon_3, pokemon_4, pokemon_5, pokemon_6)
-    adversaire = Dresseur(adversaire, adversaire_1, adversaire_2, adversaire_3, adversaire_4, adversaire_5, adversaire_6)
+    player = Dresseur(pseudo, [pokemon_1, pokemon_2, pokemon_3, pokemon_4, pokemon_5, pokemon_6])
+    adversaire = Dresseur(adversaire, [adversaire_1, adversaire_2, adversaire_3, adversaire_4, adversaire_5, adversaire_6])
         
-
+    
     combat(player, adversaire)
