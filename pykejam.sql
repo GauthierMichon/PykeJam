@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mer. 02 mars 2022 à 13:35
+-- Généré le :  mer. 16 mars 2022 à 09:11
 -- Version du serveur :  10.1.36-MariaDB
 -- Version de PHP :  7.2.11
 
@@ -416,20 +416,20 @@ INSERT INTO `attaques` (`id`, `name`, `accuracy`, `typeId`, `description`, `PP`,
 -- --------------------------------------------------------
 
 --
--- Structure de la table `attaquetatut`
+-- Structure de la table `attaquestatut`
 --
 
-CREATE TABLE `attaquetatut` (
+CREATE TABLE `attaquestatut` (
   `id` int(11) NOT NULL,
   `attaqueId` int(11) DEFAULT NULL,
   `statutId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `attaquetatut`
+-- Déchargement des données de la table `attaquestatut`
 --
 
-INSERT INTO `attaquetatut` (`id`, `attaqueId`, `statutId`) VALUES
+INSERT INTO `attaquestatut` (`id`, `attaqueId`, `statutId`) VALUES
 (1, 49, 1),
 (2, 53, 5),
 (3, 88, 5),
@@ -813,9 +813,9 @@ ALTER TABLE `attaques`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `attaquetatut`
+-- Index pour la table `attaquestatut`
 --
-ALTER TABLE `attaquetatut`
+ALTER TABLE `attaquestatut`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -913,9 +913,9 @@ ALTER TABLE `attaques`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
 
 --
--- AUTO_INCREMENT pour la table `attaquetatut`
+-- AUTO_INCREMENT pour la table `attaquestatut`
 --
-ALTER TABLE `attaquetatut`
+ALTER TABLE `attaquestatut`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
@@ -928,7 +928,7 @@ ALTER TABLE `climat`
 -- AUTO_INCREMENT pour la table `item`
 --
 ALTER TABLE `item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT pour la table `itembuff`
