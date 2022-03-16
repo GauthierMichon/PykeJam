@@ -5,8 +5,16 @@ from classes.attaque_climat import AttaqueClimat
 from classes.attaque_heal import AttaqueHeal
 from classes.attaque_offensive import AttaqueOffensive
 from classes.attaque_statut import AttaqueStatut
+from classes.pokemon import Pokemon
 
 def init() :
+    attaqueList = initAttaque()
+    initPokemon(attaqueList)
+
+
+
+
+def initAttaque() :
     select_attaque_cursor = conn.cursor()
     select_attaque_query = ("SELECT * FROM attaques")
     select_attaque_cursor.execute(select_attaque_query)
@@ -52,4 +60,71 @@ def init() :
             data_oneattaque = select_oneattaque_cursor.fetchone()
             attaqueList.append(AttaqueAutre(i[0], i[1], i[2], i[3], i[4], i[5]))
 
-    print(attaqueList[52])
+    return attaqueList
+
+def initPokemon(attaqueList) :
+    select_pokemon_cursor = conn.cursor()
+    select_pokemon_query = ("SELECT * FROM pokemon")
+    select_pokemon_cursor.execute(select_pokemon_query)
+    data_pokemon = select_pokemon_cursor.fetchall()
+
+    select_type_cursor = conn.cursor()
+    select_type_query = ("SELECT * FROM types")
+    select_type_cursor.execute(select_type_query)
+    data_type = select_type_cursor.fetchall()
+
+    select_nature_cursor = conn.cursor()
+    select_nature_query = ("SELECT * FROM nature")
+    select_nature_cursor.execute(select_nature_query)
+    data_nature = select_nature_cursor.fetchall()
+
+    pokemonList = []
+
+    for i in data_pokemon :
+        id = i[0]
+        name = i[1]
+        sprite = i[2]
+        spriteDos = i[3]
+        Type = data_type[i[4]-1][1]
+        Type2 = None
+        if i[5] == None :
+            Type2 = None
+        else :
+            Type2 = data_type[i[5]-1][1]
+
+        nature = data_nature[i[6]-1][1]
+        PV = ((2 * i[7] + 31) * 100) / 100 + 110
+        Att = ((2 * i[8] + 31) * 100) / 100 + 5
+        Def = ((2 * i[9] + 31) * 100) / 100 + 5
+        AttSpe = ((2 * i[10] + 31) * 100) / 100 + 5
+        DefSpe = ((2 * i[11] + 31) * 100) / 100 + 5
+        Speed = ((2 * i[12] + 31) * 100) / 100 + 5
+        accuracy = i[13]
+        Attaques = [attaqueList[i[14]-1], attaqueList[i[15]-1], attaqueList[i[16]-1], attaqueList[i[17]-1]]
+        Poids = i[18]
+    
+        if data_nature[i[6]-1][2] == 'Att' :
+            Att *= 1.10
+        elif data_nature[i[6]-1][2] == 'AttSpe' :
+            AttSpe *= 1.10
+        elif data_nature[i[6]-1][2] == 'Def' :
+            Def *= 1.10
+        elif data_nature[i[6]-1][2] == 'DefSpe' :
+            DefSpe *= 1.10
+        elif data_nature[i[6]-1][2] == 'Speed' :
+            Speed *= 1.10
+
+        if data_nature[i[6]-1][3] == 'Att' :
+            Att *= 0.90
+        elif data_nature[i[6]-1][3] == 'AttSpe' :
+            AttSpe *= 0.90
+        elif data_nature[i[6]-1][3] == 'Def' :
+            Def *= 0.90
+        elif data_nature[i[6]-1][3] == 'DefSpe' :
+            DefSpe *= 0.90
+        elif data_nature[i[6]-1][3] == 'Speed' :
+            Speed *= 0.90
+
+        pokemonList.append(Pokemon(id, name, sprite, spriteDos, Type, Type2, nature, PV, Att, Def, AttSpe, DefSpe, Speed, accuracy, Attaques, Poids))
+
+    print(pokemonList)

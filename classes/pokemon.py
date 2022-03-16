@@ -1,12 +1,12 @@
 class Pokemon():
-    def __init__(self, id, name, sprite, spriteDos, typeId, typeId2, natureId, PV, Att, Def, AttSpe, DefSpe, Speed, accuracy, Attaques, Poids):
+    def __init__(self, id, name, sprite, spriteDos, Type, Type2, nature, PV, Att, Def, AttSpe, DefSpe, Speed, accuracy, Attaques, Poids):
         self.id         = id
         self.name       = name
         self.sprite     = sprite
         self.spriteDos  = spriteDos
-        self.typeId     = typeId
-        self.typeId2    = typeId2
-        self.natureId   = natureId
+        self.Type       = Type
+        self.Type2      = Type2
+        self.nature     = nature
         self.PV         = PV
         self.PVInit     = PV
         self.Att        = Att
