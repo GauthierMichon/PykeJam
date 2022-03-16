@@ -1,3 +1,4 @@
+from random import random
 from functions.initiation import init
 
 
@@ -21,4 +22,19 @@ def game() :
     pokemon_5 = pokemonList[int(pokemon_5) - 1]
     pokemon_6 = pokemonList[int(pokemon_6) - 1]
 
+    adversaire = 'quentin'
 
+    adversaire_1 = random.randint(0, 77)
+    adversaire_2 = random.randint(0, 77)
+    adversaire_3 = random.randint(0, 77)
+    adversaire_4 = random.randint(0, 77)
+    adversaire_5 = random.randint(0, 77)
+    adversaire_6 = random.randint(0, 77)
+
+    adversaire_1 = pokemonList[adversaire_1]
+    adversaire_2 = pokemonList[adversaire_2]    
+    adversaire_3 = pokemonList[adversaire_3]    
+    adversaire_4 = pokemonList[adversaire_4]    
+    adversaire_5 = pokemonList[adversaire_5]    
+    adversaire_6 = pokemonList[adversaire_6]
+        
