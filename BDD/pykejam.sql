@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mer. 16 mars 2022 à 09:11
+-- Généré le :  mer. 16 mars 2022 à 10:12
 -- Version du serveur :  10.1.36-MariaDB
 -- Version de PHP :  7.2.11
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `pykemon`
+-- Base de données :  `pykejam`
 --
 
 -- --------------------------------------------------------
@@ -30,14 +30,14 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `attaqueautres` (
   `id` int(11) NOT NULL,
-  `AttaqueId` int(11) DEFAULT NULL
+  `attaqueId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `attaqueautres`
 --
 
-INSERT INTO `attaqueautres` (`id`, `AttaqueId`) VALUES
+INSERT INTO `attaqueautres` (`id`, `attaqueId`) VALUES
 (1, 1),
 (2, 2),
 (3, 8),
@@ -186,7 +186,7 @@ INSERT INTO `attaqueheal` (`id`, `attaqueId`, `PVHeal`) VALUES
 
 CREATE TABLE `attaqueoffensive` (
   `id` int(11) NOT NULL,
-  `idAttaque` int(11) DEFAULT NULL,
+  `attaqueId` int(11) DEFAULT NULL,
   `puissance` int(11) DEFAULT NULL,
   `physique` tinyint(1) DEFAULT NULL,
   `special` tinyint(1) DEFAULT NULL,
@@ -199,7 +199,7 @@ CREATE TABLE `attaqueoffensive` (
 -- Déchargement des données de la table `attaqueoffensive`
 --
 
-INSERT INTO `attaqueoffensive` (`id`, `idAttaque`, `puissance`, `physique`, `special`, `priorityLevel`, `effect`, `probaEffect`) VALUES
+INSERT INTO `attaqueoffensive` (`id`, `attaqueId`, `puissance`, `physique`, `special`, `priorityLevel`, `effect`, `probaEffect`) VALUES
 (1, 3, 85, 1, 0, 0, 1, 20),
 (2, 5, 80, 0, 1, 0, 0, NULL),
 (3, 7, 60, 1, 0, 0, 0, NULL),
