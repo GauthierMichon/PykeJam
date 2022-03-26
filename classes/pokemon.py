@@ -8,7 +8,7 @@ class Pokemon():
         self.Type2      = Type2
         self.nature     = nature
         self.PV         = PV
-        self.PVInit     = PV
+        self.PVMax     = PV
         self.Att        = Att
         self.AttInit    = Att
         self.Def        = Def

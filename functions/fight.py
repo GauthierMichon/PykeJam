@@ -10,7 +10,7 @@ from functions.derouler_attauqe_offensive import Offensive
 def fight(pokemon_attaquant, pokemon_defenseur, numAttaque, climat) :
     print(type(pokemon_attaquant.Attaques[numAttaque-1]))
     if type(pokemon_attaquant.Attaques[numAttaque-1] == AttaqueOffensive) :
-        Offensive(pokemon_attaquant, pokemon_defenseur, pokemon_attaquant.Attaques[numAttaque-1], climat)
+        return Offensive(pokemon_attaquant, pokemon_defenseur, pokemon_attaquant.Attaques[numAttaque-1], climat)
     elif type(pokemon_attaquant.Attaques[numAttaque-1] == AttaqueBuff) :
         print("buff")
     elif type(pokemon_attaquant.Attaques[numAttaque-1] == AttaqueClimat) :

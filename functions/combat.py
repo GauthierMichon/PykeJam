@@ -17,6 +17,6 @@ def combat(player, adversaire) :
 
         if action == 1 :
             if pokemon_actuel_player.Speed > pokemon_actuel_adversaire.Speed :
-                fight(pokemon_actuel_player, pokemon_actuel_adversaire, actionNum, climat)
+                print (fight(pokemon_actuel_player, pokemon_actuel_adversaire, actionNum, climat))
 
         
