@@ -10,7 +10,6 @@ def Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, climat) :
     booleanAttaque = MissWork(pokemon_attaquant, Attaque)
 
     if booleanAttaque :
-        print("that work")
         if Attaque.physique == 1 :
             degats = (100 * 0.4 + 2) * pokemon_attaquant.Att * Attaque.puissance
             degats = degats / (pokemon_defenseur.Def * 50) + 2
@@ -60,7 +59,7 @@ def Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, climat) :
 
 
     else :
-        print("that don't work")
+        print("miss")
 
     
 

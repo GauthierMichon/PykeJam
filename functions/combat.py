@@ -4,19 +4,22 @@ from functions.fight import fight
 
 def combat(player, adversaire) :
 
-    pokemon_actuel_player = player.pokemons[0]
+    pokemonActualPlayerNumber = 0
 
-    pokemon_actuel_adversaire = adversaire.pokemons[0]
+    pokemonActualAdversNumber = 0
 
     climat = None
 
     while True :
-        action, actionNum = chooseAction(player, adversaire, pokemon_actuel_player, pokemon_actuel_adversaire)
+        action, actionNum = chooseAction(player, adversaire, player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber])
         
         action_adversaire, actionNum_adversaire = 1, 1
 
         if action == 1 :
-            if pokemon_actuel_player.Speed > pokemon_actuel_adversaire.Speed :
-                print (fight(pokemon_actuel_player, pokemon_actuel_adversaire, actionNum, climat))
+            if player.pokemons[pokemonActualPlayerNumber].Speed > adversaire.pokemons[pokemonActualAdversNumber].Speed :
+                #print("PV Avant :", adversaire.pokemons[pokemonActualAdversNumber].PV)
+                adversaire.pokemons[pokemonActualAdversNumber] = fight(player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber], actionNum, climat)
+                #print("PV Après :", adversaire.pokemons[pokemonActualAdversNumber].PV)
+                
 
         

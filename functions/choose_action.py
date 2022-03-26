@@ -12,7 +12,7 @@ def chooseAction(player, adversaire, pokemon_actuel_player, pokemon_actuel_adver
             pokemon_actuel_player.Attaques[3].name
         ))
 
-        print(pokemon_actuel_player.Attaques[int(actionNum)-1].name)
+        #print(pokemon_actuel_player.Attaques[int(actionNum)-1].name)
 
     if action == "2" :
 
@@ -25,7 +25,7 @@ def chooseAction(player, adversaire, pokemon_actuel_player, pokemon_actuel_adver
             player.pokemons[5].name,
         ))
 
-        print(player.pokemons[int(actionNum)-1])
+        #print(player.pokemons[int(actionNum)-1])
 
         #pokemon_actuel_player = player.pokemons[int(pokemonNum)-1]
     
