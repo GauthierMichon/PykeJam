@@ -8,6 +8,8 @@ def combat(player, adversaire) :
 
     pokemon_actuel_adversaire = adversaire.pokemons[0]
 
+    climat = None
+
     while True :
         action, actionNum = chooseAction(player, adversaire, pokemon_actuel_player, pokemon_actuel_adversaire)
         
@@ -15,6 +17,6 @@ def combat(player, adversaire) :
 
         if action == 1 :
             if pokemon_actuel_player.Speed > pokemon_actuel_adversaire.Speed :
-                fight(pokemon_actuel_player, pokemon_actuel_adversaire, actionNum)
+                fight(pokemon_actuel_player, pokemon_actuel_adversaire, actionNum, climat)
 
         

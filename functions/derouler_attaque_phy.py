@@ -1,7 +1,9 @@
+from functions.choose_random_num import rand
+from functions.climat_attaque_offensive import Climat
 from functions.critique import isCrit
 from functions.table_types import TableType
 
-def AttaquePhy(pokemon_attaquant, pokemon_defenseur, Attaque) :
+def AttaquePhy(pokemon_attaquant, pokemon_defenseur, Attaque, climat) :
 
     degats = (100 * 0.4 + 2) * pokemon_attaquant.Att * Attaque.puissance
     degats = degats / (pokemon_defenseur.Def * 50) + 2
@@ -31,8 +33,11 @@ def AttaquePhy(pokemon_attaquant, pokemon_defenseur, Attaque) :
         degats *= 2
 
     #Climat
+    degats *= Climat(climat, Attaque.Type)
 
 
     #Random num entre 0.85 et 1
+    degats *= (rand(85, 100) / 100)
 
-    return "oui"
+
+    return degats
