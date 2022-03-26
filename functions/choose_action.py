@@ -33,6 +33,6 @@ def chooseAction(player, adversaire, pokemon_actuel_player, pokemon_actuel_adver
 
         print("item")
 
-    return action, actionNum
+    return int(action), int(actionNum)
 
         

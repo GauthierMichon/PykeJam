@@ -1,4 +1,5 @@
 from functions.choose_action import chooseAction
+from functions.fight import fight
 
 
 def combat(player, adversaire) :
@@ -11,5 +12,9 @@ def combat(player, adversaire) :
         action, actionNum = chooseAction(player, adversaire, pokemon_actuel_player, pokemon_actuel_adversaire)
         
         action_adversaire, actionNum_adversaire = 1, 1
+
+        if action == 1 :
+            if pokemon_actuel_player.Speed > pokemon_actuel_adversaire.Speed :
+                fight(pokemon_actuel_player, pokemon_actuel_adversaire, actionNum)
 
         
