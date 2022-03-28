@@ -52,8 +52,17 @@ def initAttaque() :
             select_oneattaque_cursor = conn.cursor()
             select_oneattaque_query = ("SELECT * FROM attaquebuff WHERE attaqueId = {0}".format(i[0]))
             select_oneattaque_cursor.execute(select_oneattaque_query)
-            data_oneattaque = select_oneattaque_cursor.fetchone()
-            attaqueList.append(AttaqueBuff(i[0], i[1], i[2], data_type[i[3]-1][1], i[4], i[5], data_oneattaque[2], data_oneattaque[3]))
+            data_oneattaque = select_oneattaque_cursor.fetchall()
+            statsBuff = []
+            nombresBuff = []
+            if len(data_oneattaque) > 1 :
+                for j in range(len(data_oneattaque)) :
+                    statsBuff.append(data_oneattaque[j][2])
+                    nombresBuff.append(data_oneattaque[j][3])
+            else :
+                statsBuff.append(data_oneattaque[0][2])
+                nombresBuff.append(data_oneattaque[0][3])
+            attaqueList.append(AttaqueBuff(i[0], i[1], i[2], data_type[i[3]-1][1], i[4], i[5], statsBuff, nombresBuff))
         elif i[10] == 1 :
             select_oneattaque_cursor = conn.cursor()
             select_oneattaque_query = ("SELECT * FROM attaquestatut WHERE attaqueId = {0}".format(i[0]))

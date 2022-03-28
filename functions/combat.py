@@ -16,9 +16,9 @@ def combat(player, adversaire) :
         action_adversaire, actionNum_adversaire = 1, 1
 
         if action == 1 :
-            if player.pokemons[pokemonActualPlayerNumber].Speed > adversaire.pokemons[pokemonActualAdversNumber].Speed :
+            #if player.pokemons[pokemonActualPlayerNumber].Speed > adversaire.pokemons[pokemonActualAdversNumber].Speed :
                 #print("PV Avant :", adversaire.pokemons[pokemonActualAdversNumber].PV)
-                adversaire.pokemons[pokemonActualAdversNumber] = fight(player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber], actionNum, climat)
+            player.pokemons[pokemonActualAdversNumber], adversaire.pokemons[pokemonActualPlayerNumber], climat = fight(player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber], actionNum, climat)
                 #print("PV Après :", adversaire.pokemons[pokemonActualAdversNumber].PV)
                 
 

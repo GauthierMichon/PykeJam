@@ -4,31 +4,33 @@ from classes.attaque_climat import AttaqueClimat
 from classes.attaque_heal import AttaqueHeal
 from classes.attaque_statut import AttaqueStatut
 from classes.attaque_autre import AttaqueAutre
+from functions.derouler_attaque_buff import Buff
 from functions.derouler_attaque_offensive import Offensive
 
 
 def fight(pokemon_attaquant, pokemon_defenseur, numAttaque, climat) :
-    if type(pokemon_attaquant.Attaques[numAttaque-1] == AttaqueOffensive) :
+    if type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueOffensive :
         degats = Offensive(pokemon_attaquant, pokemon_defenseur, pokemon_attaquant.Attaques[numAttaque-1], climat)
         pokemon_defenseur.PV -= degats
-        return pokemon_defenseur
+        return pokemon_attaquant, pokemon_defenseur, climat
 
 
-    elif type(pokemon_attaquant.Attaques[numAttaque-1] == AttaqueBuff) :
-        print("buff")
+    elif type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueBuff :
+        pokemon_attaquant = Buff(pokemon_attaquant, pokemon_attaquant.Attaques[numAttaque-1])
+        return pokemon_attaquant, pokemon_defenseur, climat
 
 
-    elif type(pokemon_attaquant.Attaques[numAttaque-1] == AttaqueClimat) :
+    elif type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueClimat :
         print("climat")
 
 
-    elif type(pokemon_attaquant.Attaques[numAttaque-1] == AttaqueHeal) :
+    elif type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueHeal :
         print("heal")
 
 
-    elif type(pokemon_attaquant.Attaques[numAttaque-1] == AttaqueStatut) :
+    elif type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueStatut :
         print("statut")
 
 
-    elif type(pokemon_attaquant.Attaques[numAttaque-1] == AttaqueAutre) :
+    elif type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueAutre :
         print("autre")
