@@ -5,6 +5,7 @@ from classes.attaque_heal import AttaqueHeal
 from classes.attaque_statut import AttaqueStatut
 from classes.attaque_autre import AttaqueAutre
 from functions.derouler_attaque_buff import Buff
+from functions.derouler_attaque_climat import Climat
 from functions.derouler_attaque_offensive import Offensive
 
 
@@ -21,7 +22,8 @@ def fight(pokemon_attaquant, pokemon_defenseur, numAttaque, climat) :
 
 
     elif type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueClimat :
-        print("climat")
+        climat = Climat(pokemon_attaquant.Attaques[numAttaque-1], climat)
+        return pokemon_attaquant, pokemon_defenseur, climat
 
 
     elif type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueHeal :

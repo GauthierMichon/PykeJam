@@ -41,7 +41,13 @@ def initAttaque() :
             select_oneattaque_query = ("SELECT * FROM attaqueclimat WHERE attaqueId = {0}".format(i[0]))
             select_oneattaque_cursor.execute(select_oneattaque_query)
             data_oneattaque = select_oneattaque_cursor.fetchone()
-            attaqueList.append(AttaqueClimat(i[0], i[1], i[2], data_type[i[3]-1][1], i[4], i[5], data_oneattaque[2]))
+
+            select_climat_cursor = conn.cursor()
+            select_climat_query = ("SELECT * FROM climat WHERE id = {0}".format(data_oneattaque[2]))
+            select_climat_cursor.execute(select_climat_query)
+            data_climat = select_climat_cursor.fetchone()
+
+            attaqueList.append(AttaqueClimat(i[0], i[1], i[2], data_type[i[3]-1][1], i[4], i[5], data_climat[1]))
         elif i[8] == 1 :
             select_oneattaque_cursor = conn.cursor()
             select_oneattaque_query = ("SELECT * FROM attaqueheal WHERE attaqueId = {0}".format(i[0]))
