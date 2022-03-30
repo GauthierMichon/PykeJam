@@ -48,7 +48,13 @@ def Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
         #Random num entre 0.85 et 1
         degats *= (rand(85, 100) / 100)
 
-        pokemon_defenseur.PV -= ceil(degats)
+        if pokemon_defenseur.clone == False :
+            pokemon_defenseur.PV -= ceil(degats)
+        else :
+            pokemon_defenseur.clonePV -= ceil(degats)
+            if pokemon_defenseur.clonePV <= 0 :
+                pokemon_defenseur.clone = False
+                pokemon_defenseur.clonePV = None
 
     else :
         print("miss")

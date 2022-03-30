@@ -31,6 +31,8 @@ class Pokemon():
         self.confusion  = False
         self.afraid     = False
         self.abri       = False
+        self.clone      = False
+        self.clonePV    = None
 
 
 

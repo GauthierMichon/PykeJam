@@ -1,4 +1,4 @@
-from functions.fonctions_attaque_autre import Abri, AntiBrume, Balance, BallMeteo, BlablaDodo, BouleRoc, BouteFeu, CasseBrique, ChocPsy
+from functions.fonctions_attaque_autre import Abri, AntiBrume, Balance, BallMeteo, BlablaDodo, BouleRoc, BouteFeu, CasseBrique, ChocPsy, Clairvoyance, Clonage
 
 
 def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
@@ -23,9 +23,9 @@ def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     elif Attaque.id == 22 :
         pokemon_defenseur = ChocPsy(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) 
     elif Attaque.id == 23 :
-        print("Clairvoyance")
+        pokemon_attaquant = Clairvoyance(pokemon_attaquant)
     elif Attaque.id == 24 :
-        print("Clonage")
+        pokemon_attaquant = Clonage(pokemon_attaquant)
     elif Attaque.id == 25 :
         print("CloseCombat")
     elif Attaque.id == 26 :

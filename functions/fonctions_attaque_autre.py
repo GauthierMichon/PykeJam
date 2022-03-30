@@ -198,9 +198,30 @@ def ChocPsy(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
         #Random num entre 0.85 et 1
         degats *= (rand(85, 100) / 100)
 
-        pokemon_defenseur.PV -= ceil(degats)
+        if pokemon_defenseur.clone == False :
+            pokemon_defenseur.PV -= ceil(degats)
+        else :
+            pokemon_defenseur.clonePV -= ceil(degats)
+            if pokemon_defenseur.clonePV <= 0 :
+                pokemon_defenseur.clone = False
+                pokemon_defenseur.clonePV = None
 
     else :
         print("miss")
     
     return pokemon_defenseur
+
+def Clairvoyance(pokemon_attaquant) :
+    if pokemon_attaquant.accuracy < 0 :
+        pokemon_attaquant.accuracy = 0
+    pokemon_attaquant.accuracy += 2
+
+    return pokemon_attaquant
+
+def Clonage(pokemon_attaquant) :
+    if pokemon_attaquant.PV > ceil(pokemon_attaquant.PV / 4) :
+        pokemon_attaquant.PV -= ceil(pokemon_attaquant.PV / 4)
+        pokemon_attaquant.clone = True
+        pokemon_attaquant.clonePV = ceil(pokemon_attaquant.PV / 4)
+    else :
+        print("Clonage a échoué")
