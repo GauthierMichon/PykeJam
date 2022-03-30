@@ -12,32 +12,32 @@ from functions.derouler_attaque_offensive import Offensive
 import functions.derouler_attaque_autre as other
 
 
-def fight(pokemon_attaquant, pokemon_defenseur, numAttaque, terrain) :
+def fight(pokemon_attaquant, pokemon_defenseur, numAttaque, terrain, dresseurPokemonAttaquant) :
     if type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueOffensive :
         pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, pokemon_attaquant.Attaques[numAttaque-1], terrain)
-        return pokemon_attaquant, pokemon_defenseur, terrain
+        return pokemon_attaquant, pokemon_defenseur, terrain, dresseurPokemonAttaquant
 
 
     elif type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueBuff :
         pokemon_attaquant = Buff(pokemon_attaquant, pokemon_attaquant.Attaques[numAttaque-1])
-        return pokemon_attaquant, pokemon_defenseur, terrain
+        return pokemon_attaquant, pokemon_defenseur, terrain, dresseurPokemonAttaquant
 
 
     elif type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueClimat :
         terrain = Climat(pokemon_attaquant.Attaques[numAttaque-1], terrain)
-        return pokemon_attaquant, pokemon_defenseur, terrain
+        return pokemon_attaquant, pokemon_defenseur, terrain, dresseurPokemonAttaquant
 
 
     elif type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueHeal :
         pokemon_attaquant = Heal(pokemon_attaquant, pokemon_attaquant.Attaques[numAttaque-1])
-        return pokemon_attaquant, pokemon_defenseur, terrain
+        return pokemon_attaquant, pokemon_defenseur, terrain, dresseurPokemonAttaquant
 
 
     elif type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueStatut :        
         pokemon_defenseur = Statut(pokemon_defenseur, pokemon_attaquant.Attaques[numAttaque-1])
-        return pokemon_attaquant, pokemon_defenseur, terrain
+        return pokemon_attaquant, pokemon_defenseur, terrain, dresseurPokemonAttaquant
 
 
     elif type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueAutre :
-        other.Autres(pokemon_attaquant, pokemon_defenseur, pokemon_attaquant.Attaques[numAttaque-1], terrain)
-        return pokemon_attaquant, pokemon_defenseur, terrain
+        other.Autres(pokemon_attaquant, pokemon_defenseur, pokemon_attaquant.Attaques[numAttaque-1], terrain, dresseurPokemonAttaquant, numAttaque)
+        return pokemon_attaquant, pokemon_defenseur, terrain, dresseurPokemonAttaquant

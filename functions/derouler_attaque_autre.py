@@ -1,7 +1,7 @@
-from functions.fonctions_attaque_autre import Abri, AntiBrume, Balance, BallMeteo, BlablaDodo, BouleRoc, BouteFeu, CasseBrique, ChocPsy, Clairvoyance, Clonage
+from functions.fonctions_attaque_autre import Abri, AntiBrume, Balance, BallMeteo, BlablaDodo, BouleRoc, BouteFeu, CasseBrique, ChocPsy, Clairvoyance, Clonage, CloseCombat, Colere, Conversion
 
 
-def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
+def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokemonAttaquant, numAttaque) :
     if Attaque.id == 1 :
         pokemon_attaquant = Abri(pokemon_attaquant)
     elif Attaque.id == 2 :
@@ -27,11 +27,11 @@ def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     elif Attaque.id == 24 :
         pokemon_attaquant = Clonage(pokemon_attaquant)
     elif Attaque.id == 25 :
-        print("CloseCombat")
+        pokemon_attaquant, pokemon_defenseur = CloseCombat(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) 
     elif Attaque.id == 26 :
-        print("Colere")
+        pokemon_attaquant, pokemon_defenseur, dresseurPokemonAttaquant = Colere(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokemonAttaquant, numAttaque)
     elif Attaque.id == 27 :
-        print("Conversion")
+        pokemon_attaquant = Conversion(pokemon_attaquant)
     elif Attaque.id == 31 :
         print("Damocles")
     elif Attaque.id == 35 :
@@ -110,4 +110,4 @@ def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
         print("VoleForce")
     
 
-    return pokemon_attaquant, pokemon_defenseur, terrain
+    return pokemon_attaquant, pokemon_defenseur, terrain, dresseurPokemonAttaquant

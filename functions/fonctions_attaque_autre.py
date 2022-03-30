@@ -225,3 +225,58 @@ def Clonage(pokemon_attaquant) :
         pokemon_attaquant.clonePV = ceil(pokemon_attaquant.PV / 4)
     else :
         print("Clonage a échoué")
+
+def CloseCombat(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
+    Attaque.puissance = 120
+    Attaque.physique = 1
+    Attaque.special = 0
+    Attaque.effect = 0
+    Attaque.probaEffect = None
+
+    pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+    if pokemon_attaquant.DefBuff > -6 :
+        pokemon_attaquant.DefBuff -= 1
+    if pokemon_attaquant.DefSpeBuff > -6 :
+        pokemon_attaquant.DefSpeBuff -= 1
+
+    return pokemon_attaquant, pokemon_defenseur
+
+def Colere(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokemonAttaquant, numAttaque) :
+    Attaque.puissance = 120
+    Attaque.physique = 1
+    Attaque.special = 0
+    Attaque.effect = 0
+    Attaque.probaEffect = None
+
+    input("Use Colere")
+
+    pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+
+    if dresseurPokemonAttaquant.actionOblig == None :
+        dresseurPokemonAttaquant.actionOblig = [1, numAttaque]
+        dresseurPokemonAttaquant.actionObligNbTour = rand(1, 2)
+    elif dresseurPokemonAttaquant.actionObligNbTour == 1 :
+        dresseurPokemonAttaquant.actionOblig = None
+        dresseurPokemonAttaquant.actionObligNbTour = None
+        pokemon_attaquant.confusion = True
+    else :
+        dresseurPokemonAttaquant.actionObligNbTour -= 1
+
+    print(pokemon_defenseur.PV)
+
+    return pokemon_attaquant, pokemon_defenseur, dresseurPokemonAttaquant
+
+def Conversion(pokemon_attaquant) :
+    pokemon_attaquant.Type = pokemon_attaquant.Attaques[0].Type
+    print(pokemon_attaquant.Type)
+    return pokemon_attaquant
+
+
+
+
+
+
+
+
+
+
