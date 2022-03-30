@@ -35,7 +35,7 @@ def initAttaque() :
             select_oneattaque_query = ("SELECT * FROM attaqueoffensive WHERE attaqueId = {0}".format(i[0]))
             select_oneattaque_cursor.execute(select_oneattaque_query)
             data_oneattaque = select_oneattaque_cursor.fetchone()
-            attaqueList.append(AttaqueOffensive(i[0], i[1], i[2], data_type[i[3]-1][1], i[4], i[5], data_oneattaque[2], data_oneattaque[3], data_oneattaque[4], data_oneattaque[5], data_oneattaque[6], data_oneattaque[7]))
+            attaqueList.append(AttaqueOffensive(i[0], i[1], i[2], data_type[i[3]-1][1], i[4], i[5], i[6], data_oneattaque[2], data_oneattaque[3], data_oneattaque[4], data_oneattaque[5], data_oneattaque[6]))
         elif i[7] == 1 :
             select_oneattaque_cursor = conn.cursor()
             select_oneattaque_query = ("SELECT * FROM attaqueclimat WHERE attaqueId = {0}".format(i[0]))
@@ -47,13 +47,13 @@ def initAttaque() :
             select_climat_cursor.execute(select_climat_query)
             data_climat = select_climat_cursor.fetchone()
 
-            attaqueList.append(AttaqueClimat(i[0], i[1], i[2], data_type[i[3]-1][1], i[4], i[5], data_climat[1]))
+            attaqueList.append(AttaqueClimat(i[0], i[1], i[2], data_type[i[3]-1][1], i[4], i[5], i[6], data_climat[1]))
         elif i[8] == 1 :
             select_oneattaque_cursor = conn.cursor()
             select_oneattaque_query = ("SELECT * FROM attaqueheal WHERE attaqueId = {0}".format(i[0]))
             select_oneattaque_cursor.execute(select_oneattaque_query)
             data_oneattaque = select_oneattaque_cursor.fetchone()
-            attaqueList.append(AttaqueHeal(i[0], i[1], i[2], data_type[i[3]-1][1], i[4], i[5], data_oneattaque[2]))
+            attaqueList.append(AttaqueHeal(i[0], i[1], i[2], data_type[i[3]-1][1], i[4], i[5], i[6], data_oneattaque[2]))
         elif i[9] == 1 :
             select_oneattaque_cursor = conn.cursor()
             select_oneattaque_query = ("SELECT * FROM attaquebuff WHERE attaqueId = {0}".format(i[0]))
@@ -68,7 +68,7 @@ def initAttaque() :
             else :
                 statsBuff.append(data_oneattaque[0][2])
                 nombresBuff.append(data_oneattaque[0][3])
-            attaqueList.append(AttaqueBuff(i[0], i[1], i[2], data_type[i[3]-1][1], i[4], i[5], statsBuff, nombresBuff))
+            attaqueList.append(AttaqueBuff(i[0], i[1], i[2], data_type[i[3]-1][1], i[4], i[5], i[6], statsBuff, nombresBuff))
         elif i[10] == 1 :
 
 
@@ -83,7 +83,7 @@ def initAttaque() :
             data_statut = select_statut_cursor.fetchone()
 
 
-            attaqueList.append(AttaqueStatut(i[0], i[1], i[2], data_type[i[3]-1][1], i[4], i[5], data_statut[1]))
+            attaqueList.append(AttaqueStatut(i[0], i[1], i[2], data_type[i[3]-1][1], i[4], i[5], i[6], data_statut[1]))
 
 
         elif i[11] == 1 and i[0] != 93 :
@@ -91,13 +91,13 @@ def initAttaque() :
             select_oneattaque_query = ("SELECT * FROM attaqueautres WHERE attaqueId = {0}".format(i[0]))
             select_oneattaque_cursor.execute(select_oneattaque_query)
             data_oneattaque = select_oneattaque_cursor.fetchone()
-            attaqueList.append(AttaqueAutre(i[0], i[1], i[2], data_type[i[3]-1][1], i[4], i[5]))
+            attaqueList.append(AttaqueAutre(i[0], i[1], i[2], data_type[i[3]-1][1], i[4], i[5], i[6]))
         elif i[11] == 1 and i[0] == 93 :
             select_oneattaque_cursor = conn.cursor()
             select_oneattaque_query = ("SELECT * FROM attaqueautres WHERE attaqueId = {0}".format(i[0]))
             select_oneattaque_cursor.execute(select_oneattaque_query)
             data_oneattaque = select_oneattaque_cursor.fetchone()
-            attaqueList.append(AttaqueAutre(i[0], i[1], i[2], None, i[4], i[5]))
+            attaqueList.append(AttaqueAutre(i[0], i[1], i[2], None, i[4], i[5], i[6]))
 
     return attaqueList
 

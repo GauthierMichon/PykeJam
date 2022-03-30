@@ -9,6 +9,7 @@ from functions.derouler_attaque_climat import Climat
 from functions.derouler_attaque_heal import Heal
 from functions.derouler_attaque_statut import Statut
 from functions.derouler_attaque_offensive import Offensive
+from functions.dérouler_attaque_autre import Autres
 
 
 def fight(pokemon_attaquant, pokemon_defenseur, numAttaque, climat) :
@@ -38,7 +39,6 @@ def fight(pokemon_attaquant, pokemon_defenseur, numAttaque, climat) :
         return pokemon_attaquant, pokemon_defenseur, climat
 
 
-
-
     elif type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueAutre :
-        print("autre")
+        Autres(pokemon_attaquant, pokemon_defenseur, pokemon_attaquant.Attaques[numAttaque-1], climat)
+        return pokemon_attaquant, pokemon_defenseur, climat
