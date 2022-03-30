@@ -505,6 +505,137 @@ def PicsToxik(dresseurPokemonAttaquant, terrain) :
 
     return terrain
 
+def PiedSaute(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
+    Attaque.puissance = 100
+    Attaque.physique = 1
+    Attaque.special = 0
+    Attaque.effect = 0
+    Attaque.probaEffect = None
+
+    if not MissWork(pokemon_attaquant, Attaque) or pokemon_defenseur.Type == "Spectre" or pokemon_defenseur.Type2 == "Spectre" :
+        pokemon_attaquant.PV = (pokemon_attaquant.PVMax / 2)
+    else :
+        if pokemon_attaquant.statut == "Brûlure" :
+            pokemon_attaquant.Att = pokemon_attaquant.Att / 2
+
+        if Attaque.physique == 1 :
+            degats = (100 * 0.4 + 2) * pokemon_attaquant.Att * Attaque.puissance
+            degats = degats / (pokemon_defenseur.Def * 50) + 2
+        elif Attaque.special == 1 :
+            degats = (100 * 0.4 + 2) * pokemon_attaquant.AttSpe * Attaque.puissance
+            degats = degats / (pokemon_defenseur.DefSpe * 50) + 2
+
+        #STAB
+        if Attaque.Type == pokemon_attaquant.Type or Attaque.Type == pokemon_attaquant.Type2 :
+            degats *= 1.5
+
+        #Efficacité type
+        eff = TableType(Attaque.Type, pokemon_defenseur.Type, pokemon_defenseur.Type2)
+        if eff == 0 :
+            print("inefficace")
+        elif eff == 0.25 or eff == 0.5 :
+            print("peu efficace")
+        elif eff == 1 :
+            print("efficace")
+        elif eff >= 2 :
+            print("super efficace")
+        else : 
+            print("problème efficacité")
+
+        degats *= eff
+
+        #Crit
+        if isCrit() :
+            print("Coup Critique")
+            degats *= 2
+
+        #Climat
+        degats *= Climat(terrain, Attaque.Type)
 
 
+        #Random num entre 0.85 et 1
+        degats *= (rand(85, 100) / 100)
 
+        if pokemon_defenseur.clone == False :
+            pokemon_defenseur.PV -= ceil(degats)
+        else :
+            pokemon_defenseur.clonePV -= ceil(degats)
+            if pokemon_defenseur.clonePV <= 0 :
+                pokemon_defenseur.clone = False
+                pokemon_defenseur.clonePV = None
+
+    return pokemon_attaquant, pokemon_defenseur
+
+def PiedVoltige(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
+    Attaque.puissance = 130
+    Attaque.physique = 1
+    Attaque.special = 0
+    Attaque.effect = 0
+    Attaque.probaEffect = None
+
+    if not MissWork(pokemon_attaquant, Attaque) or pokemon_defenseur.Type == "Spectre" or pokemon_defenseur.Type2 == "Spectre" :
+        pokemon_attaquant.PV = (pokemon_attaquant.PVMax / 2)
+    else :
+        if pokemon_attaquant.statut == "Brûlure" :
+            pokemon_attaquant.Att = pokemon_attaquant.Att / 2
+
+        if Attaque.physique == 1 :
+            degats = (100 * 0.4 + 2) * pokemon_attaquant.Att * Attaque.puissance
+            degats = degats / (pokemon_defenseur.Def * 50) + 2
+        elif Attaque.special == 1 :
+            degats = (100 * 0.4 + 2) * pokemon_attaquant.AttSpe * Attaque.puissance
+            degats = degats / (pokemon_defenseur.DefSpe * 50) + 2
+
+        #STAB
+        if Attaque.Type == pokemon_attaquant.Type or Attaque.Type == pokemon_attaquant.Type2 :
+            degats *= 1.5
+
+        #Efficacité type
+        eff = TableType(Attaque.Type, pokemon_defenseur.Type, pokemon_defenseur.Type2)
+        if eff == 0 :
+            print("inefficace")
+        elif eff == 0.25 or eff == 0.5 :
+            print("peu efficace")
+        elif eff == 1 :
+            print("efficace")
+        elif eff >= 2 :
+            print("super efficace")
+        else : 
+            print("problème efficacité")
+
+        degats *= eff
+
+        #Crit
+        if isCrit() :
+            print("Coup Critique")
+            degats *= 2
+
+        #Climat
+        degats *= Climat(terrain, Attaque.Type)
+
+
+        #Random num entre 0.85 et 1
+        degats *= (rand(85, 100) / 100)
+
+        if pokemon_defenseur.clone == False :
+            pokemon_defenseur.PV -= ceil(degats)
+        else :
+            pokemon_defenseur.clonePV -= ceil(degats)
+            if pokemon_defenseur.clonePV <= 0 :
+                pokemon_defenseur.clone = False
+                pokemon_defenseur.clonePV = None
+
+    return pokemon_attaquant, pokemon_defenseur
+
+def PiegeDeRoc(dresseurPokemonAttaquant, terrain) :
+    if dresseurPokemonAttaquant.person == "player" :
+        toChange = "PiegeDeRoc"
+    else :
+        toChange = "PiegeDeRocAdverse"
+    
+    if getattr(terrain, toChange) == None :
+        setattr(terrain, toChange, 1)
+    else :
+        print("déjà des Pics Toxik")
+
+    return terrain
