@@ -1,5 +1,6 @@
 from math import ceil
 import random
+from tkinter import E
 from classes.attaque_autre import AttaqueAutre
 from classes.attaque_buff import AttaqueBuff
 from classes.attaque_climat import AttaqueClimat
@@ -133,7 +134,7 @@ def BouleRoc(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     return pokemon_defenseur
 
 def BouteFeu(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
-    Attaque.puissance = 25
+    Attaque.puissance = 120
     Attaque.physique = 1
     Attaque.special = 0
     Attaque.effect = 1
@@ -271,11 +272,58 @@ def Conversion(pokemon_attaquant) :
     print(pokemon_attaquant.Type)
     return pokemon_attaquant
 
+def Damocles(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
+    Attaque.puissance = 120
+    Attaque.physique = 1
+    Attaque.special = 0
+    Attaque.effect = 0
+    Attaque.probaEffect = None
 
+    PVAvantAttaque = pokemon_defenseur.PV
 
+    pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
 
+    pokemon_attaquant.PV = ceil((PVAvantAttaque - pokemon_defenseur.PV) / 3)
 
+    return pokemon_attaquant, pokemon_defenseur
 
+def DracoMeteore(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
+    Attaque.puissance = 130
+    Attaque.physique = 0
+    Attaque.special = 1
+    Attaque.effect = 0
+    Attaque.probaEffect = None
+
+    pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+    
+    pokemon_attaquant.AttSpeBuff -= 2
+    if pokemon_attaquant.AttSpeBuff < -6 :
+        pokemon_attaquant.AttSpeBuff = -6
+
+    return pokemon_attaquant, pokemon_defenseur
+
+def EclairFou(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
+    Attaque.puissance = 90
+    Attaque.physique = 1
+    Attaque.special = 0
+    Attaque.effect = 0
+    Attaque.probaEffect = None
+
+    PVAvantAttaque = pokemon_defenseur.PV
+
+    pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+
+    pokemon_attaquant.PV = ceil((PVAvantAttaque - pokemon_defenseur.PV) / 4)
+
+    return pokemon_attaquant, pokemon_defenseur
+
+def Effort(pokemon_attaquant, pokemon_defenseur) :
+    if pokemon_defenseur.PV > pokemon_attaquant.PV :
+        pokemon_defenseur.PV = pokemon_attaquant.PV
+    else :
+        print("PV de l'adversaire trop bas")
+
+    return pokemon_defenseur
 
 
 
