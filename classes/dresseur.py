@@ -1,10 +1,11 @@
 class Dresseur():
-    def __init__(self, name, pokemons):
+    def __init__(self, name, pokemons, person):
         self.name               = name
         self.pokemons           = pokemons
         self.inventaire         = None
         self.actionOblig        = None
         self.actionObligNbTour  = None
+        self.person             = person
 
 
 

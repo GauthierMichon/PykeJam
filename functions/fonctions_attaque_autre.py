@@ -451,8 +451,59 @@ def Megaphone(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     
     return pokemon_defenseur
 
+def NoeudHerbe(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
+    if pokemon_defenseur.Poids <= 10 :
+        Attaque.puissance = 20
+    elif pokemon_defenseur.Poids <= 25 :
+        Attaque.puissance = 40
+    elif pokemon_defenseur.Poids <= 50 :
+        Attaque.puissance = 60
+    elif pokemon_defenseur.Poids <= 100 :
+        Attaque.puissance = 80
+    elif pokemon_defenseur.Poids <= 200 :
+        Attaque.puissance = 100
+    else :
+        Attaque.puissance = 120
+
+    Attaque.physique = 1
+    Attaque.special = 0
+    Attaque.effect = 0
+    Attaque.probaEffect = None
+
+    pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+
+    return pokemon_defenseur
+
+def Picots(dresseurPokemonAttaquant, terrain) :
+    if dresseurPokemonAttaquant.person == "player" :
+        toChange = "Picots"
+    else :
+        toChange = "PicotsAdverse"
+    
+    initValue = getattr(terrain, toChange)
 
 
+    if getattr(terrain, toChange) == None :
+        setattr(terrain, toChange, 1)
+    elif getattr(terrain, toChange) < 3 :
+        setattr(terrain, toChange, initValue + 1)
+    else :
+        print("trop de picots")
+
+    return terrain
+
+def PicsToxik(dresseurPokemonAttaquant, terrain) :
+    if dresseurPokemonAttaquant.person == "player" :
+        toChange = "PicsToxik"
+    else :
+        toChange = "PicsToxikAdverse"
+    
+    if getattr(terrain, toChange) == None :
+        setattr(terrain, toChange, 1)
+    else :
+        print("déjà des Pics Toxik")
+
+    return terrain
 
 
 
