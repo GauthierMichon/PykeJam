@@ -29,6 +29,8 @@ class Pokemon():
         self.Poids      = Poids
         self.statut     = None
         self.confusion  = False
+        self.afraid     = False
+        self.abri       = False
 
 
 

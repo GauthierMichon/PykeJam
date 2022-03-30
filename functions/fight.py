@@ -14,8 +14,7 @@ from functions.dérouler_attaque_autre import Autres
 
 def fight(pokemon_attaquant, pokemon_defenseur, numAttaque, terrain) :
     if type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueOffensive :
-        degats = Offensive(pokemon_attaquant, pokemon_defenseur, pokemon_attaquant.Attaques[numAttaque-1], terrain)
-        pokemon_defenseur.PV -= degats
+        pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, pokemon_attaquant.Attaques[numAttaque-1], terrain)
         return pokemon_attaquant, pokemon_defenseur, terrain
 
 

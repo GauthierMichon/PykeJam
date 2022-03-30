@@ -48,18 +48,12 @@ def Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
         #Random num entre 0.85 et 1
         degats *= (rand(85, 100) / 100)
 
-
-        return ceil(degats)
-
-
-
-
-
-
-
+        pokemon_defenseur.PV -= ceil(degats)
 
     else :
         print("miss")
+    
+    return pokemon_defenseur
 
     
 

@@ -1,12 +1,15 @@
+from functions.fonctions_attaque_autre import Abri, AntiBrume, Balance, BallMeteo
+
+
 def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     if Attaque.id == 1 :
-        print("Abri")
+        pokemon_attaquant = Abri(pokemon_attaquant)
     elif Attaque.id == 2 :
-        print("AntiBrume")
+        terrain = AntiBrume(terrain)
     elif Attaque.id == 8 :
-        print("Balance")
+        pokemon_attaquant, pokemon_defenseur = Balance(pokemon_attaquant, pokemon_defenseur)
     elif Attaque.id == 9 :
-        print("BallMeteo")
+        pokemon_defenseur = BallMeteo(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
     elif Attaque.id == 12 :
         print("BlablaDodo")
     elif Attaque.id == 15 :
@@ -107,3 +110,4 @@ def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
         print("VoleForce")
     
 
+    return pokemon_attaquant, pokemon_defenseur, terrain
