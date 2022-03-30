@@ -1,4 +1,4 @@
-def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, climat) :
+def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     if Attaque.id == 1 :
         print("Abri")
     elif Attaque.id == 2 :

@@ -6,7 +6,7 @@ from functions.table_types import TableType
 from math import *
 
 
-def Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, climat) :
+def Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     booleanAttaque = MissWork(pokemon_attaquant, Attaque)
 
     if booleanAttaque :
@@ -42,7 +42,7 @@ def Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, climat) :
             degats *= 2
 
         #Climat
-        degats *= Climat(climat, Attaque.Type)
+        degats *= Climat(terrain, Attaque.Type)
 
 
         #Random num entre 0.85 et 1

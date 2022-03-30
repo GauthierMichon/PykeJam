@@ -1,3 +1,3 @@
-def Climat(Attaque, climat) :
-    climat = Attaque.climat
-    return climat
+def Climat(Attaque, terrain) :
+    terrain.climat = Attaque.climat
+    return terrain

@@ -12,33 +12,33 @@ from functions.derouler_attaque_offensive import Offensive
 from functions.dérouler_attaque_autre import Autres
 
 
-def fight(pokemon_attaquant, pokemon_defenseur, numAttaque, climat) :
+def fight(pokemon_attaquant, pokemon_defenseur, numAttaque, terrain) :
     if type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueOffensive :
-        degats = Offensive(pokemon_attaquant, pokemon_defenseur, pokemon_attaquant.Attaques[numAttaque-1], climat)
+        degats = Offensive(pokemon_attaquant, pokemon_defenseur, pokemon_attaquant.Attaques[numAttaque-1], terrain)
         pokemon_defenseur.PV -= degats
-        return pokemon_attaquant, pokemon_defenseur, climat
+        return pokemon_attaquant, pokemon_defenseur, terrain
 
 
     elif type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueBuff :
         pokemon_attaquant = Buff(pokemon_attaquant, pokemon_attaquant.Attaques[numAttaque-1])
-        return pokemon_attaquant, pokemon_defenseur, climat
+        return pokemon_attaquant, pokemon_defenseur, terrain
 
 
     elif type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueClimat :
-        climat = Climat(pokemon_attaquant.Attaques[numAttaque-1], climat)
-        return pokemon_attaquant, pokemon_defenseur, climat
+        terrain = Climat(pokemon_attaquant.Attaques[numAttaque-1], terrain)
+        return pokemon_attaquant, pokemon_defenseur, terrain
 
 
     elif type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueHeal :
         pokemon_attaquant = Heal(pokemon_attaquant, pokemon_attaquant.Attaques[numAttaque-1])
-        return pokemon_attaquant, pokemon_defenseur, climat
+        return pokemon_attaquant, pokemon_defenseur, terrain
 
 
     elif type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueStatut :        
         pokemon_defenseur = Statut(pokemon_defenseur, pokemon_attaquant.Attaques[numAttaque-1])
-        return pokemon_attaquant, pokemon_defenseur, climat
+        return pokemon_attaquant, pokemon_defenseur, terrain
 
 
     elif type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueAutre :
-        Autres(pokemon_attaquant, pokemon_defenseur, pokemon_attaquant.Attaques[numAttaque-1], climat)
-        return pokemon_attaquant, pokemon_defenseur, climat
+        Autres(pokemon_attaquant, pokemon_defenseur, pokemon_attaquant.Attaques[numAttaque-1], terrain)
+        return pokemon_attaquant, pokemon_defenseur, terrain
