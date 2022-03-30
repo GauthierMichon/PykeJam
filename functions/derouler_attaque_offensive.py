@@ -9,6 +9,9 @@ from math import *
 def Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     booleanAttaque = MissWork(pokemon_attaquant, Attaque)
 
+    if pokemon_attaquant.statut == "Brûlure" :
+        pokemon_attaquant.Att = pokemon_attaquant.Att / 2
+
     if booleanAttaque :
         if Attaque.physique == 1 :
             degats = (100 * 0.4 + 2) * pokemon_attaquant.Att * Attaque.puissance

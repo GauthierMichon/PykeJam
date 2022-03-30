@@ -325,6 +325,43 @@ def Effort(pokemon_attaquant, pokemon_defenseur) :
 
     return pokemon_defenseur
 
+def Explosion(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
+    Attaque.puissance = 250
+    Attaque.physique = 1
+    Attaque.special = 0
+    Attaque.effect = 0
+    Attaque.probaEffect = None
+
+    pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+    pokemon_attaquant.PV = 0
+
+    return pokemon_attaquant, pokemon_defenseur
+
+def Facade(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
+    if pokemon_attaquant.statut == "Brûlure" :
+        Attaque.puissance = 280
+    elif pokemon_attaquant.statut == "Paralysie" and pokemon_attaquant.statut == "Empoisonnement"  :
+        Attaque.puissance = 140
+    else :
+        Attaque.puissance = 70
+    Attaque.physique = 1
+    Attaque.special = 0
+    Attaque.effect = 0
+    Attaque.probaEffect = None
+
+    pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+
+    return pokemon_defenseur
+
+def FrappeAtlas(pokemon_defenseur) :
+    pokemon_defenseur.PV -= 100
+    return pokemon_defenseur
+
+def GlasDeSoin(dresseurPokemonAttaquant) :
+    for i in range(len(dresseurPokemonAttaquant.pokemons)) :
+        dresseurPokemonAttaquant.pokemons[i].statut = None
+
+
 
 
 

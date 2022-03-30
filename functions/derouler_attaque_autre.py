@@ -1,4 +1,4 @@
-from functions.fonctions_attaque_autre import Abri, AntiBrume, Balance, BallMeteo, BlablaDodo, BouleRoc, BouteFeu, CasseBrique, ChocPsy, Clairvoyance, Clonage, CloseCombat, Colere, Conversion, Damocles, DracoMeteore, EclairFou, Effort
+from functions.fonctions_attaque_autre import Abri, AntiBrume, Balance, BallMeteo, BlablaDodo, BouleRoc, BouteFeu, CasseBrique, ChocPsy, Clairvoyance, Clonage, CloseCombat, Colere, Conversion, Damocles, DracoMeteore, EclairFou, Effort, Explosion, Facade, FrappeAtlas, GlasDeSoin
 
 
 def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokemonAttaquant, numAttaque) :
@@ -43,13 +43,13 @@ def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokem
     elif Attaque.id == 43 :
         pokemon_defenseur = Effort(pokemon_attaquant, pokemon_defenseur)
     elif Attaque.id == 46 :
-        print("Explosion")
+        pokemon_attaquant, pokemon_defenseur = Explosion(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
     elif Attaque.id == 48 :
-        print("Facade")
+        pokemon_defenseur = Facade(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
     elif Attaque.id == 50 :
-        print("FrappeAtlas")
+        pokemon_defenseur = FrappeAtlas(pokemon_defenseur)
     elif Attaque.id == 51 :
-        print("GlasDeSoin")
+        dresseurPokemonAttaquant = GlasDeSoin(dresseurPokemonAttaquant)
     elif Attaque.id == 61 :
         print("LanceSoleil")
     elif Attaque.id == 67 :
