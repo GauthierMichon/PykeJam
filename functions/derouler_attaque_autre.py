@@ -1,4 +1,4 @@
-from functions.fonctions_attaque_autre import Abri, AntiBrume, Balance, BallMeteo, BlablaDodo, BouleRoc
+from functions.fonctions_attaque_autre import Abri, AntiBrume, Balance, BallMeteo, BlablaDodo, BouleRoc, BouteFeu, CasseBrique, ChocPsy
 
 
 def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
@@ -15,13 +15,13 @@ def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     elif Attaque.id == 15 :
         pokemon_defenseur = BouleRoc(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) 
     elif Attaque.id == 17 :
-        print("Boutefeu")
+        pokemon_attaquant, pokemon_defenseur = BouteFeu(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) 
     elif Attaque.id == 20 :
-        print("CasseBrique")
+        pokemon_defenseur = CasseBrique(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) 
     elif Attaque.id == 21 :
         print("ChangeEclair")
     elif Attaque.id == 22 :
-        print("ChocPsy")
+        pokemon_defenseur = ChocPsy(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) 
     elif Attaque.id == 23 :
         print("Clairvoyance")
     elif Attaque.id == 24 :

@@ -6,7 +6,10 @@ from classes.attaque_climat import AttaqueClimat
 from classes.attaque_heal import AttaqueHeal
 from classes.attaque_offensive import AttaqueOffensive
 from classes.attaque_statut import AttaqueStatut
+from functions.attaque_miss_or_work import MissWork
+from functions.choose_random_num import rand
 from functions.climat_attaque_offensive import Climat
+from functions.critique import isCrit
 
 from functions.derouler_attaque_offensive import Offensive
 from functions.derouler_attaque_statut import Statut
@@ -14,6 +17,7 @@ from functions.derouler_attaque_heal import Heal
 from functions.derouler_attaque_buff import Buff
 from functions.initiation import initAttaque
 import functions.derouler_attaque_autre as other
+from functions.table_types import TableType
 
 
 def Abri(pokemon_attaquant) :
@@ -126,4 +130,77 @@ def BouleRoc(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     print("Après :", pokemon_defenseur.PV)
 
 
+    return pokemon_defenseur
+
+def BouteFeu(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
+    Attaque.puissance = 25
+    Attaque.physique = 1
+    Attaque.special = 0
+    Attaque.effect = 1
+    Attaque.probaEffect = 10
+    Attaque.EffectName = "Brûlure"
+
+    PVAvantAttaque = pokemon_defenseur.PV
+
+    pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+
+    pokemon_attaquant.PV = ceil((PVAvantAttaque - pokemon_defenseur.PV) / 3)
+
+    return pokemon_attaquant, pokemon_defenseur
+
+def CasseBrique(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
+    Attaque.puissance = 75
+    Attaque.physique = 1
+    Attaque.special = 0
+    Attaque.effect = 0
+    Attaque.probaEffect = None
+
+    pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+
+    return pokemon_defenseur
+
+def ChocPsy(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
+    Attaque.puissance = 100
+    booleanAttaque = MissWork(pokemon_attaquant, Attaque)
+
+    if booleanAttaque :
+        degats = (100 * 0.4 + 2) * pokemon_attaquant.AttSpe * Attaque.puissance
+        degats = degats / (pokemon_defenseur.Def * 50) + 2
+
+        #STAB
+        if Attaque.Type == pokemon_attaquant.Type or Attaque.Type == pokemon_attaquant.Type2 :
+            degats *= 1.5
+
+        #Efficacité type
+        eff = TableType(Attaque.Type, pokemon_defenseur.Type, pokemon_defenseur.Type2)
+        if eff == 0 :
+            print("inefficace")
+        elif eff == 0.25 or eff == 0.5 :
+            print("peu efficace")
+        elif eff == 1 :
+            print("efficace")
+        elif eff >= 2 :
+            print("super efficace")
+        else : 
+            print("problème efficacité")
+
+        degats *= eff
+
+        #Crit
+        if isCrit() :
+            print("Coup Critique")
+            degats *= 2
+
+        #Climat
+        degats *= Climat(terrain, Attaque.Type)
+
+
+        #Random num entre 0.85 et 1
+        degats *= (rand(85, 100) / 100)
+
+        pokemon_defenseur.PV -= ceil(degats)
+
+    else :
+        print("miss")
+    
     return pokemon_defenseur
