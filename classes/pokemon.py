@@ -33,6 +33,7 @@ class Pokemon():
         self.abri       = False
         self.clone      = False
         self.clonePV    = None
+        self.maudit     = False
 
 
 

@@ -361,6 +361,98 @@ def GlasDeSoin(dresseurPokemonAttaquant) :
     for i in range(len(dresseurPokemonAttaquant.pokemons)) :
         dresseurPokemonAttaquant.pokemons[i].statut = None
 
+def LanceSoleil(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokemonAttaquant, numAttaque) :
+    Attaque.puissance = 120
+    Attaque.physique = 0
+    Attaque.special = 1
+    Attaque.effect = 0
+    Attaque.probaEffect = None
+
+    if dresseurPokemonAttaquant.actionOblig == None and terrain.climat != "Soleil" :
+        input("Se charge")
+        dresseurPokemonAttaquant.actionOblig = [1, numAttaque]
+        dresseurPokemonAttaquant.actionObligNbTour = 1
+    elif terrain.climat == "Soleil" :
+        pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+    elif dresseurPokemonAttaquant.actionObligNbTour == 1 :
+        pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+        dresseurPokemonAttaquant.actionOblig = None
+        dresseurPokemonAttaquant.actionObligNbTour = None
+
+    return pokemon_defenseur, dresseurPokemonAttaquant
+
+def Malediction(pokemon_attaquant, pokemon_defenseur) :
+    if pokemon_attaquant.Type == "Spectre" or pokemon_attaquant.Type2 == "Spectre" :
+        pokemon_attaquant.PV -= ceil(pokemon_attaquant.PVMax / 2)
+        pokemon_defenseur.maudit = True
+
+    else :
+        if pokemon_attaquant.AttBuff < 6 :
+            pokemon_attaquant.AttBuff += 1
+        if pokemon_attaquant.DefBuff < 6 :
+            pokemon_attaquant.DefBuff += 1
+        if pokemon_attaquant.SpeedBuff > -6 :
+            pokemon_attaquant.SpeedBuff -= 1
+
+    return pokemon_attaquant, pokemon_defenseur
+
+def Megaphone(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
+    Attaque.puissance = 100
+    Attaque.physique = 1
+    Attaque.special = 0
+    booleanAttaque = MissWork(pokemon_attaquant, Attaque)
+
+    if pokemon_attaquant.statut == "Brûlure" :
+        pokemon_attaquant.Att = pokemon_attaquant.Att / 2
+
+    if booleanAttaque :
+        if Attaque.physique == 1 :
+            degats = (100 * 0.4 + 2) * pokemon_attaquant.Att * Attaque.puissance
+            degats = degats / (pokemon_defenseur.Def * 50) + 2
+        elif Attaque.special == 1 :
+            degats = (100 * 0.4 + 2) * pokemon_attaquant.AttSpe * Attaque.puissance
+            degats = degats / (pokemon_defenseur.DefSpe * 50) + 2
+
+        #STAB
+        if Attaque.Type == pokemon_attaquant.Type or Attaque.Type == pokemon_attaquant.Type2 :
+            degats *= 1.5
+
+        #Efficacité type
+        eff = TableType(Attaque.Type, pokemon_defenseur.Type, pokemon_defenseur.Type2)
+        if eff == 0 :
+            print("inefficace")
+        elif eff == 0.25 or eff == 0.5 :
+            print("peu efficace")
+        elif eff == 1 :
+            print("efficace")
+        elif eff >= 2 :
+            print("super efficace")
+        else : 
+            print("problème efficacité")
+
+        degats *= eff
+
+        #Crit
+        if isCrit() :
+            print("Coup Critique")
+            degats *= 2
+
+        #Climat
+        degats *= Climat(terrain, Attaque.Type)
+
+
+        #Random num entre 0.85 et 1
+        degats *= (rand(85, 100) / 100)
+
+        pokemon_defenseur.PV -= ceil(degats)
+
+    else :
+        print("miss")
+    
+    return pokemon_defenseur
+
+
+
 
 
 
