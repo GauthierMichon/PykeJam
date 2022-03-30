@@ -7,6 +7,7 @@ from classes.attaque_autre import AttaqueAutre
 from functions.derouler_attaque_buff import Buff
 from functions.derouler_attaque_climat import Climat
 from functions.derouler_attaque_heal import Heal
+from functions.derouler_attaque_statut import Statut
 from functions.derouler_attaque_offensive import Offensive
 
 
@@ -32,8 +33,11 @@ def fight(pokemon_attaquant, pokemon_defenseur, numAttaque, climat) :
         return pokemon_attaquant, pokemon_defenseur, climat
 
 
-    elif type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueStatut :
-        print("statut")
+    elif type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueStatut :        
+        pokemon_defenseur = Statut(pokemon_defenseur, pokemon_attaquant.Attaques[numAttaque-1])
+        return pokemon_attaquant, pokemon_defenseur, climat
+
+
 
 
     elif type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueAutre :

@@ -70,11 +70,22 @@ def initAttaque() :
                 nombresBuff.append(data_oneattaque[0][3])
             attaqueList.append(AttaqueBuff(i[0], i[1], i[2], data_type[i[3]-1][1], i[4], i[5], statsBuff, nombresBuff))
         elif i[10] == 1 :
+
+
             select_oneattaque_cursor = conn.cursor()
             select_oneattaque_query = ("SELECT * FROM attaquestatut WHERE attaqueId = {0}".format(i[0]))
             select_oneattaque_cursor.execute(select_oneattaque_query)
             data_oneattaque = select_oneattaque_cursor.fetchone()
-            attaqueList.append(AttaqueStatut(i[0], i[1], i[2], data_type[i[3]-1][1], i[4], i[5], data_oneattaque[2]))
+
+            select_statut_cursor = conn.cursor()
+            select_statut_query = ("SELECT * FROM statuts WHERE id = {0}".format(data_oneattaque[2]))
+            select_statut_cursor.execute(select_statut_query)
+            data_statut = select_statut_cursor.fetchone()
+
+
+            attaqueList.append(AttaqueStatut(i[0], i[1], i[2], data_type[i[3]-1][1], i[4], i[5], data_statut[1]))
+
+
         elif i[11] == 1 and i[0] != 93 :
             select_oneattaque_cursor = conn.cursor()
             select_oneattaque_query = ("SELECT * FROM attaqueautres WHERE attaqueId = {0}".format(i[0]))
