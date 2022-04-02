@@ -36,6 +36,8 @@ class Pokemon():
         self.maudit     = False
         self.requiem    = False
         self.requiemNum = None
+        self.siphon     = False
+        self.siphonNum  = None
 
 
 

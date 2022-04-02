@@ -692,3 +692,45 @@ def Requiem(pokemon_attaquant, pokemon_defenseur) :
 
     return pokemon_attaquant, pokemon_defenseur
 
+def Sabotage(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
+    Attaque.puissance = 90
+    Attaque.physique = 1
+    Attaque.special = 0
+    Attaque.effect = 0
+    Attaque.probaEffect = None
+
+    pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+
+    return pokemon_defenseur
+
+def Siphon(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
+    Attaque.puissance = 35
+    Attaque.physique = 0
+    Attaque.special = 1
+    Attaque.effect = 0
+    Attaque.probaEffect = None
+
+    PVAvantAttaque = pokemon_defenseur.PV
+
+    pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+
+    if PVAvantAttaque != pokemon_defenseur.PV :
+        pokemon_defenseur.siphon = True
+        pokemon_defenseur.siphonNum = rand(4,5)
+
+    return pokemon_defenseur
+
+def Souvenir(pokemon_attaquant, pokemon_defenseur) :
+    pokemon_attaquant.PV = 0
+    pokemon_defenseur.Att -= 2
+    pokemon_defenseur.AttSpe -= 2
+
+    if pokemon_defenseur.AttBuff < -6 :
+        pokemon_defenseur.AttBuff = -6
+    if pokemon_defenseur.AttSpeBuff < -6 :
+        pokemon_defenseur.AttSpeBuff = -6
+
+
+
+
+

@@ -1,4 +1,4 @@
-from functions.fonctions_attaque_autre import Abri, AntiBrume, Balance, BallMeteo, BlablaDodo, BouleRoc, BouteFeu, CasseBrique, ChocPsy, Clairvoyance, Clonage, CloseCombat, Colere, Conversion, Damocles, DracoMeteore, EclairFou, Effort, Explosion, Facade, FrappeAtlas, GlasDeSoin, LanceSoleil, Malediction, Megaphone, NoeudHerbe, Picots, PicsToxik, PiedSaute, PiedVoltige, PiegeDeRoc, PuissanceCachee, Rapace, Repos, Requiem
+from functions.fonctions_attaque_autre import Abri, AntiBrume, Balance, BallMeteo, BlablaDodo, BouleRoc, BouteFeu, CasseBrique, ChocPsy, Clairvoyance, Clonage, CloseCombat, Colere, Conversion, Damocles, DracoMeteore, EclairFou, Effort, Explosion, Facade, FrappeAtlas, GlasDeSoin, LanceSoleil, Malediction, Megaphone, NoeudHerbe, Picots, PicsToxik, PiedSaute, PiedVoltige, PiegeDeRoc, PuissanceCachee, Rapace, Repos, Requiem, Sabotage, Siphon
 
 
 def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokemonAttaquant, numAttaque) :
@@ -79,9 +79,9 @@ def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokem
     elif Attaque.id == 98 :
         pokemon_attaquant, pokemon_defenseur = Requiem(pokemon_attaquant, pokemon_defenseur)
     elif Attaque.id == 100 :
-        print("Sabotage")
+        pokemon_attaquant = Sabotage(pokemon_attaquant)
     elif Attaque.id == 101 :
-        print("Siphon")
+        pokemon_defenseur = Siphon(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
     elif Attaque.id == 103 :
         print("Souvenir")
     elif Attaque.id == 105 :
