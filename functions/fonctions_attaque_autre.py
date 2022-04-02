@@ -730,6 +730,90 @@ def Souvenir(pokemon_attaquant, pokemon_defenseur) :
     if pokemon_defenseur.AttSpeBuff < -6 :
         pokemon_defenseur.AttSpeBuff = -6
 
+    return pokemon_attaquant, pokemon_defenseur
+
+def Stalactite(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
+    Attaque.puissance = 30
+    Attaque.physique = 1
+    Attaque.special = 0
+    Attaque.effect = 0
+    Attaque.probaEffect = None
+
+    nombreCoup = 0
+    rand = random.randrange(0,101)
+    if rand < 38 :
+        nombreCoup = 2
+    elif rand < 76 :
+        nombreCoup = 3
+    elif rand < 89 :
+        nombreCoup = 4
+    else :
+        nombreCoup = 5
+
+    print("Avant :", pokemon_defenseur.PV)
+    for i in range(nombreCoup) :
+        print("Coup ", i)
+        pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+
+    print("Après :", pokemon_defenseur.PV)
+
+
+    return pokemon_defenseur
+
+def Surchauffe(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
+    Attaque.puissance = 130
+    Attaque.physique = 0
+    Attaque.special = 1
+    Attaque.effect = 0
+    Attaque.probaEffect = None
+
+    pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+    
+    pokemon_attaquant.AttSpeBuff -= 2
+    if pokemon_attaquant.AttSpeBuff < -6 :
+        pokemon_attaquant.AttSpeBuff = -6
+
+    return pokemon_attaquant, pokemon_defenseur
+
+def Surpuissance(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
+    Attaque.puissance = 120
+    Attaque.physique = 1
+    Attaque.special = 0
+    Attaque.effect = 0
+    Attaque.probaEffect = None
+
+    pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+    
+    if pokemon_attaquant.DefBuff > -6 :
+        pokemon_attaquant.DefBuff -= 1
+    if pokemon_attaquant.AttBuff > -6 :
+        pokemon_attaquant.AttBuff -= 1
+
+    return pokemon_attaquant, pokemon_defenseur
+
+def Synthese(pokemon_attaquant, terrain) :
+    if terrain.climat == None :
+        pokemon_attaquant.PV += (pokemon_attaquant.PVMax / 2)
+    elif terrain.climat == "Soleil" :
+        pokemon_attaquant.PV += (2 * pokemon_attaquant.PVMax / 3)
+    else :
+        pokemon_attaquant.PV += (pokemon_attaquant.PVMax / 4)
+
+    if pokemon_attaquant.PV > pokemon_attaquant.PVMax :
+        pokemon_attaquant.PV = pokemon_attaquant.PVMax
+
+    return pokemon_attaquant
+
+def TourDeMagie(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
+    Attaque.puissance = 80
+    Attaque.physique = 0
+    Attaque.special = 1
+    Attaque.effect = 0
+    Attaque.probaEffect = None
+
+    pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+
+    return pokemon_defenseur
 
 
 

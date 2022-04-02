@@ -1,4 +1,4 @@
-from functions.fonctions_attaque_autre import Abri, AntiBrume, Balance, BallMeteo, BlablaDodo, BouleRoc, BouteFeu, CasseBrique, ChocPsy, Clairvoyance, Clonage, CloseCombat, Colere, Conversion, Damocles, DracoMeteore, EclairFou, Effort, Explosion, Facade, FrappeAtlas, GlasDeSoin, LanceSoleil, Malediction, Megaphone, NoeudHerbe, Picots, PicsToxik, PiedSaute, PiedVoltige, PiegeDeRoc, PuissanceCachee, Rapace, Repos, Requiem, Sabotage, Siphon
+from functions.fonctions_attaque_autre import Abri, AntiBrume, Balance, BallMeteo, BlablaDodo, BouleRoc, BouteFeu, CasseBrique, ChocPsy, Clairvoyance, Clonage, CloseCombat, Colere, Conversion, Damocles, DracoMeteore, EclairFou, Effort, Explosion, Facade, FrappeAtlas, GlasDeSoin, LanceSoleil, Malediction, Megaphone, NoeudHerbe, Picots, PicsToxik, PiedSaute, PiedVoltige, PiegeDeRoc, PuissanceCachee, Rapace, Repos, Requiem, Sabotage, Siphon, Souvenir, Stalactite, Surchauffe, Surpuissance, Synthese
 
 
 def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokemonAttaquant, numAttaque) :
@@ -83,15 +83,15 @@ def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokem
     elif Attaque.id == 101 :
         pokemon_defenseur = Siphon(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
     elif Attaque.id == 103 :
-        print("Souvenir")
+        pokemon_attaquant, pokemon_defenseur = Souvenir(pokemon_attaquant, pokemon_defenseur)
     elif Attaque.id == 105 :
-        print("Stalagtite")
+        pokemon_defenseur = Stalactite(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) 
     elif Attaque.id == 106 :
-        print("Surchauffe")
+        pokemon_attaquant, pokemon_defenseur = Surchauffe(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
     elif Attaque.id == 108 :
-        print("Surpuissance")
+        pokemon_attaquant, pokemon_defenseur = Surpuissance(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
     elif Attaque.id == 109 :
-        print("Synthese")
+        pokemon_attaquant = Synthese(pokemon_attaquant, terrain)
     elif Attaque.id == 113 :
         print("TourDeMagie")
     elif Attaque.id == 114 :
