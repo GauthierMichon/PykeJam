@@ -34,6 +34,8 @@ class Pokemon():
         self.clone      = False
         self.clonePV    = None
         self.maudit     = False
+        self.requiem    = False
+        self.requiemNum = None
 
 
 

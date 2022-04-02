@@ -639,3 +639,56 @@ def PiegeDeRoc(dresseurPokemonAttaquant, terrain) :
         print("déjà des Pics Toxik")
 
     return terrain
+
+def PuissanceCachee(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
+    Attaque.puissance = 60
+    Attaque.physique = 0
+    Attaque.special = 1
+    Attaque.effect = 0
+    Attaque.probaEffect = None
+    if pokemon_attaquant.id == 2 or pokemon_attaquant.id == 4 or pokemon_attaquant.id == 18 or pokemon_attaquant.id == 42 :
+        Attaque.Type = "Plante"
+    elif pokemon_attaquant.id == 17 or pokemon_attaquant.id == 22 or pokemon_attaquant.id == 78 :
+        Attaque.Type = "Glace"
+    elif pokemon_attaquant.id == 40 or pokemon_attaquant.id == 43 or pokemon_attaquant.id == 49 or pokemon_attaquant.id == 60 :
+        Attaque.Type = "Feu"
+    elif pokemon_attaquant.id == 55 :
+        Attaque.Type = "Spectre"
+
+    pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+
+    return pokemon_defenseur
+    
+def Rapace(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
+    Attaque.puissance = 120
+    Attaque.physique = 1
+    Attaque.special = 0
+    Attaque.effect = 0
+    Attaque.probaEffect = None
+
+    PVAvantAttaque = pokemon_defenseur.PV
+
+    pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+
+    pokemon_attaquant.PV = ceil((PVAvantAttaque - pokemon_defenseur.PV) / 3)
+
+    return pokemon_attaquant, pokemon_defenseur
+
+def Repos(pokemon_attaquant) :
+    if pokemon_attaquant.PV == pokemon_attaquant.PVMax :
+        print("La capacité échoue")
+    else :
+        pokemon_attaquant.statut = "Sommeil"
+        pokemon_attaquant.PV = pokemon_attaquant.PVMax
+
+    return pokemon_attaquant
+
+def Requiem(pokemon_attaquant, pokemon_defenseur) :
+    pokemon_attaquant.requiem = True
+    pokemon_attaquant.requiemNum = 3
+
+    pokemon_defenseur.requiem = True
+    pokemon_defenseur.requiemNum = 3
+
+    return pokemon_attaquant, pokemon_defenseur
+
