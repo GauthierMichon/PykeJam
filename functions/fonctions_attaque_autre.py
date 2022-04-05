@@ -815,6 +815,103 @@ def TourDeMagie(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
 
     return pokemon_defenseur
 
+def TourRapide(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokemonAttaquant) :
+    Attaque.puissance = 50
+    Attaque.physique = 1
+    Attaque.special = 0
+    Attaque.effect = 0
+    Attaque.probaEffect = None
 
+    PVAvantAttaque = pokemon_defenseur.PV
+
+    pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+
+    if PVAvantAttaque != pokemon_defenseur.PV :
+        if dresseurPokemonAttaquant.person == "player" :
+            terrain.Picots = None
+            terrain.PicsToxik = None
+            terrain.PiegeDeRoc = None
+            terrain.Vampigraine = None
+        else :
+            terrain.PicotsAdverse = None
+            terrain.PicsToxikAdverse = None
+            terrain.PiegeDeRocAdverse = None
+            terrain.VampigraineAdverse = None
+
+        if pokemon_attaquant.SpeedBuff < 6 :
+            pokemon_attaquant.SpeedBuff += 1
+
+    return pokemon_attaquant, pokemon_defenseur, terrain
+
+def VampiPoing(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
+    Attaque.puissance = 75
+    Attaque.physique = 1
+    Attaque.special = 0
+    Attaque.effect = 0
+    Attaque.probaEffect = None
+
+    PVAvantAttaque = pokemon_defenseur.PV
+
+    pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+
+    pokemon_attaquant.PV += (ceil((PVAvantAttaque - pokemon_defenseur.PV) / 2))
+    if pokemon_attaquant.PV > pokemon_attaquant.PVMax :
+        pokemon_attaquant.PV = pokemon_attaquant.PVMax
+
+    return pokemon_attaquant, pokemon_defenseur
+
+def Vampigraine(dresseurPokemonAttaquant, terrain) :
+    if dresseurPokemonAttaquant.person == "player" :
+        toChange = "Vampigraine"
+    else :
+        toChange = "VampigraineAdverse"
+    
+    if getattr(terrain, toChange) == None :
+        setattr(terrain, toChange, 1)
+    else :
+        print("déjà vampigraine")
+
+    return terrain
+
+def Vampirisme(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
+    Attaque.puissance = 80
+    Attaque.physique = 1
+    Attaque.special = 0
+    Attaque.effect = 0
+    Attaque.probaEffect = None
+
+    PVAvantAttaque = pokemon_defenseur.PV
+
+    pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+
+    pokemon_attaquant.PV += (ceil((PVAvantAttaque - pokemon_defenseur.PV) / 2))
+    if pokemon_attaquant.PV > pokemon_attaquant.PVMax :
+        pokemon_attaquant.PV = pokemon_attaquant.PVMax
+
+    return pokemon_attaquant, pokemon_defenseur
+
+def VentArriere(dresseurPokemonAttaquant) :
+    dresseurPokemonAttaquant.pokemons[0].SpeedBuff += 2
+    dresseurPokemonAttaquant.pokemons[1].SpeedBuff += 2
+    dresseurPokemonAttaquant.pokemons[2].SpeedBuff += 2
+    dresseurPokemonAttaquant.pokemons[3].SpeedBuff += 2
+    dresseurPokemonAttaquant.pokemons[4].SpeedBuff += 2
+    dresseurPokemonAttaquant.pokemons[5].SpeedBuff += 2
+
+    if dresseurPokemonAttaquant.pokemons[0].SpeedBuff > 6 :
+        dresseurPokemonAttaquant.pokemons[0].SpeedBuff = 6
+    if dresseurPokemonAttaquant.pokemons[1].SpeedBuff > 6 :
+        dresseurPokemonAttaquant.pokemons[1].SpeedBuff = 6
+    if dresseurPokemonAttaquant.pokemons[2].SpeedBuff > 6 :
+        dresseurPokemonAttaquant.pokemons[2].SpeedBuff = 6
+    if dresseurPokemonAttaquant.pokemons[3].SpeedBuff > 6 :
+        dresseurPokemonAttaquant.pokemons[3].SpeedBuff = 6
+    if dresseurPokemonAttaquant.pokemons[4].SpeedBuff > 6 :
+        dresseurPokemonAttaquant.pokemons[4].SpeedBuff = 6
+    if dresseurPokemonAttaquant.pokemons[5].SpeedBuff > 6 :
+        dresseurPokemonAttaquant.pokemons[5].SpeedBuff = 6
+
+    return dresseurPokemonAttaquant
+        
 
 

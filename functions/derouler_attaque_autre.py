@@ -1,4 +1,4 @@
-from functions.fonctions_attaque_autre import Abri, AntiBrume, Balance, BallMeteo, BlablaDodo, BouleRoc, BouteFeu, CasseBrique, ChocPsy, Clairvoyance, Clonage, CloseCombat, Colere, Conversion, Damocles, DracoMeteore, EclairFou, Effort, Explosion, Facade, FrappeAtlas, GlasDeSoin, LanceSoleil, Malediction, Megaphone, NoeudHerbe, Picots, PicsToxik, PiedSaute, PiedVoltige, PiegeDeRoc, PuissanceCachee, Rapace, Repos, Requiem, Sabotage, Siphon, Souvenir, Stalactite, Surchauffe, Surpuissance, Synthese
+from functions.fonctions_attaque_autre import Abri, AntiBrume, Balance, BallMeteo, BlablaDodo, BouleRoc, BouteFeu, CasseBrique, ChocPsy, Clairvoyance, Clonage, CloseCombat, Colere, Conversion, Damocles, DracoMeteore, EclairFou, Effort, Explosion, Facade, FrappeAtlas, GlasDeSoin, LanceSoleil, Malediction, Megaphone, NoeudHerbe, Picots, PicsToxik, PiedSaute, PiedVoltige, PiegeDeRoc, PuissanceCachee, Rapace, Repos, Requiem, Sabotage, Siphon, Souvenir, Stalactite, Surchauffe, Surpuissance, Synthese, TourDeMagie, TourRapide, VampiPoing, Vampigraine, Vampirisme, VentArriere
 
 
 def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokemonAttaquant, numAttaque) :
@@ -93,17 +93,17 @@ def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokem
     elif Attaque.id == 109 :
         pokemon_attaquant = Synthese(pokemon_attaquant, terrain)
     elif Attaque.id == 113 :
-        print("TourDeMagie")
+        pokemon_defenseur = TourDeMagie(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
     elif Attaque.id == 114 :
-        print("TourRapide")
+        pokemon_attaquant, pokemon_defenseur, terrain = TourRapide(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokemonAttaquant)
     elif Attaque.id == 118 :
-        print("VampiPoing")
+        pokemon_attaquant, pokemon_defenseur = VampiPoing(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
     elif Attaque.id == 119 :
-        print("Vampigraine")
+        terrain = Vampigraine(dresseurPokemonAttaquant, terrain)
     elif Attaque.id == 120 :
-        print("Vampirisme")
+        pokemon_attaquant, pokemon_defenseur = Vampirisme(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
     elif Attaque.id == 121 :
-        print("VentArriere")
+        dresseurPokemonAttaquant = VentArriere(dresseurPokemonAttaquant)
     elif Attaque.id == 127 :
         print("Voeu")
     elif Attaque.id == 128 :
