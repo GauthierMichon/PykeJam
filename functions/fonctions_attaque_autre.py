@@ -8,6 +8,7 @@ from classes.attaque_heal import AttaqueHeal
 from classes.attaque_offensive import AttaqueOffensive
 from classes.attaque_statut import AttaqueStatut
 from functions.attaque_miss_or_work import MissWork
+from functions.boost_value import boost
 from functions.choose_random_num import rand
 from functions.climat_attaque_offensive import Climat
 from functions.critique import isCrit
@@ -913,5 +914,32 @@ def VentArriere(dresseurPokemonAttaquant) :
 
     return dresseurPokemonAttaquant
         
+def Voeu(pokemon_attaquant, terrain, dresseurPokemonAttaquant) :
+    if dresseurPokemonAttaquant.person == "player" :
+        toChange = "VoeuNbTour"
+        toChange2 = "VoeuPVHeal"
+    else :
+        toChange = "VoeuAdverseNbTour"
+        toChange2 = "VoeuAdversePVHeal"
+    
+    if getattr(terrain, toChange) == None :
+        setattr(terrain, toChange, 2)
+        setattr(terrain, toChange2, ceil(pokemon_attaquant.PVMax / 2))
 
+    else :
+        print("vous avez déjà fait un voeu")
 
+    return terrain
+
+def VoleForce(pokemon_attaquant, pokemon_defenseur) :
+    if pokemon_defenseur.AttBuff > -6 :
+        pokemon_defenseur.AttBuff -= 1
+
+        pokemon_attaquant.PV += boost(pokemon_defenseur.Att)
+        if pokemon_attaquant.PV > pokemon_attaquant.PVMax :
+            pokemon_attaquant.PV = pokemon_attaquant.PVMax
+    
+    else :
+        print("le pokemon est trop faible")
+
+    return pokemon_attaquant, pokemon_defenseur

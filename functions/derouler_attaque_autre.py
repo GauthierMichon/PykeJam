@@ -1,4 +1,4 @@
-from functions.fonctions_attaque_autre import Abri, AntiBrume, Balance, BallMeteo, BlablaDodo, BouleRoc, BouteFeu, CasseBrique, ChocPsy, Clairvoyance, Clonage, CloseCombat, Colere, Conversion, Damocles, DracoMeteore, EclairFou, Effort, Explosion, Facade, FrappeAtlas, GlasDeSoin, LanceSoleil, Malediction, Megaphone, NoeudHerbe, Picots, PicsToxik, PiedSaute, PiedVoltige, PiegeDeRoc, PuissanceCachee, Rapace, Repos, Requiem, Sabotage, Siphon, Souvenir, Stalactite, Surchauffe, Surpuissance, Synthese, TourDeMagie, TourRapide, VampiPoing, Vampigraine, Vampirisme, VentArriere
+from functions.fonctions_attaque_autre import Abri, AntiBrume, Balance, BallMeteo, BlablaDodo, BouleRoc, BouteFeu, CasseBrique, ChocPsy, Clairvoyance, Clonage, CloseCombat, Colere, Conversion, Damocles, DracoMeteore, EclairFou, Effort, Explosion, Facade, FrappeAtlas, GlasDeSoin, LanceSoleil, Malediction, Megaphone, NoeudHerbe, Picots, PicsToxik, PiedSaute, PiedVoltige, PiegeDeRoc, PuissanceCachee, Rapace, Repos, Requiem, Sabotage, Siphon, Souvenir, Stalactite, Surchauffe, Surpuissance, Synthese, TourDeMagie, TourRapide, VampiPoing, Vampigraine, Vampirisme, VentArriere, Voeu, VoleForce
 
 
 def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokemonAttaquant, numAttaque) :
@@ -105,9 +105,9 @@ def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokem
     elif Attaque.id == 121 :
         dresseurPokemonAttaquant = VentArriere(dresseurPokemonAttaquant)
     elif Attaque.id == 127 :
-        print("Voeu")
+        terrain = Voeu(pokemon_attaquant, terrain, dresseurPokemonAttaquant)
     elif Attaque.id == 128 :
-        print("VoleForce")
+        pokemon_attaquant, pokemon_defenseur = VoleForce(pokemon_attaquant, pokemon_defenseur)
     
 
     return pokemon_attaquant, pokemon_defenseur, terrain, dresseurPokemonAttaquant
