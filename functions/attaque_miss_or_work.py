@@ -4,6 +4,7 @@ from functions.choose_random_num import rand
 
 def MissWork(pokemon_attaquant, Attaque) :    
     booleanAttaque = True
+    # Pour l'instant la confusion ne fait pas de dégats
     if pokemon_attaquant.confusion :
         if rand(0,100) > 33 :
             if Attaque.accuracy == None :
