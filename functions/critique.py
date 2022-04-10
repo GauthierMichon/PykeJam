@@ -1,9 +1,15 @@
 from random import randrange
 
 
-def isCrit() :
+def isCrit(Attaque) :
     rand = randrange(0, 100)
-    if rand > 6 :
-        return False
+    if Attaque.id == 58 or Attaque.id == 59 or Attaque.id == 117 :
+        if rand > 12 :
+            return True
+        else :
+            return False
     else :
-        return True
+        if rand > 6 :
+            return False
+        else :
+            return True

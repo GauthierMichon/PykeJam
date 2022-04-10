@@ -2,6 +2,7 @@ from functions.attaque_miss_or_work import MissWork
 from functions.choose_random_num import rand
 from functions.climat_attaque_offensive import Climat
 from functions.critique import isCrit
+from functions.effect_attaque_offensive import Effect
 from functions.table_types import TableType
 from math import *
 
@@ -12,7 +13,10 @@ def Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     if pokemon_attaquant.statut == "Brûlure" :
         pokemon_attaquant.Att = pokemon_attaquant.Att / 2
 
-    if booleanAttaque :
+    if pokemon_defenseur.abri :
+        print("Le Pokémon adverse se protège, l'attaque est sans effet.")
+
+    elif booleanAttaque :
         if Attaque.physique == 1 :
             degats = (100 * 0.4 + 2) * pokemon_attaquant.Att * Attaque.puissance
             degats = degats / (pokemon_defenseur.Def * 50) + 2
@@ -40,7 +44,7 @@ def Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
         degats *= eff
 
         #Crit
-        if isCrit() :
+        if isCrit(Attaque) :
             print("Coup Critique")
             degats *= 2
 
@@ -53,6 +57,8 @@ def Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
 
         if pokemon_defenseur.clone == False :
             pokemon_defenseur.PV -= ceil(degats)
+            print("Le Pokémon adverse perd", ceil(degats), "PV.")
+            pokemon_attaquant, pokemon_defenseur = Effect(pokemon_attaquant, pokemon_defenseur, Attaque)
         else :
             pokemon_defenseur.clonePV -= ceil(degats)
             if pokemon_defenseur.clonePV <= 0 :

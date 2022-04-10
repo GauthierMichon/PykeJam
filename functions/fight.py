@@ -24,7 +24,7 @@ def fight(pokemon_attaquant, pokemon_defenseur, numAttaque, terrain, dresseurPok
 
 
     elif type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueClimat :
-        terrain = Climat(pokemon_attaquant.Attaques[numAttaque-1], terrain)
+        terrain = Climat(pokemon_attaquant, pokemon_attaquant.Attaques[numAttaque-1], terrain)
         return pokemon_attaquant, pokemon_defenseur, terrain, dresseurPokemonAttaquant
 
 
@@ -34,7 +34,7 @@ def fight(pokemon_attaquant, pokemon_defenseur, numAttaque, terrain, dresseurPok
 
 
     elif type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueStatut :        
-        pokemon_defenseur = Statut(pokemon_defenseur, pokemon_attaquant.Attaques[numAttaque-1])
+        pokemon_defenseur = Statut(pokemon_attaquant, pokemon_defenseur, pokemon_attaquant.Attaques[numAttaque-1])
         return pokemon_attaquant, pokemon_defenseur, terrain, dresseurPokemonAttaquant
 
 
