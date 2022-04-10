@@ -1,4 +1,5 @@
 from classes.terrain import Terrain
+from functions.change_pokemon import Switch
 from functions.choose_action import chooseAction
 from functions.fight import fight
 
@@ -9,11 +10,11 @@ def combat(player, adversaire) :
 
     pokemonActualAdversNumber = 0
 
-    terrain = Terrain(None, None, None, None, None, None, None, None, None)
+    terrain = Terrain()
 
     while True :
         if player.actionOblig == None :
-            action, actionNum = chooseAction(player, adversaire, player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber])
+            action, actionNum = chooseAction(player, adversaire, player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber], player, pokemonActualPlayerNumber)
         else : 
             action = player.actionOblig[0]
             actionNum = player.actionOblig[1]
@@ -26,5 +27,6 @@ def combat(player, adversaire) :
             player.pokemons[pokemonActualAdversNumber], adversaire.pokemons[pokemonActualPlayerNumber], terrain, player = fight(player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber], actionNum, terrain, player)
                 #print("PV Après :", adversaire.pokemons[pokemonActualAdversNumber].PV)
                 
-
+        elif action == 2 :
+            print("{} a été envoyé".format(player.pokemons[actionNum].name))
         
