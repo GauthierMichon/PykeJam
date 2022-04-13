@@ -1,5 +1,6 @@
 from classes.terrain import Terrain
 from functions.adversaire_turn import AdversaireTurn
+from functions.brulure_poison import BrulurePoison
 from functions.choose_action import chooseAction
 from functions.choose_random_num import rand
 from functions.combat_continue import CombatContinue
@@ -44,9 +45,10 @@ def combat(player, adversaire) :
             else :
                 player, adversaire, pokemonActualPlayerNumber, pokemonActualAdversNumber, terrain = AdversaireTurn(player, adversaire, action, actionNum, action_adversaire, actionNum_adversaire, pokemonActualPlayerNumber, pokemonActualAdversNumber, terrain, "adversaire")
 
-        
+        player, pokemonActualPlayerNumber = BrulurePoison(player, pokemonActualPlayerNumber)
+        adversaire, pokemonActualAdversNumber = BrulurePoison(adversaire, pokemonActualAdversNumber)
 
-        
+
         """ if action == 1 :
             #if player.pokemons[pokemonActualPlayerNumber].Speed > adversaire.pokemons[pokemonActualAdversNumber].Speed :
                 #print("PV Avant :", adversaire.pokemons[pokemonActualAdversNumber].PV)
