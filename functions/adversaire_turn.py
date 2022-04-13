@@ -1,3 +1,4 @@
+from functions.choose_pokemon_change import ChoosePokemon
 from functions.choose_random_num import rand
 from functions.fight import fight
 from functions.switch import Switch
@@ -44,9 +45,8 @@ def AdversaireTurn(player, adversaire, action, actionNum, action_adversaire, act
     if beginner == "adversaire" :
         if player.pokemons[pokemonActualPlayerNumber].PV <= 0 :
             action = 2
-            if pokemonActualPlayerNumber < 5 :
-                actionNum = pokemonActualPlayerNumber + 1
-                print("vous envoyé {}".format(player.pokemons[actionNum].name))
+            actionNum = ChoosePokemon(player, pokemonActualPlayerNumber)
+            print("vous envoyé {}".format(player.pokemons[actionNum].name))
         
         
         if pokemonActualPlayerNumber == 5 and player.pokemons[pokemonActualPlayerNumber].PV <= 0 :
