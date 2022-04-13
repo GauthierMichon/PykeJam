@@ -1,3 +1,5 @@
+from functions.after_switch import AfterSwitch
+from functions.choose_pokemon_change import ChoosePokemon
 from functions.choose_random_num import rand
 from functions.fight import fight
 from functions.switch import Switch
@@ -43,6 +45,11 @@ def PlayerTurn(player, adversaire, action, actionNum, action_adversaire, actionN
             print("vous envoyé {}".format(player.pokemons[actionNum].name))
             player = Switch(player, pokemonActualPlayerNumber)
             pokemonActualPlayerNumber = actionNum
+            player = AfterSwitch(player, pokemonActualPlayerNumber, terrain)
+            if player.pokemons[pokemonActualPlayerNumber].PV <= 0 :
+                player.pokemons[pokemonActualPlayerNumber].PV = 0
+                actionNum = ChoosePokemon(player, pokemonActualPlayerNumber)
+                player, adversaire, pokemonActualPlayerNumber, pokemonActualAdversNumber, terrain = PlayerTurn(player, adversaire, action, actionNum, action_adversaire, actionNum_adversaire, pokemonActualPlayerNumber, pokemonActualAdversNumber, terrain, beginner)
 
         elif action == 3 :
             print("item mais pas encore implémenté")

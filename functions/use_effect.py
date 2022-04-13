@@ -1,4 +1,5 @@
 from functions.boost_value import boost
+from functions.choose_random_num import rand
 
 def useEffect(pokemon_attaquant, pokemon_defenseur, Attaque) :
     if Attaque.id == 3 :
@@ -105,6 +106,7 @@ def useEffect(pokemon_attaquant, pokemon_defenseur, Attaque) :
     if Attaque.id == 95 :
         if pokemon_defenseur.confusion == False :
             pokemon_defenseur.confusion = True
+            pokemon_defenseur.confusionNum = rand(1, 4)
 
     if Attaque.id == 111 :
         if pokemon_defenseur.DefSpeBuff > -6 :
@@ -118,10 +120,11 @@ def useEffect(pokemon_attaquant, pokemon_defenseur, Attaque) :
     if Attaque.id == 122 :
         if pokemon_defenseur.confusion == False :
             pokemon_defenseur.confusion = True
+            pokemon_defenseur.confusionNum = rand(1, 4)
 
     if Attaque.id == 123 :
         if pokemon_defenseur.confusion == False :
-            pokemon_defenseur.confusion = True
+            pokemon_defenseur.confusionNum = rand(1, 4)
 
     if Attaque.id == 124 :
         pokemon_defenseur.afraid = True

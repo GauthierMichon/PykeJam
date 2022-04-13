@@ -49,8 +49,8 @@ def combat(player, adversaire) :
 
         player, adversaire = VampigraineCheck(player, adversaire, pokemonActualPlayerNumber, pokemonActualAdversNumber, terrain)
 
-        player, pokemonActualPlayerNumber = EndTurn(player, pokemonActualPlayerNumber)
-        adversaire, pokemonActualAdversNumber = EndTurn(adversaire, pokemonActualAdversNumber)
+        player, pokemonActualPlayerNumber = EndTurn(player, pokemonActualPlayerNumber, terrain)
+        adversaire, pokemonActualAdversNumber = EndTurn(adversaire, pokemonActualAdversNumber, terrain)
 
 
 

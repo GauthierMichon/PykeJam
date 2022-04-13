@@ -1,8 +1,10 @@
+from functions.after_switch import AfterSwitch
 from functions.choose_pokemon_change import ChoosePokemon
 from functions.choose_random_num import rand
 from functions.fight import fight
 from functions.switch import Switch
 import functions.player_turn as player_turn
+from functions.switch_adversaire import ChangeAdversaire
 
 
 def AdversaireTurn(player, adversaire, action, actionNum, action_adversaire, actionNum_adversaire, pokemonActualPlayerNumber, pokemonActualAdversNumber, terrain, beginner):
@@ -38,6 +40,12 @@ def AdversaireTurn(player, adversaire, action, actionNum, action_adversaire, act
             print("votre adversaire envoie {}".format(adversaire.pokemons[actionNum_adversaire].name))
             adversaire = Switch(adversaire, pokemonActualAdversNumber)
             pokemonActualAdversNumber = actionNum_adversaire
+            adversaire = AfterSwitch(adversaire, pokemonActualAdversNumber, terrain)
+            if adversaire.pokemons[pokemonActualAdversNumber].PV <= 0 :
+                adversaire.pokemons[pokemonActualAdversNumber].PV = 0
+                actionNum = ChangeAdversaire(adversaire, pokemonActualAdversNumber)
+                player, adversaire, pokemonActualPlayerNumber, pokemonActualAdversNumber, terrain = AdversaireTurn(player, adversaire, action, actionNum, action_adversaire, actionNum_adversaire, pokemonActualPlayerNumber, pokemonActualAdversNumber, terrain, beginner)
+
 
         elif action_adversaire == 3 :
             print("item mais pas encore implémenté")
@@ -48,7 +56,7 @@ def AdversaireTurn(player, adversaire, action, actionNum, action_adversaire, act
                 action = 2
                 actionNum = ChoosePokemon(player, pokemonActualPlayerNumber)
                 print("vous envoyé {}".format(player.pokemons[actionNum].name))
-
+                
             else :
                 return player, adversaire, pokemonActualPlayerNumber, pokemonActualAdversNumber, terrain
 

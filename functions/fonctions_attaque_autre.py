@@ -304,6 +304,7 @@ def Colere(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokem
         dresseurPokemonAttaquant.actionOblig = None
         dresseurPokemonAttaquant.actionObligNbTour = None
         pokemon_attaquant.confusion = True
+        pokemon_attaquant.confusionNum = rand(1, 4)
     else :
         dresseurPokemonAttaquant.actionObligNbTour -= 1
 
@@ -727,14 +728,21 @@ def PiegeDeRoc(dresseurPokemonAttaquant, terrain, pokemon_attaquant, Attaque) :
         if getattr(terrain, toChange) == None :
             setattr(terrain, toChange, 1)
         else :
-            print("déjà des Pics Toxik")
+            print("déjà des pièges de Roc")
 
     return terrain
 
 def Projection(dresseur, pokemonActuelNum) :
-    newPokemonActuelNum = ChangeAdversaire(dresseur, pokemonActuelNum)
+    count = 0
+    for i in range(len(dresseur.pokemons)) :
+        if dresseur.pokemons[i].PV > 0 :
+            count += 1
+    if count > 1 :
+        pokemonActuelNum = ChangeAdversaire(dresseur, pokemonActuelNum)
+    else :
+        print("problème de projection")
 
-    return newPokemonActuelNum
+    return pokemonActuelNum
 
 def PuissanceCachee(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     Attaque.puissance = 60

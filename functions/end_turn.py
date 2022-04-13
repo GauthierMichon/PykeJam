@@ -1,10 +1,11 @@
 from math import ceil
+from functions.after_switch import AfterSwitch
 from functions.choose_pokemon_change import ChoosePokemon
 from functions.switch import Switch
 from functions.switch_adversaire import ChangeAdversaire
 
 
-def EndTurn(dresseur, pokemonActualNumber) :
+def EndTurn(dresseur, pokemonActualNumber, terrain) :
     if dresseur.pokemons[pokemonActualNumber].confusion :
         dresseur.pokemons[pokemonActualNumber].confusionNum -= 1
         if dresseur.pokemons[pokemonActualNumber].confusionNum == 0 :
@@ -42,10 +43,16 @@ def EndTurn(dresseur, pokemonActualNumber) :
                 dresseur = Switch(dresseur, pokemonActualNumber)
                 pokemonActualNumber = ChangeAdversaire(dresseur, pokemonActualNumber)
                 print("vous envoyé {}".format(dresseur.pokemons[pokemonActualNumber].name))
+                dresseur = AfterSwitch(dresseur, pokemonActualNumber, terrain)
         else :
             if dresseur.pokemons[0].PV > 0 or dresseur.pokemons[1].PV > 0 or dresseur.pokemons[2].PV > 0 or dresseur.pokemons[3].PV > 0 or dresseur.pokemons[4].PV > 0 or dresseur.pokemons[5].PV > 0 :
                 dresseur = Switch(dresseur, pokemonActualNumber)
                 pokemonActualNumber = ChoosePokemon(dresseur, pokemonActualNumber)
                 print("vous envoyé {}".format(dresseur.pokemons[pokemonActualNumber].name))
+                dresseur = AfterSwitch(dresseur, pokemonActualNumber, terrain)
+
+    if dresseur.pokemons[pokemonActualNumber].PV <= 0 :
+        dresseur.pokemons[pokemonActualNumber].PV = 0
+        dresseur, pokemonActualNumber = EndTurn(dresseur, pokemonActualNumber,)
 
     return dresseur, pokemonActualNumber
