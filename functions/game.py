@@ -1,5 +1,6 @@
 from copy import deepcopy
 from classes.dresseur import Dresseur
+from functions.choose_random_num import rand
 from functions.combat import combat
 from random import randint
 from functions.initiation import init
@@ -27,19 +28,30 @@ def game() :
 
     adversaire = 'quentin'
 
-    adversaire_1 = randint(0, 77)
-    adversaire_2 = randint(0, 77)
-    adversaire_3 = randint(0, 77)
-    adversaire_4 = randint(0, 77)
-    adversaire_5 = randint(0, 77)
-    adversaire_6 = randint(0, 77)
+    adversaire_1 = deepcopy(pokemonList[randint(0, 77)])
+    adversaire_2 = deepcopy(pokemonList[randint(0, 77)])    
+    adversaire_3 = deepcopy(pokemonList[randint(0, 77)]) 
+    adversaire_4 = deepcopy(pokemonList[randint(0, 77)])  
+    adversaire_5 = deepcopy(pokemonList[randint(0, 77)])
+    adversaire_6 = deepcopy(pokemonList[randint(0, 77)])
 
-    adversaire_1 = deepcopy(pokemonList[18])
-    adversaire_2 = deepcopy(pokemonList[adversaire_2])    
-    adversaire_3 = deepcopy(pokemonList[adversaire_3]) 
-    adversaire_4 = deepcopy(pokemonList[adversaire_4])  
-    adversaire_5 = deepcopy(pokemonList[adversaire_5])
-    adversaire_6 = deepcopy(pokemonList[adversaire_6])
+    allPokemonChoose = [pokemon_1, pokemon_2, pokemon_3, pokemon_4, pokemon_5, pokemon_6, adversaire_1, adversaire_2, adversaire_3, adversaire_4, adversaire_5, adversaire_6]
+    for i in range(len(allPokemonChoose)) :
+        if rand(1, 100) == 1 :
+            allPokemonChoose[i].sprite += "_shiny"
+            allPokemonChoose[i].spriteDos += "_shiny"
+            allPokemonChoose[i].PV *= 1.10
+            allPokemonChoose[i].PVMax *= 1.10
+            allPokemonChoose[i].Att *= 1.10
+            allPokemonChoose[i].AttInit *= 1.10
+            allPokemonChoose[i].Def *= 1.10
+            allPokemonChoose[i].DefInit *= 1.10
+            allPokemonChoose[i].AttSpe *= 1.10
+            allPokemonChoose[i].AttSpeInit *= 1.10
+            allPokemonChoose[i].DefSpe *= 1.10
+            allPokemonChoose[i].DefSpeInit *= 1.10
+            allPokemonChoose[i].Speed *= 1.10
+            allPokemonChoose[i].SpeedInit *= 1.10
 
     player = Dresseur(pseudo, [pokemon_1, pokemon_2, pokemon_3, pokemon_4, pokemon_5, pokemon_6], "player")
     adversaire = Dresseur(adversaire, [adversaire_1, adversaire_2, adversaire_3, adversaire_4, adversaire_5, adversaire_6], "adversaire")
