@@ -57,7 +57,6 @@ def Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
 
         if pokemon_defenseur.clone == False :
             pokemon_defenseur.PV -= ceil(degats)
-            print("Le Pokémon adverse perd", ceil(degats), "PV.")
             pokemon_attaquant, pokemon_defenseur = Effect(pokemon_attaquant, pokemon_defenseur, Attaque)
         else :
             pokemon_defenseur.clonePV -= ceil(degats)

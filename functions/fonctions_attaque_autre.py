@@ -713,6 +713,9 @@ def PuissanceCachee(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
         Attaque.Type = "Feu"
     elif pokemon_attaquant.id == 55 :
         Attaque.Type = "Spectre"
+    else :
+        print("probleme puissance cachee")
+        Attaque.Type = "Normal"
 
     pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
 

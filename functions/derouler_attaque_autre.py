@@ -7,7 +7,7 @@ def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokem
     elif Attaque.id == 2 :
         terrain = AntiBrume(pokemon_attaquant, Attaque, terrain)
     elif Attaque.id == 8 :
-        pokemon_attaquant, pokemon_defenseur = Balance(pokemon_attaquant, pokemon_defenseur)
+        pokemon_attaquant, pokemon_defenseur = Balance(pokemon_attaquant, pokemon_defenseur, Attaque)
     elif Attaque.id == 9 :
         pokemon_defenseur = BallMeteo(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
     elif Attaque.id == 12 :
