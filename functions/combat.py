@@ -45,6 +45,8 @@ def combat(player, adversaire) :
                 player, adversaire, pokemonActualPlayerNumber, pokemonActualAdversNumber, terrain = AdversaireTurn(player, adversaire, action, actionNum, action_adversaire, actionNum_adversaire, pokemonActualPlayerNumber, pokemonActualAdversNumber, terrain, "adversaire")
 
         
+
+        
         """ if action == 1 :
             #if player.pokemons[pokemonActualPlayerNumber].Speed > adversaire.pokemons[pokemonActualAdversNumber].Speed :
                 #print("PV Avant :", adversaire.pokemons[pokemonActualAdversNumber].PV)
