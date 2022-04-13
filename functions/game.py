@@ -1,3 +1,4 @@
+from copy import deepcopy
 from classes.dresseur import Dresseur
 from functions.combat import combat
 from random import randint
@@ -17,12 +18,12 @@ def game() :
     pokemon_5   = input('Id de votre cinquième pokemon : ')
     pokemon_6   = input('Id de votre dernier pokemon : ')
 
-    pokemon_1 = pokemonList[int(pokemon_1) - 1]
-    pokemon_2 = pokemonList[int(pokemon_2) - 1]
-    pokemon_3 = pokemonList[int(pokemon_3) - 1]
-    pokemon_4 = pokemonList[int(pokemon_4) - 1]
-    pokemon_5 = pokemonList[int(pokemon_5) - 1]
-    pokemon_6 = pokemonList[int(pokemon_6) - 1]
+    pokemon_1 = deepcopy(pokemonList[int(pokemon_1) - 1])
+    pokemon_2 = deepcopy(pokemonList[int(pokemon_2) - 1])
+    pokemon_3 = deepcopy(pokemonList[int(pokemon_3) - 1])
+    pokemon_4 = deepcopy(pokemonList[int(pokemon_4) - 1])
+    pokemon_5 = deepcopy(pokemonList[int(pokemon_5) - 1])
+    pokemon_6 = deepcopy(pokemonList[int(pokemon_6) - 1])
 
     adversaire = 'quentin'
 
@@ -33,12 +34,12 @@ def game() :
     adversaire_5 = randint(0, 77)
     adversaire_6 = randint(0, 77)
 
-    adversaire_1 = pokemonList[adversaire_1]
-    adversaire_2 = pokemonList[adversaire_2]    
-    adversaire_3 = pokemonList[adversaire_3]    
-    adversaire_4 = pokemonList[adversaire_4]    
-    adversaire_5 = pokemonList[adversaire_5]    
-    adversaire_6 = pokemonList[adversaire_6]
+    adversaire_1 = deepcopy(pokemonList[adversaire_1])
+    adversaire_2 = deepcopy(pokemonList[adversaire_2])    
+    adversaire_3 = deepcopy(pokemonList[adversaire_3]) 
+    adversaire_4 = deepcopy(pokemonList[adversaire_4])  
+    adversaire_5 = deepcopy(pokemonList[adversaire_5])
+    adversaire_6 = deepcopy(pokemonList[adversaire_6])
 
     player = Dresseur(pseudo, [pokemon_1, pokemon_2, pokemon_3, pokemon_4, pokemon_5, pokemon_6], "player")
     adversaire = Dresseur(adversaire, [adversaire_1, adversaire_2, adversaire_3, adversaire_4, adversaire_5, adversaire_6], "adversaire")

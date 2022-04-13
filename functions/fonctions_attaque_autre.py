@@ -9,6 +9,7 @@ from classes.attaque_offensive import AttaqueOffensive
 from classes.attaque_statut import AttaqueStatut
 from functions.attaque_miss_or_work import MissWork
 from functions.boost_value import boost
+from functions.choose_pokemon_change import ChoosePokemon
 from functions.choose_random_num import rand
 from functions.climat_attaque_offensive import Climat
 from functions.critique import isCrit
@@ -174,6 +175,20 @@ def CasseBrique(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
 
     return pokemon_defenseur
+
+def ChangeEclair(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseur, pokemonActuelNum) :
+    Attaque.puissance = 70
+    Attaque.physique = 0
+    Attaque.special = 1
+    Attaque.effect = 0
+    Attaque.probaEffect = None
+
+    pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+    newPokemonActuelNum = ChoosePokemon(dresseur, pokemonActuelNum)
+
+    return pokemon_defenseur, newPokemonActuelNum
+
+
 
 def ChocPsy(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     Attaque.puissance = 100

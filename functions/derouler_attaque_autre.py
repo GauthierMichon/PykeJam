@@ -1,7 +1,7 @@
-from functions.fonctions_attaque_autre import Abri, AntiBrume, Balance, BallMeteo, BlablaDodo, BouleRoc, BouteFeu, CasseBrique, ChocPsy, Clairvoyance, Clonage, CloseCombat, Colere, Conversion, Damocles, DracoMeteore, EclairFou, Effort, Explosion, Facade, FrappeAtlas, GlasDeSoin, LanceSoleil, Malediction, Megaphone, NoeudHerbe, Picots, PicsToxik, PiedSaute, PiedVoltige, PiegeDeRoc, PuissanceCachee, Rapace, Repos, Requiem, Sabotage, Siphon, Souvenir, Stalactite, Surchauffe, Surpuissance, Synthese, TourDeMagie, TourRapide, VampiPoing, Vampigraine, Vampirisme, VentArriere, Voeu, VoleForce
+from functions.fonctions_attaque_autre import Abri, AntiBrume, Balance, BallMeteo, BlablaDodo, BouleRoc, BouteFeu, CasseBrique, ChangeEclair, ChocPsy, Clairvoyance, Clonage, CloseCombat, Colere, Conversion, Damocles, DracoMeteore, EclairFou, Effort, Explosion, Facade, FrappeAtlas, GlasDeSoin, LanceSoleil, Malediction, Megaphone, NoeudHerbe, Picots, PicsToxik, PiedSaute, PiedVoltige, PiegeDeRoc, PuissanceCachee, Rapace, Repos, Requiem, Sabotage, Siphon, Souvenir, Stalactite, Surchauffe, Surpuissance, Synthese, TourDeMagie, TourRapide, VampiPoing, Vampigraine, Vampirisme, VentArriere, Voeu, VoleForce
 
 
-def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokemonAttaquant, numAttaque) :
+def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokemonAttaquant, numAttaque, pokemonActuelNum) :
     if Attaque.id == 1 :
         pokemon_attaquant = Abri(pokemon_attaquant, Attaque)
     elif Attaque.id == 2 :
@@ -19,7 +19,7 @@ def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokem
     elif Attaque.id == 20 :
         pokemon_defenseur = CasseBrique(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) 
     elif Attaque.id == 21 :
-        print("ChangeEclair")
+        pokemon_defenseur, pokemonActuelNum = ChangeEclair(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokemonAttaquant, pokemonActuelNum)
     elif Attaque.id == 22 :
         pokemon_defenseur = ChocPsy(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) 
     elif Attaque.id == 23 :
@@ -110,4 +110,4 @@ def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokem
         pokemon_attaquant, pokemon_defenseur = VoleForce(pokemon_attaquant, Attaque, pokemon_defenseur)
     
 
-    return pokemon_attaquant, pokemon_defenseur, terrain, dresseurPokemonAttaquant
+    return pokemon_attaquant, pokemon_defenseur, terrain, dresseurPokemonAttaquant, pokemonActuelNum

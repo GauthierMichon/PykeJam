@@ -1,12 +1,13 @@
 from classes.terrain import Terrain
 from functions.adversaire_turn import AdversaireTurn
-from functions.brulure_poison import BrulurePoison
 from functions.choose_action import chooseAction
 from functions.choose_random_num import rand
 from functions.combat_continue import CombatContinue
+from functions.end_turn import EndTurn
 from functions.fight import fight
 from functions.player_turn import PlayerTurn
 from functions.switch import Switch
+from functions.vampigraine_check import VampigraineCheck
 
 
 def combat(player, adversaire) :
@@ -45,8 +46,12 @@ def combat(player, adversaire) :
             else :
                 player, adversaire, pokemonActualPlayerNumber, pokemonActualAdversNumber, terrain = AdversaireTurn(player, adversaire, action, actionNum, action_adversaire, actionNum_adversaire, pokemonActualPlayerNumber, pokemonActualAdversNumber, terrain, "adversaire")
 
-        player, pokemonActualPlayerNumber = BrulurePoison(player, pokemonActualPlayerNumber)
-        adversaire, pokemonActualAdversNumber = BrulurePoison(adversaire, pokemonActualAdversNumber)
+
+        player, adversaire = VampigraineCheck(player, adversaire, pokemonActualPlayerNumber, pokemonActualAdversNumber, terrain)
+
+        player, pokemonActualPlayerNumber = EndTurn(player, pokemonActualPlayerNumber)
+        adversaire, pokemonActualAdversNumber = EndTurn(adversaire, pokemonActualAdversNumber)
+
 
 
         """ if action == 1 :
