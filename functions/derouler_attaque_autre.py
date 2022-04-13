@@ -1,4 +1,4 @@
-from functions.fonctions_attaque_autre import Abri, AntiBrume, Balance, BallMeteo, BlablaDodo, BouleRoc, BouteFeu, CasseBrique, ChangeEclair, ChocPsy, Clairvoyance, Clonage, CloseCombat, Colere, Conversion, Damocles, DracoMeteore, EclairFou, Effort, Explosion, Facade, FrappeAtlas, GlasDeSoin, LanceSoleil, Malediction, Megaphone, NoeudHerbe, Picots, PicsToxik, PiedSaute, PiedVoltige, PiegeDeRoc, PuissanceCachee, Rapace, Repos, Requiem, Sabotage, Siphon, Souvenir, Stalactite, Surchauffe, Surpuissance, Synthese, TourDeMagie, TourRapide, VampiPoing, Vampigraine, Vampirisme, VentArriere, Voeu, VoleForce
+from functions.fonctions_attaque_autre import Abri, AntiBrume, Balance, BallMeteo, BlablaDodo, BouleRoc, BouteFeu, CasseBrique, ChangeEclair, ChocPsy, Clairvoyance, Clonage, CloseCombat, Colere, Conversion, Damocles, DemiTour, DracoMeteore, EclairFou, Effort, Explosion, Facade, FrappeAtlas, GlasDeSoin, LanceSoleil, Malediction, Megaphone, NoeudHerbe, Picots, PicsToxik, PiedSaute, PiedVoltige, PiegeDeRoc, Projection, PuissanceCachee, Rapace, Repos, Requiem, Sabotage, Siphon, Souvenir, Stalactite, Surchauffe, Surpuissance, Synthese, TourDeMagie, TourRapide, VampiPoing, Vampigraine, Vampirisme, VentArriere, Voeu, VoleForce
 
 
 def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokemonAttaquant, numAttaque, pokemonActuelNum) :
@@ -35,7 +35,7 @@ def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokem
     elif Attaque.id == 31 :
         pokemon_attaquant, pokemon_defenseur = Damocles(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
     elif Attaque.id == 35 :
-        print("DemiTour")
+        pokemon_defenseur, pokemonActuelNum = DemiTour(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokemonAttaquant, pokemonActuelNum)
     elif Attaque.id == 36 :
         pokemon_attaquant, pokemon_defenseur = DracoMeteore(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
     elif Attaque.id == 41 :
@@ -69,7 +69,7 @@ def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokem
     elif Attaque.id == 80 :
         terrain = PiegeDeRoc(dresseurPokemonAttaquant, terrain, pokemon_attaquant, Attaque)
     elif Attaque.id == 91 :
-        print("Projection")
+        pokemonActuelNum = Projection(pokemon_defenseur, dresseurPokemonAttaquant, pokemonActuelNum)
     elif Attaque.id == 93 :
         pokemon_defenseur = PuissanceCachee(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
     elif Attaque.id == 94 :

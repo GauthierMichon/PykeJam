@@ -20,6 +20,7 @@ from functions.derouler_attaque_heal import Heal
 from functions.derouler_attaque_buff import Buff
 from functions.initiation import initAttaque
 import functions.derouler_attaque_autre as other
+from functions.switch_adversaire import ChangeAdversaire
 from functions.table_types import TableType
 
 
@@ -184,11 +185,12 @@ def ChangeEclair(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseu
     Attaque.probaEffect = None
 
     pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
-    newPokemonActuelNum = ChoosePokemon(dresseur, pokemonActuelNum)
+    if dresseur.person == "player" :
+        newPokemonActuelNum = ChoosePokemon(dresseur, pokemonActuelNum)
+    else :
+        newPokemonActuelNum = ChangeAdversaire(dresseur, pokemonActuelNum)
 
     return pokemon_defenseur, newPokemonActuelNum
-
-
 
 def ChocPsy(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     Attaque.puissance = 100
@@ -329,6 +331,21 @@ def Damocles(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     pokemon_attaquant.PV = ceil((PVAvantAttaque - pokemon_defenseur.PV) / 3)
 
     return pokemon_attaquant, pokemon_defenseur
+
+def DemiTour(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseur, pokemonActuelNum) :
+    Attaque.puissance = 70
+    Attaque.physique = 1
+    Attaque.special = 0
+    Attaque.effect = 0
+    Attaque.probaEffect = None
+
+    pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+    if dresseur.person == "player" :
+        newPokemonActuelNum = ChoosePokemon(dresseur, pokemonActuelNum)
+    else :
+        newPokemonActuelNum = ChangeAdversaire(dresseur, pokemonActuelNum)
+
+    return pokemon_defenseur, newPokemonActuelNum
 
 def DracoMeteore(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     Attaque.puissance = 130
@@ -713,6 +730,11 @@ def PiegeDeRoc(dresseurPokemonAttaquant, terrain, pokemon_attaquant, Attaque) :
             print("déjà des Pics Toxik")
 
     return terrain
+
+def Projection(dresseur, pokemonActuelNum) :
+    newPokemonActuelNum = ChangeAdversaire(dresseur, pokemonActuelNum)
+
+    return newPokemonActuelNum
 
 def PuissanceCachee(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     Attaque.puissance = 60

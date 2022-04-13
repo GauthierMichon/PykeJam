@@ -34,7 +34,7 @@ def game() :
     adversaire_5 = randint(0, 77)
     adversaire_6 = randint(0, 77)
 
-    adversaire_1 = deepcopy(pokemonList[adversaire_1])
+    adversaire_1 = deepcopy(pokemonList[18])
     adversaire_2 = deepcopy(pokemonList[adversaire_2])    
     adversaire_3 = deepcopy(pokemonList[adversaire_3]) 
     adversaire_4 = deepcopy(pokemonList[adversaire_4])  
