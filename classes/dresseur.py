@@ -1,3 +1,4 @@
+# Objet qui contient les informations d'un dresseur
 class Dresseur():
     def __init__(self, name, pokemons, person):
         self.name               = name

@@ -1,3 +1,5 @@
+# Objet qui contient les informations sur un pokemon
+
 class Pokemon():
     def __init__(self, id, name, sprite, spriteDos, Type, Type2, nature, PV, Att, Def, AttSpe, DefSpe, Speed, accuracy, Attaques, Poids):
         self.id         = id

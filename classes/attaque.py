@@ -1,3 +1,4 @@
+# Classe mère des attaques du jeu
 class Attaque():
     def __init__(self, id, name, accuracy, Type, description, PP, priorityLevel):
         self.id             = id

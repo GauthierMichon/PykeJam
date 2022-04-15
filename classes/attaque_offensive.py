@@ -1,6 +1,6 @@
 from classes.attaque import Attaque
 
-
+# Objet des attaques faisant des dommages au pokemon adverse
 class AttaqueOffensive(Attaque):
     def __init__(self, idAttaque, name, accuracy, Type, description, PP, priorityLevel, puissance, physique, special, effect, probaEffect):
         super().__init__(idAttaque, name, accuracy, Type, description, PP, priorityLevel)

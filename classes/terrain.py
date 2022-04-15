@@ -1,3 +1,4 @@
+# Objet qui contient les informations sur le terrain
 class Terrain():
     def __init__(self):
         self.climat                 = None
