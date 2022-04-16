@@ -5,6 +5,9 @@ from classes.attaque_climat import AttaqueClimat
 from classes.attaque_heal import AttaqueHeal
 from classes.attaque_offensive import AttaqueOffensive
 from classes.attaque_statut import AttaqueStatut
+from classes.item_heal import ItemHeal
+from classes.item_buff import ItemBuff
+from classes.item_res import ItemRes
 from classes.pokemon import Pokemon
 
 # Fonction qui initialise les attaques et les pokemons
@@ -13,6 +16,39 @@ def init() :
     pokemonList = initPokemon(attaqueList)
 
     return pokemonList
+
+# Fonction qui initialise les objets
+def initItem() :
+    select_item_cursor = conn.cursor()
+    select_item_query = ("SELECT * FROM item")
+    select_item_cursor.execute(select_item_query)
+    data_item = select_item_cursor.fetchall()
+
+    itemList = []
+
+    for i in data_item :
+        if i[2] == 1 :
+            select_oneitem_cursor = conn.cursor()
+            select_oneitem_query = ("SELECT * FROM itemheal WHERE itemId = {0}".format(i[0]))
+            select_oneitem_cursor.execute(select_oneitem_query)
+            data_oneitem = select_oneitem_cursor.fetchone()
+            itemList.append(ItemHeal(i[0], i[1], data_oneitem[2]))
+
+        if i[3] == 1 :
+            select_oneitem_cursor = conn.cursor()
+            select_oneitem_query = ("SELECT * FROM itembuff WHERE itemId = {0}".format(i[0]))
+            select_oneitem_cursor.execute(select_oneitem_query)
+            data_oneitem = select_oneitem_cursor.fetchone()
+            itemList.append(ItemBuff(i[0], i[1], data_oneitem[2]))
+
+        if i[4] == 1 :
+            select_oneitem_cursor = conn.cursor()
+            select_oneitem_query = ("SELECT * FROM itemres WHERE itemId = {0}".format(i[0]))
+            select_oneitem_cursor.execute(select_oneitem_query)
+            data_oneitem = select_oneitem_cursor.fetchone()
+            itemList.append(ItemRes(i[0], i[1], data_oneitem[2]))
+
+    return itemList
 
 # Fonction qui initialise les attaques
 def initAttaque() :

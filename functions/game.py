@@ -3,12 +3,16 @@ from classes.dresseur import Dresseur
 from functions.choose_random_num import rand
 from functions.combat import combat
 from random import randint
-from functions.initiation import init
+from functions.initiation import init, initItem
 
 
 def game() :
     # Initialisation des pokemons
     pokemonList = init()
+
+    # Initialisation des objets
+    itemList = initItem()
+    objets = [itemList[rand(0, len(itemList))], itemList[rand(0, len(itemList))], itemList[rand(0, len(itemList))]]
 
     # Choix du pseudo
     pseudo      = input('Quel est votre pseudo de dresseur ? ')
@@ -58,8 +62,8 @@ def game() :
             allPokemonChoose[i].SpeedInit *= 1.10
 
     # Initialisation des dresseurs
-    player = Dresseur(pseudo, [pokemon_1, pokemon_2, pokemon_3, pokemon_4, pokemon_5, pokemon_6], "player")
-    adversaire = Dresseur(adversaire, [adversaire_1, adversaire_2, adversaire_3, adversaire_4, adversaire_5, adversaire_6], "adversaire")
+    player = Dresseur(pseudo, [pokemon_1, pokemon_2, pokemon_3, pokemon_4, pokemon_5, pokemon_6], "player", objets)
+    adversaire = Dresseur(adversaire, [adversaire_1, adversaire_2, adversaire_3, adversaire_4, adversaire_5, adversaire_6], "adversaire", objets)
         
     # Début du combat
     combat(player, adversaire)
