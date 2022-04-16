@@ -7,15 +7,14 @@ from classes.attaque_offensive import AttaqueOffensive
 from classes.attaque_statut import AttaqueStatut
 from classes.pokemon import Pokemon
 
+# Fonction qui initialise les attaques et les pokemons
 def init() :
     attaqueList = initAttaque()
     pokemonList = initPokemon(attaqueList)
 
     return pokemonList
 
-
-
-
+# Fonction qui initialise les attaques
 def initAttaque() :
     select_attaque_cursor = conn.cursor()
     select_attaque_query = ("SELECT * FROM attaques")
@@ -101,6 +100,7 @@ def initAttaque() :
 
     return attaqueList
 
+# Fonction qui initialise les pokémons
 def initPokemon(attaqueList) :
     select_pokemon_cursor = conn.cursor()
     select_pokemon_query = ("SELECT * FROM pokemon")

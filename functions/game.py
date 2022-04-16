@@ -7,11 +7,13 @@ from functions.initiation import init
 
 
 def game() :
-    
+    # Initialisation des pokemons
     pokemonList = init()
 
+    # Choix du pseudo
     pseudo      = input('Quel est votre pseudo de dresseur ? ')
 
+    # Choix des pokemons 
     pokemon_1   = input('Id de votre premier pokemon : ')
     pokemon_2   = input('Id de votre deuxième pokemon : ')
     pokemon_3   = input('Id de votre troisième pokemon : ')
@@ -28,6 +30,7 @@ def game() :
 
     adversaire = 'quentin'
 
+    # Choix des pokemons de l'adversaire
     adversaire_1 = deepcopy(pokemonList[randint(0, 77)])
     adversaire_2 = deepcopy(pokemonList[randint(0, 77)])    
     adversaire_3 = deepcopy(pokemonList[randint(0, 77)]) 
@@ -36,6 +39,7 @@ def game() :
     adversaire_6 = deepcopy(pokemonList[randint(0, 77)])
 
     allPokemonChoose = [pokemon_1, pokemon_2, pokemon_3, pokemon_4, pokemon_5, pokemon_6, adversaire_1, adversaire_2, adversaire_3, adversaire_4, adversaire_5, adversaire_6]
+    # Random de shiny
     for i in range(len(allPokemonChoose)) :
         if rand(1, 100) == 1 :
             allPokemonChoose[i].sprite += "_shiny"
@@ -53,8 +57,9 @@ def game() :
             allPokemonChoose[i].Speed *= 1.10
             allPokemonChoose[i].SpeedInit *= 1.10
 
+    # Initialisation des dresseurs
     player = Dresseur(pseudo, [pokemon_1, pokemon_2, pokemon_3, pokemon_4, pokemon_5, pokemon_6], "player")
     adversaire = Dresseur(adversaire, [adversaire_1, adversaire_2, adversaire_3, adversaire_4, adversaire_5, adversaire_6], "adversaire")
         
-    
+    # Début du combat
     combat(player, adversaire)

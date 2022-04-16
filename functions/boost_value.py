@@ -1,3 +1,4 @@
+# Fonction qui permet de récupérer la le coefficient multiplicateur de boost
 def boost(num) :
     if num == 0 :
         return 1

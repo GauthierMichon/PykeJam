@@ -1,3 +1,4 @@
+# Fonction qui permet de calculer le coefficient multiplicateur de l'attaque en fonction du climat
 def Climat(climat, attaqueType) :
     if climat == "Soleil" :
         if attaqueType == "Feu" :

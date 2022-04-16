@@ -1,6 +1,7 @@
 from functions.boost_value import boost
 from functions.choose_random_num import rand
 
+# Fonction qui gère les effets des attaques offensives
 def useEffect(pokemon_attaquant, pokemon_defenseur, Attaque) :
     if Attaque.id == 3 :
         if pokemon_defenseur.DefBuff > -6 :

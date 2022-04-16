@@ -1,6 +1,6 @@
 from functions.fonctions_attaque_autre import Abri, AntiBrume, Balance, BallMeteo, BlablaDodo, BouleRoc, BouteFeu, CasseBrique, ChangeEclair, ChocPsy, Clairvoyance, Clonage, CloseCombat, Colere, Conversion, Damocles, DemiTour, DracoMeteore, EclairFou, Effort, Explosion, Facade, FrappeAtlas, GlasDeSoin, LanceSoleil, Malediction, Megaphone, NoeudHerbe, Picots, PicsToxik, PiedSaute, PiedVoltige, PiegeDeRoc, Projection, PuissanceCachee, Rapace, Repos, Requiem, Sabotage, Siphon, Souvenir, Stalactite, Surchauffe, Surpuissance, Synthese, TourDeMagie, TourRapide, VampiPoing, Vampigraine, Vampirisme, VentArriere, Voeu, VoleForce
 
-
+# Fonction qui gère les attaques autres en appelant leur fonction correspondante
 def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokemonAttaquant, numAttaque, pokemonActuelNum) :
     if Attaque.id == 1 :
         pokemon_attaquant = Abri(pokemon_attaquant, Attaque)

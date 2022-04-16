@@ -1,6 +1,6 @@
 from functions.choose_random_num import rand
 
-
+# Fonction qui gère le changement de pokemon de l'adversaire
 def ChangeAdversaire(adversaire, pokemonActuelNum) :
     boolean = True
     while boolean :

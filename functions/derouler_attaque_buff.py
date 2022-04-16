@@ -1,8 +1,9 @@
 from functions.attaque_miss_or_work import MissWork
 from functions.boost_value import boost
 
-
+# Fonction qui gère les attaques de buff
 def Buff(pokemon_attaquant, Attaque) :
+    # Si l'attaque réussit
     if MissWork(pokemon_attaquant, Attaque) :
         for i in range(len(Attaque.statBuff)) :
             # On récupère la statistique de base

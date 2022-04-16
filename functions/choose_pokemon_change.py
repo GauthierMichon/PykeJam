@@ -1,6 +1,8 @@
+# Fonction permettant de choisir un pokemon
 def ChoosePokemon(player, pokemonActualDresseurNum) :
     booleanSwitch = True
     while booleanSwitch :
+        # Affiche les pokemons du dresseur et demande au joueur de choisir un pokemon
         pokemonNum = input("Quelle Pokemon utiliser ? (1 : {0}, 2 : {1}, 3 : {2}, 4 : {3}, 5 : {4}, 6 : {5})  ".format(
             player.pokemons[0].name,
             player.pokemons[1].name,
@@ -10,8 +12,10 @@ def ChoosePokemon(player, pokemonActualDresseurNum) :
             player.pokemons[5].name,
         ))
         pokemonNum = int(pokemonNum) - 1
+        # Si le pokemon choisi est déjà celui envoyé
         if pokemonNum == pokemonActualDresseurNum :
             print("Vous ne pouvez pas utiliser le pokemon actuel")
+        # Si le pokemon choisi est K.O.
         elif player.pokemons[pokemonNum].PV <= 0 :
             print("Vous ne pouvez pas utiliser ce pokemon, il est K.O.")
         else :

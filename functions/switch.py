@@ -1,3 +1,4 @@
+# Fonction qui réinitialise des propriétés du pokemon qui est changé
 def Switch(dresseur, currentPokemonNum) :
     dresseur.pokemons[currentPokemonNum].confusion      = False
     dresseur.pokemons[currentPokemonNum].confusionNum   = None

@@ -1,3 +1,4 @@
+# Fonction de la table des types qui permet une interaction entre les types
 def TableType(typeAttaque, typePokemon, type2Pokemon) :
     table = {
         "Normal" : {

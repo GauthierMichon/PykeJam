@@ -6,21 +6,28 @@ from functions.effect_attaque_offensive import Effect
 from functions.table_types import TableType
 from math import *
 
-
+# Fonction qui gère les attaques offensives
 def Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
+    # Si l'attaque échoue
     booleanAttaque = MissWork(pokemon_attaquant, Attaque)
 
+    # Si le pokemon attaquant est brulé
     if pokemon_attaquant.statut == "Brûlure" :
         pokemon_attaquant.Att = pokemon_attaquant.Att / 2
 
+    # Si l'adversaire a utilisé abri
     if pokemon_defenseur.abri :
         print("Le Pokémon adverse se protège, l'attaque est sans effet.")
 
     elif booleanAttaque :
+        # Si l'aatque est physique
         if Attaque.physique == 1 :
+            # Calcul des dégats
             degats = (100 * 0.4 + 2) * pokemon_attaquant.Att * Attaque.puissance
             degats = degats / (pokemon_defenseur.Def * 50) + 2
+        # Si l'attaque est spéciale
         elif Attaque.special == 1 :
+            # Calcul des dégats
             degats = (100 * 0.4 + 2) * pokemon_attaquant.AttSpe * Attaque.puissance
             degats = degats / (pokemon_defenseur.DefSpe * 50) + 2
 
@@ -51,15 +58,19 @@ def Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
         #Climat
         degats *= Climat(terrain, Attaque.Type)
 
-
         #Random num entre 0.85 et 1
         degats *= (rand(85, 100) / 100)
 
         if pokemon_defenseur.clone == False :
+            # Infilge les dégats
             pokemon_defenseur.PV -= ceil(degats)
+            # Appelle la fonction d'effet de l'attaque
             pokemon_attaquant, pokemon_defenseur = Effect(pokemon_attaquant, pokemon_defenseur, Attaque)
+        # Si le pokemon defenseur est caché derrière un clone
         else :
+            # Le clone prend les dégats
             pokemon_defenseur.clonePV -= ceil(degats)
+            # Si le clone est mort
             if pokemon_defenseur.clonePV <= 0 :
                 pokemon_defenseur.clone = False
                 pokemon_defenseur.clonePV = None
