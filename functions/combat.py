@@ -4,7 +4,7 @@ from functions.choose_action import chooseAction
 from functions.choose_random_num import rand
 from functions.combat_continue import CombatContinue
 from functions.end_turn import EndTurn
-from functions.fight import fight
+from functions.action_attaque import ActionAttaque
 from functions.player_turn import PlayerTurn
 from functions.switch import Switch
 from functions.vampigraine_check import VampigraineCheck

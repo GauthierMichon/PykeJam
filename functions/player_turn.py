@@ -1,7 +1,8 @@
+from functions.action_item import ActionItem
 from functions.after_switch import AfterSwitch
 from functions.choose_pokemon_change import ChoosePokemon
 from functions.choose_random_num import rand
-from functions.fight import fight
+from functions.action_attaque import ActionAttaque
 from functions.switch import Switch
 import functions.adversaire_turn as adv_turn
 from functions.switch_adversaire import ChangeAdversaire
@@ -49,8 +50,8 @@ def PlayerTurn(player, adversaire, action, actionNum, action_adversaire, actionN
             print("\nVous avez choisi de faire une attaque")
             print(player.pokemons[pokemonActualPlayerNumber].name)
             print(player.pokemons[pokemonActualPlayerNumber].Attaques[actionNum - 1].name)
-            # On appelle la fonction fight
-            player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber], terrain, player, pokemonActualPlayerNumber = fight(player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber], actionNum, terrain, player, pokemonActualPlayerNumber)
+            # On appelle la fonction ActionAttaque
+            player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber], terrain, player, pokemonActualPlayerNumber = ActionAttaque(player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber], actionNum, terrain, player, pokemonActualPlayerNumber)
 
         # Si l'action est "Changer de Pokemon"
         elif action == 2 :
@@ -72,7 +73,10 @@ def PlayerTurn(player, adversaire, action, actionNum, action_adversaire, actionN
 
         # Si l'action est "Utiliser un objet"
         elif action == 3 :
-            print("item mais pas encore implémenté")
+            print("\nVous avez choisi d'utiliser un objet")
+            print(player.inventaire[actionNum - 1].name)
+            player = ActionItem(player, actionNum - 1, pokemonActualPlayerNumber)
+            print(player.inventaire, len(player.inventaire))
 
     # Si le joueur a joué en premier
     if beginner == "player" :

@@ -1,7 +1,7 @@
 from functions.after_switch import AfterSwitch
 from functions.choose_pokemon_change import ChoosePokemon
 from functions.choose_random_num import rand
-from functions.fight import fight
+from functions.action_attaque import ActionAttaque
 from functions.switch import Switch
 import functions.player_turn as player_turn
 from functions.switch_adversaire import ChangeAdversaire
@@ -46,8 +46,8 @@ def AdversaireTurn(player, adversaire, action, actionNum, action_adversaire, act
     if boolAttaque :
         # Si l'action est "Attaquer"
         if action_adversaire == 1 :
-            # On appelle la fonction fight
-            adversaire.pokemons[pokemonActualAdversNumber], player.pokemons[pokemonActualPlayerNumber], terrain, adversaire, pokemonActualAdversNumber = fight(adversaire.pokemons[pokemonActualAdversNumber], player.pokemons[pokemonActualPlayerNumber], actionNum_adversaire, terrain, adversaire, pokemonActualAdversNumber)
+            # On appelle la fonction ActionAttaque
+            adversaire.pokemons[pokemonActualAdversNumber], player.pokemons[pokemonActualPlayerNumber], terrain, adversaire, pokemonActualAdversNumber = ActionAttaque(adversaire.pokemons[pokemonActualAdversNumber], player.pokemons[pokemonActualPlayerNumber], actionNum_adversaire, terrain, adversaire, pokemonActualAdversNumber)
 
         # Si l'action est "Changer de Pokemon"
         elif action_adversaire == 2 :

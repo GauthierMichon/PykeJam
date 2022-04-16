@@ -12,7 +12,7 @@ from functions.derouler_attaque_offensive import Offensive
 import functions.derouler_attaque_autre as other
 
 # Fonction qui appelle la fonction correspondant au type d'attaque
-def fight(pokemon_attaquant, pokemon_defenseur, numAttaque, terrain, dresseurPokemonAttaquant, pokemonActuelNum) :
+def ActionAttaque(pokemon_attaquant, pokemon_defenseur, numAttaque, terrain, dresseurPokemonAttaquant, pokemonActuelNum) :
     if type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueOffensive :
         print("Attaque offensive")
         pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, pokemon_attaquant.Attaques[numAttaque-1], terrain)

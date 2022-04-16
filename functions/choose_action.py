@@ -1,3 +1,4 @@
+from functions.choose_attaque import ChooseAttaque
 from functions.choose_item import ChooseItem
 from functions.choose_pokemon_change import ChoosePokemon
 
@@ -11,7 +12,7 @@ def chooseAction(player, adversaire, pokemon_actuel_player, pokemon_actuel_adver
     if action == "1" :
 
         # On affiche les attaques possibles
-        actionNum = ChoosePokemon(pokemon_actuel_player)
+        actionNum = ChooseAttaque(pokemon_actuel_player)
 
     # Si l'action est 2, on change de pokemon
     if action == "2" :
