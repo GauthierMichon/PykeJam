@@ -88,9 +88,6 @@ rect_8      = pygame.Rect((750, 400), (450, 125), )
 info_pokemon_player     = pygame.Surface((450, 125))
 info_pokemon_player.fill(WHITE)
 
-pokemon_name_player = pygame.font.SysFont('arial', 25)
-text_pokemon_name_player = pokemon_name_player.render('Tortank', False, BLACK)
-
 rect_pokemon_player_name = pygame.Rect((765, 415), (450, 45), )
 pokemon_name_player = pygame.font.SysFont('arial', 25)
 text_pokemon_name_player = pokemon_name_player.render('Tortank', False, BLACK)

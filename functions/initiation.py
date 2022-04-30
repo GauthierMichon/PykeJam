@@ -17,8 +17,6 @@ def init() :
 
     return pokemonList
 
-<<<<<<< HEAD
-=======
 # Fonction qui initialise les objets
 def initItem() :
     select_item_cursor = conn.cursor()
@@ -53,7 +51,6 @@ def initItem() :
     return itemList
 
 # Fonction qui initialise les attaques
->>>>>>> 0d4d6d89124e23dc3d24f4adc53ade3de66fa19c
 def initAttaque() :
     select_attaque_cursor = conn.cursor()
     select_attaque_query = ("SELECT * FROM attaques")

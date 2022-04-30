@@ -1,6 +1,7 @@
 import pygame
-from graph_containers import *
 from functions.game import game
+from graph.graph_containers import *
+
 
 successes, failures = pygame.init()
 print("Initializing pygame: {0} successes and {1} failures.".format(successes, failures))

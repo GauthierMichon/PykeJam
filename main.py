@@ -1,4 +1,1 @@
-from functions.game import game
-
-
-game()
+from graph.graph import *
