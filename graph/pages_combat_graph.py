@@ -1,5 +1,7 @@
 from cmath import rect
 import pygame
+from graph_containers import *
+
 
 successes, failures = pygame.init()
 print("Initializing pygame: {0} successes and {1} failures.".format(successes, failures))
@@ -11,54 +13,12 @@ BLACK   = (0, 0, 0)
 WHITE   = (255, 255, 255)
 BLUE    = (89, 119, 178)
 ORANGE  = (234, 151, 40)
+GREY   = (128, 128, 128)
 
-bg  = pygame.image.load("bg_combat.png")
+bg  = pygame.image.load("assets/bg_combat.png")
 bg  = pygame.transform.scale(bg, (1280, 550))
 
-pokemon_1 = pygame.image.load("sprite_dos/Tortank.png")
-pokemon_1 = pygame.transform.scale(pokemon_1, (300, 300))
-pokemon_2 = pygame.image.load("sprite/Mackogneur.gif")
-pokemon_2 = pygame.transform.scale(pokemon_2, (200, 200))
 
-rect_1  = pygame.Rect((10, 560), (1260, 150), )
-instruction = pygame.Surface((1260, 150))
-instruction.fill(BLUE)
-
-pygame.draw.rect(instruction, WHITE, pygame.Rect(0, 0, 1260, 150),  10, 3)
-
-rect_2 = pygame.Rect((630, 570), (630, 150))
-actions = pygame.Surface((630, 130))
-actions.fill(BLUE)
-
-pygame.draw.rect(actions, ORANGE, pygame.Rect(0, 0, 630, 130),  10, 3)
-
-rect_3      = pygame.Rect((645, 585), (295, 45))
-attaque     = pygame.Surface((295, 45))
-attaque.fill('WHITE')
-
-rect_4      = pygame.Rect((645, 640), (295, 45))
-pokemon     = pygame.Surface((295, 45))
-pokemon.fill('WHITE')
-
-rect_5      = pygame.Rect((950, 585), (295, 45))
-sac         = pygame.Surface((295, 45))
-sac.fill('WHITE')
-
-rect_6      = pygame.Rect((950, 640), (295, 45))
-fuite       = pygame.Surface((295, 45))
-fuite.fill('WHITE')
-
-rect_7  = pygame.Rect((175, 40), (450, 125), )
-stat    = pygame.Surface((450, 125))
-stat.fill(WHITE)
-
-pygame.draw.rect(stat, BLACK, pygame.Rect(0, 0, 450, 125),  10, 3)
-
-rect_8      = pygame.Rect((750, 400), (450, 125), )
-my_stat     = pygame.Surface((450, 125))
-my_stat.fill(WHITE)
-
-pygame.draw.rect(my_stat, BLACK, pygame.Rect(0, 0, 450, 125),  10, 3)
 
 pygame.mouse.set_visible(1)
 pygame.display.set_caption('PykeJam')
@@ -67,16 +27,71 @@ running = True
 while running:
     dt = clock.tick(FPS) / 1000  # Returns milliseconds between each call to 'tick'. The convert time to seconds.
     screen.blit(bg,(0,0))
-    screen.blit(pokemon_1, (150, 282))
-    screen.blit(pokemon_2, (850, 140 ))
-    screen.blit(instruction, rect_1)
+    screen.blit(pokemon_player, (150, 282))
+    screen.blit(pokemon_adversaire, (850, 140 ))
+    screen.blit(infos_combat, rect_1)
+
+    # Choose action
+    """ screen.blit(actions, rect_2)
+    screen.blit(action1, rect_3)
+    screen.blit(text_action1, rect_3)
+    screen.blit(action2, rect_4)
+    screen.blit(text_action2, rect_4)
+    screen.blit(action3, rect_5)
+    screen.blit(text_action3, rect_5)
+    screen.blit(action4, rect_6) """
+
+
+    # Action Attaque
+    """ screen.blit(actions, rect_2)
+    screen.blit(action1, rect_3)
+    screen.blit(text_attaque1, rect_3)
+    screen.blit(action2, rect_4)
+    screen.blit(text_attaque2, rect_4)
+    screen.blit(action3, rect_5)
+    screen.blit(text_attaque3, rect_5)
+    screen.blit(action4, rect_6)
+    screen.blit(text_attaque4, rect_6) """
+
+
+    # Action Objet
     screen.blit(actions, rect_2)
-    screen.blit(attaque, rect_3)
-    screen.blit(pokemon, rect_4)
-    screen.blit(sac, rect_5)
-    screen.blit(fuite, rect_6)
-    screen.blit(stat, rect_7)
-    screen.blit(my_stat,rect_8)
+    screen.blit(action1, rect_3)
+    screen.blit(text_objet1, rect_3)
+    screen.blit(action2, rect_4)
+    screen.blit(text_objet2, rect_4)
+    screen.blit(action3, rect_5)
+    screen.blit(text_objet3, rect_5)
+    screen.blit(action4, rect_6)
+
+
+
+    # Action pokemon
+    """
+    screen.blit(actions_pokemon, rect_actions_pokemon)
+    screen.blit(pokemon1, rect_pokemon1)
+    screen.blit(text_pokemon1, rect_pokemon1)
+    screen.blit(pokemon2, rect_pokemon2)
+    screen.blit(text_pokemon2, rect_pokemon2)
+    screen.blit(pokemon3, rect_pokemon3)
+    screen.blit(text_pokemon3, rect_pokemon3)
+    screen.blit(pokemon4, rect_pokemon4)
+    screen.blit(text_pokemon4, rect_pokemon4)
+    screen.blit(pokemon5, rect_pokemon5)
+    screen.blit(text_pokemon5, rect_pokemon5)
+    screen.blit(pokemon6, rect_pokemon6)
+    screen.blit(text_pokemon6, rect_pokemon6) """
+    
+
+    screen.blit(info_pokemon_adversaire, rect_7)
+    screen.blit(text_pokemon_name_adversaire, rect_pokemon_adversaire_name)
+    screen.blit(text_pokemon_PV_adversaire, rect_pokemon_adversaire_PV)
+    screen.blit(info_pokemon_player,rect_8)
+    screen.blit(text_pokemon_name_player, rect_pokemon_player_name)
+    screen.blit(text_pokemon_PV_player, rect_pokemon_player_PV)
+
+    screen.blit(statut_pokemon_adversaire, (200, 90))
+    screen.blit(statut_pokemon_player, (775, 450))
     
 
     for event in pygame.event.get():

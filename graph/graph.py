@@ -1,4 +1,6 @@
 import pygame
+from graph_containers import *
+from functions.game import game
 
 successes, failures = pygame.init()
 print("Initializing pygame: {0} successes and {1} failures.".format(successes, failures))
@@ -9,9 +11,7 @@ FPS     = 60
 BLACK   = (0, 0, 0)
 WHITE   = (255, 255, 255)
 
-bg          = pygame.image.load("background.png")
-logo        = pygame.image.load("logo.png").convert_alpha()
-logo        = pygame.transform.scale(logo, (300, 300))
+bg          = bg_accueil
 
 pygame.display.set_caption('Show Text')
 font    = pygame.font.Font('freesansbold.ttf', 32)
@@ -36,9 +36,13 @@ while running:
             running = False
         elif event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
             start       = False
-            bg          = pygame.image.load("background_2.png")
+            """ bg          = pygame.image.load("assets/background_2.png")
             bg          = pygame.transform.scale(bg, (1280, 800))
-            title       = font.render('Choose your first pokémon ', True, WHITE)
+            title       = font.render('Choose your first pokémon ', True, WHITE) """
+
+            game()
+
+            
 
 
     pygame.display.flip() 
