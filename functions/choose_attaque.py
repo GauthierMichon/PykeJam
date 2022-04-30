@@ -46,6 +46,9 @@ def ChooseAttaque(pokemon_actuel_player) :
                 actionNum = 4
                 running = False
 
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_b:
+                running = False
+
         pygame.display.flip() 
 
         

@@ -21,7 +21,7 @@ bg  = pygame.transform.scale(bg, (1280, 550))
 # Sprites
 pokemon_player = pygame.image.load("assets/sprite_dos/Tortank.png")
 pokemon_player = pygame.transform.scale(pokemon_player, (300, 300))
-pokemon_adversaire = pygame.image.load("assets/sprite/Mackogneur.gif")
+pokemon_adversaire = pygame.image.load("assets/sprite/Aeromite.gif")
 pokemon_adversaire = pygame.transform.scale(pokemon_adversaire, (200, 200))
 
 # Infos combat
@@ -155,3 +155,27 @@ rect_pokemon6       = pygame.Rect((855, 640), (390, 45))
 pokemon6            = pygame.Surface((390, 45))
 pokemon6.fill('WHITE')
 text_pokemon6 = font.render('pokemon 6', False, BLACK)
+
+
+########################################################################################################################
+# Win Page
+win        = pygame.image.load("assets/u_win.png")
+win        = pygame.transform.scale(win, (500, 150))
+
+jamWin        = pygame.image.load("assets/smirk_jam.png")
+jamWin         = pygame.transform.scale(jamWin, (180, 300))
+
+goatWin        = pygame.image.load("assets/THEGOAT.png")
+goatWin        = pygame.transform.scale(goatWin, (180, 300))
+
+
+########################################################################################################################
+# Lose Page
+lose        = pygame.image.load("assets/wasted.png")
+lose        = pygame.transform.scale(lose, (500, 150))
+
+jamLose         = pygame.image.load("assets/bat_jam.png")
+jamLose         = pygame.transform.scale(jamLose, (180, 300))
+
+goatLose        = pygame.image.load("assets/got_rat.png")
+goatLose        = pygame.transform.scale(goatLose, (180, 300))

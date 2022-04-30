@@ -77,6 +77,6 @@ def EndTurn(dresseur, pokemonActualNumber, terrain) :
     # Si le pokemon est K.O.
     if dresseur.pokemons[pokemonActualNumber].PV <= 0 :
         dresseur.pokemons[pokemonActualNumber].PV = 0
-        dresseur, pokemonActualNumber = EndTurn(dresseur, pokemonActualNumber,)
+        """ dresseur, pokemonActualNumber = EndTurn(dresseur, pokemonActualNumber, terrain) """
 
     return dresseur, pokemonActualNumber

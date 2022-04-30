@@ -9,14 +9,14 @@ FPS     = 60
 BLACK   = (0, 0, 0)
 WHITE   = (255, 255, 255)
 
-bg          = pygame.image.load("background.png")
-logo        = pygame.image.load("u_win.png").convert_alpha()
+bg          = pygame.image.load("assets/background.png")
+logo        = pygame.image.load("assets/u_win.png").convert_alpha()
 logo        = pygame.transform.scale(logo, (500, 150))
 
-jam         = pygame.image.load("smirk_jam.png")
+jam         = pygame.image.load("assets/smirk_jam.png")
 jam         = pygame.transform.scale(jam, (180, 300))
 
-goat        = pygame.image.load("THEGOAT.png")
+goat        = pygame.image.load("assets/THEGOAT.png")
 goat        = pygame.transform.scale(goat, (180, 300))
 
 pygame.mouse.set_visible(1)

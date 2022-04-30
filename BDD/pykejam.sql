@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mer. 30 mars 2022 à 10:02
+-- Généré le :  sam. 30 avr. 2022 à 16:58
 -- Version du serveur :  10.1.36-MariaDB
 -- Version de PHP :  7.2.11
 
@@ -368,7 +368,7 @@ INSERT INTO `attaques` (`id`, `name`, `accuracy`, `typeId`, `description`, `PP`,
 (88, 'Poudre Dodo', 75, 4, 'Poudre Dodo endort la cible, sauf si celle-ci est déjà victime d\'un problème de statut majeur ou derrière un clone.\r\nLes effets de Poudre Dodo sont inefficaces sur un Pokémon de type Plante.', 15, 0, 0, 0, 0, 1, 0, 0),
 (89, 'Poursuite', 100, 16, 'Cette attaque a une puissance de 80 sans restriction.', 20, 1, 0, 0, 0, 0, 0, 0),
 (90, 'Pouvoir Lunaire', 100, 18, 'Pouvoir Lunaire inflige des dégâts, et a 30% de chances de baisser l\'Attaque Spéciale de la cible.', 15, 1, 0, 0, 0, 0, 0, 0),
-(91, 'Projection', 90, 7, 'À la façon de Draco-Queue, Projection permet de repousser un Pokémon ennemi.  Contre un Dresseur, elle remplace simplement le Pokémon par un autre.\r\n\r\nSi le Pokémon adverse a Ventouse, a lancé Racines ou Clonage, si le Dresseur adverse n\'a qu\'un Pokémon, Projection échoue.\r\n\r\nProjection a une priorité minimale, de l\'ordre de -6. Son lanceur frappe donc toujours en dernier.', 10, 0, 0, 0, 0, 0, 1, 0),
+(91, 'Projection', 90, 7, 'À la façon de Draco-Queue, Projection permet de repousser un Pokémon ennemi.  Contre un Dresseur, elle remplace simplement le Pokémon par un autre.\r\n\r\nSi le Pokémon adverse a Ventouse, a lancé Racines ou Clonage, si le Dresseur adverse n\'a qu\'un Pokémon, Projection échoue.\r\n\r\nProjection a une priorité minimale, de l\'ordre de -6. Son lanceur frappe donc toujours en dernier.', 10, 0, 0, 0, 0, 0, 1, -6),
 (92, 'Psyko', 100, 11, 'Psyko inflige des dégâts et possède 10% de chances de baisser d\'un niveau la Défense Spéciale de la cible.', 10, 1, 0, 0, 0, 0, 0, 0),
 (93, 'Puissance Cachée', 100, NULL, 'Le type de cette capacité est variable selon le pokemon.', 15, 0, 0, 0, 0, 0, 1, 0),
 (94, 'Rapace', 100, 11, 'Rapace inflige des dégâts et fait subir au lanceur le tiers des dégâts infligés à la cible.', 15, 0, 0, 0, 0, 0, 1, 0),
@@ -648,7 +648,7 @@ INSERT INTO `pokemon` (`id`, `name`, `sprite`, `spriteDos`, `typeId`, `typeId2`,
 (16, 'Ectoplasma', 'Ectoplasma.gif', 'Ectoplasma.png', 14, 8, 25, 60, 65, 60, 130, 75, 110, 0, 10, 30, 45, 113, 40),
 (17, 'Electhor', 'Electhor.gif', 'Electhor.png', 5, 10, 25, 90, 90, 85, 125, 90, 100, 0, 29, 93, 18, 4, 52),
 (18, 'Electrode', 'Electrode.gif', 'Electrode.png', 5, NULL, 16, 60, 50, 70, 80, 80, 150, 0, 112, 21, 95, 93, 66),
-(19, 'Elekable', 'Elekable.gif', 'Elekable.png', 5, NULL, 17, 75, 123, 67, 95, 85, 95, 0, 112, 21, 95, 93, 138),
+(19, 'Elektek', 'Elektek.gif', 'Elektek.png', 5, NULL, 17, 75, 123, 67, 95, 85, 95, 0, 112, 21, 95, 45, 138),
 (20, 'Empiflor', 'Empiflor.gif', 'Empiflor.png', 4, 8, 16, 80, 105, 65, 100, 70, 70, 0, 61, 14, 9, 88, 15),
 (21, 'Excelangue', 'Excelangue.gif', 'Excelangue.png', 1, NULL, 13, 90, 55, 75, 60, 75, 30, 0, 127, 1, 82, 100, 65),
 (22, 'Feunard', 'Feunard.gif', 'Feunard.png', 2, NULL, 25, 73, 76, 75, 81, 100, 100, 0, 106, 37, 61, 93, 19),

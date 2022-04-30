@@ -23,8 +23,15 @@ def chooseAction(player, adversaire, pokemon_actuel_player, pokemon_actuel_adver
     pokemon_player = pygame.image.load("assets/sprite_dos/{}".format(pokemon_actuel_player.spriteDos))
     pokemon_player = pygame.transform.scale(pokemon_player, (300, 300))
 
+    text_pokemon_name_adversaire = pokemon_name_adversaire.render('{0}'.format(pokemon_actuel_adversaire.name), False, BLACK)
+    text_pokemon_PV_adversaire = pokemon_PV_adversaire.render('{0} / {1}'.format(pokemon_actuel_adversaire.PV, pokemon_actuel_adversaire.PVMax), False, BLACK)
+    print(pokemon_actuel_adversaire.name, pokemon_actuel_adversaire.sprite)
+    pokemon_adversaire = pygame.image.load("assets/sprite/{}".format(pokemon_actuel_adversaire.sprite))
+    pokemon_adversaire = pygame.transform.scale(pokemon_adversaire, (300, 300))
 
 
+
+    actionNum = None
     running   = True
     while running:
         graph.screen.fill((0,0,0))
@@ -53,19 +60,18 @@ def chooseAction(player, adversaire, pokemon_actuel_player, pokemon_actuel_adver
             if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
                 action = 1
                 actionNum = ChooseAttaque(pokemon_actuel_player)
-                running = False
 
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_2:
                 action = 2
                 actionNum = ChoosePokemon(player, pokemonActualDresseurNum)
-                running = False
 
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_3:
                 action = 3
                 actionNum = ChooseItem(player)
-                running = False
 
-        
+        if actionNum != None :
+            print("ui")
+            running = False
 
         pygame.display.flip() 
 
