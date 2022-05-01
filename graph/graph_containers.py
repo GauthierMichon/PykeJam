@@ -112,9 +112,9 @@ text_attaque4 = font.render('Attaque 4', False, BLACK)
 
 ########################################################################################################################
 # Action Objet
-text_objet1 = font.render('Objet 1', False, BLACK)
-text_objet2 = font.render('Objet 2', False, BLACK)
-text_objet3 = font.render('Objet 3', False, BLACK)
+text_objet1 = font.render('Object', False, BLACK)
+text_objet2 = font.render('Object', False, BLACK)
+text_objet3 = font.render('Object', False, BLACK)
 
 
 

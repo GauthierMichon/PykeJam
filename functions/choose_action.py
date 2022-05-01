@@ -70,7 +70,6 @@ def chooseAction(player, adversaire, pokemon_actuel_player, pokemon_actuel_adver
                 actionNum = ChooseItem(player)
 
         if actionNum != None :
-            print("ui")
             running = False
 
         pygame.display.flip() 
