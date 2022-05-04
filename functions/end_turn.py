@@ -3,6 +3,7 @@ from functions.after_switch import AfterSwitch
 from functions.choose_pokemon_change import ChoosePokemon
 from functions.switch import Switch
 from functions.switch_adversaire import ChangeAdversaire
+from graph.write_info import WriteInfo
 
 # Fonction qui gère la fin de tour d'un joueur
 def EndTurn(dresseur, pokemonActualNumber, terrain) :
@@ -20,6 +21,8 @@ def EndTurn(dresseur, pokemonActualNumber, terrain) :
 
     # Si le pokemon est soumis à l'attaque siphon
     if dresseur.pokemons[pokemonActualNumber].siphon :
+        WriteInfo("Siphon fait perdre des PV à {} !".format(dresseur.pokemons[pokemonActualNumber].name))
+
         # Le pokemon perd 1/8 de ses PV maximum
         dresseur.pokemons[pokemonActualNumber].PV -= ceil(dresseur.pokemons[pokemonActualNumber].PVMax / 8)
         # On diminue le temps de l'attaque siphon
@@ -30,6 +33,7 @@ def EndTurn(dresseur, pokemonActualNumber, terrain) :
 
     # Si le pokemon est maudit 
     if dresseur.pokemons[pokemonActualNumber].maudit :
+        WriteInfo("{} perd des PV à cause de la malédiction !".format(dresseur.pokemons[pokemonActualNumber].name))
         # Le pokemon perd 1/4 de ses PV maximum
         dresseur.pokemons[pokemonActualNumber].PV -= ceil(dresseur.pokemons[pokemonActualNumber].PVMax / 4)
 
@@ -39,16 +43,19 @@ def EndTurn(dresseur, pokemonActualNumber, terrain) :
         dresseur.pokemons[pokemonActualNumber].requiemNum -= 1
         # Si le temps est écoulé
         if dresseur.pokemons[pokemonActualNumber].requiemNum == 0 :
+            WriteInfo("Le requiem arrive à son terme, {} est mis K.O. !".format(dresseur.pokemons[pokemonActualNumber].name))
             # Le pokemon est mis K.O.
             dresseur.pokemons[pokemonActualNumber].PV = 0
 
     # Si le pokemon est brulé
     if dresseur.pokemons[pokemonActualNumber].statut == "Brûlure" :
+        WriteInfo("{} perd des PV à cause de sa brûlure !".format(dresseur.pokemons[pokemonActualNumber].name))
         # Le pokemon perd 1/16 de ses PV maximum
         dresseur.pokemons[pokemonActualNumber].PV -= ceil(dresseur.pokemons[pokemonActualNumber].PVMax / 16)
 
     # Si le pokemon est empoisonné
     if dresseur.pokemons[pokemonActualNumber].statut == "Empoisonnement" :
+        WriteInfo("{} perd des PV à cause de son empoisonnement !".format(dresseur.pokemons[pokemonActualNumber].name))
         # Le pokemon perd 1/8 de ses PV maximum
         dresseur.pokemons[pokemonActualNumber].PV -= ceil(dresseur.pokemons[pokemonActualNumber].PVMax / 8)
 

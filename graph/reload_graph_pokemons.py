@@ -1,5 +1,6 @@
 import graph.graph as graph
 from graph.graph_containers import *
+import time
 
 def ReloadGraphPokemons(pokemon_actuel_player, pokemon_actuel_adversaire) :
     text_pokemon_name_player = pokemon_name_player.render('{0}'.format(pokemon_actuel_player.name), False, BLACK)
@@ -35,3 +36,5 @@ def ReloadGraphPokemons(pokemon_actuel_player, pokemon_actuel_adversaire) :
         graph.screen.blit(statut_pokemon_player, (775, 450))
 
     pygame.display.flip() 
+
+    
