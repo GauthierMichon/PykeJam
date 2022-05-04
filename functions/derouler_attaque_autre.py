@@ -69,7 +69,7 @@ def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokem
     elif Attaque.id == 80 :
         terrain = PiegeDeRoc(dresseurPokemonAttaquant, terrain, pokemon_attaquant, Attaque)
     elif Attaque.id == 91 :
-        pokemonActuelNum = Projection(pokemon_defenseur, dresseurPokemonAttaquant, pokemonActuelNum)
+        pokemonActuelNum = Projection(dresseurPokemonAttaquant, pokemonActuelNum)
     elif Attaque.id == 93 :
         pokemon_defenseur = PuissanceCachee(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
     elif Attaque.id == 94 :

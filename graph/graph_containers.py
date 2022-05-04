@@ -31,6 +31,9 @@ infos_combat.fill(BLUE)
 
 pygame.draw.rect(infos_combat, WHITE, pygame.Rect(0, 0, 1260, 150),  10, 3)
 
+rect_infos = pygame.Rect((40, 600), (1260, 150), )
+
+
 # Actions
 rect_2 = pygame.Rect((630, 570), (630, 150))
 actions = pygame.Surface((630, 130))

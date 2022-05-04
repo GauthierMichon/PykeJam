@@ -22,16 +22,19 @@ from functions.initiation import initAttaque
 import functions.derouler_attaque_autre as other
 from functions.switch_adversaire import ChangeAdversaire
 from functions.table_types import TableType
+from graph.write_info import WriteInfo
 
 
 def Abri(pokemon_attaquant, Attaque) :
     if MissWork(pokemon_attaquant, Attaque) :
+        WriteInfo(pokemon_attaquant.name + " s'abrite !")
         pokemon_attaquant.abri = True
     
     return pokemon_attaquant
 
 def AntiBrume(pokemon_attaquant, Attaque, terrain) :
     if MissWork(pokemon_attaquant, Attaque) :
+        WriteInfo("Le terrain est nettoyé !")
         terrain.climat              = None
         terrain.Picots              = None
         terrain.PicsToxik           = None
@@ -45,6 +48,7 @@ def AntiBrume(pokemon_attaquant, Attaque, terrain) :
 
 def Balance(pokemon_attaquant, pokemon_defenseur, Attaque) :
     if MissWork(pokemon_attaquant, Attaque) :
+        WriteInfo("Les PV des pokemons s'équilibre !")
         newPV = ceil((pokemon_attaquant.PV + pokemon_defenseur.PV) / 2)
         if pokemon_attaquant.PVMax > newPV :
             pokemon_attaquant.PV = pokemon_attaquant.PVMax
@@ -91,6 +95,10 @@ def BlablaDodo(pokemon_attaquant, pokemon_defenseur, terrain) :
     if pokemon_attaquant.statut == "Sommeil" :
         attaqueList = initAttaque()
         Attaque = attaqueList[random.randrange(0, len(attaqueList))]
+
+        WriteInfo(pokemon_attaquant.name + " va lancer une attaque aléatoire !")
+        WriteInfo(pokemon_attaquant.name + " utilise " + Attaque.name + " !")
+
         
         if type(Attaque) is AttaqueOffensive :
             pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
@@ -120,6 +128,10 @@ def BlablaDodo(pokemon_attaquant, pokemon_defenseur, terrain) :
         elif type(Attaque) is AttaqueAutre :
             other.Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
             return pokemon_attaquant, pokemon_defenseur, terrain
+
+    else :
+        WriteInfo(pokemon_attaquant.name + " n'est pas endormi !")
+        return pokemon_attaquant, pokemon_defenseur, terrain
 
 def BouleRoc(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     Attaque.puissance = 25
@@ -159,8 +171,10 @@ def BouteFeu(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     PVAvantAttaque = pokemon_defenseur.PV
 
     pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+    
+    WriteInfo(pokemon_attaquant.name + " est bléssé par le contrecoup !")
 
-    pokemon_attaquant.PV = ceil((PVAvantAttaque - pokemon_defenseur.PV) / 3)
+    pokemon_attaquant.PV -= ceil((PVAvantAttaque - pokemon_defenseur.PV) / 3)
     if pokemon_attaquant.PV < 0 :
         pokemon_attaquant.PV = 0
 
@@ -185,6 +199,8 @@ def ChangeEclair(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseu
     Attaque.probaEffect = None
 
     pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+    WriteInfo(pokemon_attaquant.name + " va être remplacé par un autre pokémon !")
+
     if dresseur.person == "player" :
         newPokemonActuelNum = ChoosePokemon(dresseur, pokemonActuelNum)
     else :
@@ -197,6 +213,8 @@ def ChocPsy(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     booleanAttaque = MissWork(pokemon_attaquant, Attaque)
 
     if pokemon_defenseur.abri :
+        WriteInfo(pokemon_defenseur.name + " se protège, l'attaque est sans effet.")
+        booleanAttaque = False
         print("Le Pokémon adverse se protège, l'attaque est sans effet.")
 
     elif booleanAttaque :
@@ -210,12 +228,15 @@ def ChocPsy(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
         #Efficacité type
         eff = TableType(Attaque.Type, pokemon_defenseur.Type, pokemon_defenseur.Type2)
         if eff == 0 :
+            WriteInfo("Cela n'affecte pas " + pokemon_defenseur.name + " !")
             print("inefficace")
         elif eff == 0.25 or eff == 0.5 :
+            WriteInfo("Ce n'est pas très efficace !")
             print("peu efficace")
         elif eff == 1 :
             print("efficace")
         elif eff >= 2 :
+            WriteInfo("C'est super efficace !")
             print("super efficace")
         else : 
             print("problème efficacité")
@@ -224,6 +245,7 @@ def ChocPsy(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
 
         #Crit
         if isCrit(Attaque) :
+            WriteInfo("Coup Critique !")
             print("Coup Critique")
             degats *= 2
 
@@ -252,6 +274,8 @@ def Clairvoyance(pokemon_attaquant, Attaque) :
         if pokemon_attaquant.accuracy < 0 :
             pokemon_attaquant.accuracy = 0
         pokemon_attaquant.accuracy += 2
+        WriteInfo("La Précision de " + pokemon_attaquant.name + " !")
+
 
     return pokemon_attaquant
 
@@ -260,8 +284,11 @@ def Clonage(pokemon_attaquant) :
         pokemon_attaquant.PV -= ceil(pokemon_attaquant.PV / 4)
         pokemon_attaquant.clone = True
         pokemon_attaquant.clonePV = ceil(pokemon_attaquant.PV / 4)
+        WriteInfo(pokemon_attaquant.name + " se cache derrière un clone !")
     else :
+        WriteInfo(pokemon_attaquant.name + " n'a pas assez de PV pour utiliser clonage !")
         print("Clonage a échoué")
+
     return pokemon_attaquant
 
 def CloseCombat(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
@@ -276,8 +303,10 @@ def CloseCombat(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
     if pokemon_defenseur.PV != PVAvantAttaque :
         if pokemon_attaquant.DefBuff > -6 :
+            WriteInfo("La Défense de " + pokemon_attaquant.name + " baisse !")
             pokemon_attaquant.DefBuff -= 1
         if pokemon_attaquant.DefSpeBuff > -6 :
+            WriteInfo("La Défense Spéciale de " + pokemon_attaquant.name + " baisse !")
             pokemon_attaquant.DefSpeBuff -= 1
             
         pokemon_attaquant.Def = pokemon_attaquant.DefInit * boost(pokemon_attaquant.DefBuff)
@@ -293,8 +322,6 @@ def Colere(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokem
     Attaque.effect = 0
     Attaque.probaEffect = None
 
-    input("Use Colere")
-
     pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
 
     if dresseurPokemonAttaquant.actionOblig == None :
@@ -309,11 +336,14 @@ def Colere(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokem
         dresseurPokemonAttaquant.actionObligNbTour -= 1
 
     print(pokemon_defenseur.PV)
+    if pokemon_defenseur.PV < 0 :
+        pokemon_defenseur.PV = 0
 
     return pokemon_attaquant, pokemon_defenseur, dresseurPokemonAttaquant
 
 def Conversion(pokemon_attaquant, Attaque) :
     if MissWork(pokemon_attaquant, Attaque) :
+        WriteInfo(pokemon_attaquant.name + " change de type !")
         pokemon_attaquant.Type = pokemon_attaquant.Attaques[0].Type
         print(pokemon_attaquant.Type)
     return pokemon_attaquant
@@ -329,7 +359,13 @@ def Damocles(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
 
     pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
 
-    pokemon_attaquant.PV = ceil((PVAvantAttaque - pokemon_defenseur.PV) / 3)
+    WriteInfo(pokemon_attaquant.name + " est blessé par le contrecoup !")
+
+    pokemon_attaquant.PV -= ceil((PVAvantAttaque - pokemon_defenseur.PV) / 3)
+    if pokemon_attaquant.PV < 0 :
+        pokemon_attaquant.PV = 0
+    if pokemon_defenseur.PV < 0 :
+        pokemon_defenseur.PV = 0
 
     return pokemon_attaquant, pokemon_defenseur
 
@@ -342,8 +378,10 @@ def DemiTour(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseur, p
 
     pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
     if dresseur.person == "player" :
+        WriteInfo(pokemon_attaquant.name + " est renvoyé !")
         newPokemonActuelNum = ChoosePokemon(dresseur, pokemonActuelNum)
     else :
+        WriteInfo(pokemon_attaquant.name + " est renvoyé !")
         newPokemonActuelNum = ChangeAdversaire(dresseur, pokemonActuelNum)
 
     return pokemon_defenseur, newPokemonActuelNum
@@ -361,6 +399,7 @@ def DracoMeteore(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
 
     if pokemon_defenseur.PV != PVAvantAttaque :
+        WriteInfo("L'Attaque Spécial de " + pokemon_attaquant.name + " baisse beaucoup !")
         pokemon_attaquant.AttSpeBuff -= 2
         if pokemon_attaquant.AttSpeBuff < -6 :
             pokemon_attaquant.AttSpeBuff = -6
@@ -381,7 +420,10 @@ def EclairFou(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
 
     pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
 
-    pokemon_attaquant.PV = ceil((PVAvantAttaque - pokemon_defenseur.PV) / 4)
+    WriteInfo(pokemon_attaquant.name + " est bléssé par le contrecoup !")
+    pokemon_attaquant.PV -= ceil((PVAvantAttaque - pokemon_defenseur.PV) / 4)
+    if pokemon_attaquant.PV < 0 :
+        pokemon_attaquant.PV = 0
 
     return pokemon_attaquant, pokemon_defenseur
 
@@ -389,8 +431,10 @@ def Effort(pokemon_attaquant, pokemon_defenseur, Attaque) :
     if MissWork(pokemon_attaquant, Attaque) :
 
         if pokemon_defenseur.PV > pokemon_attaquant.PV :
+            WriteInfo("Les PV de " + pokemon_defenseur.name + " devienne égaux aux PV de " + pokemon_attaquant.PV + " !")
             pokemon_defenseur.PV = pokemon_attaquant.PV
         else :
+            WriteInfo("Les PV de " + pokemon_defenseur.name + " sont trop bas !")
             print("PV de l'adversaire trop bas")
 
     return pokemon_defenseur
@@ -407,6 +451,7 @@ def Explosion(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
 
     pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
     if pokemon_defenseur.PV != PVAvantAttaque :
+        WriteInfo(pokemon_defenseur.name + " est K.O !")
         pokemon_attaquant.PV = 0
 
     return pokemon_attaquant, pokemon_defenseur
@@ -433,6 +478,11 @@ def FrappeAtlas(pokemon_attaquant, pokemon_defenseur, Attaque) :
     return pokemon_defenseur
 
 def GlasDeSoin(dresseurPokemonAttaquant) :
+    if dresseurPokemonAttaquant.person == "player" :
+        WriteInfo("Vos pokémons n'ont plus de problèmes de statut !")
+    else :
+        WriteInfo("Les pokémons de l'adversaire n'ont plus de problèmes de statut !")
+
     for i in range(len(dresseurPokemonAttaquant.pokemons)) :
         dresseurPokemonAttaquant.pokemons[i].statut = None
 
@@ -446,7 +496,7 @@ def LanceSoleil(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseur
     Attaque.probaEffect = None
 
     if dresseurPokemonAttaquant.actionOblig == None and terrain.climat != "Soleil" :
-        input("Se charge")
+        WriteInfo(pokemon_attaquant.name + " se charge !")
         dresseurPokemonAttaquant.actionOblig = [1, numAttaque]
         dresseurPokemonAttaquant.actionObligNbTour = 1
     elif terrain.climat == "Soleil" :
@@ -462,15 +512,20 @@ def Malediction(pokemon_attaquant, pokemon_defenseur, Attaque) :
     if MissWork(pokemon_attaquant, Attaque) :
 
         if pokemon_attaquant.Type == "Spectre" or pokemon_attaquant.Type2 == "Spectre" :
+            WriteInfo(pokemon_attaquant.name + " perd la moitié de ses PV maximum !")
             pokemon_attaquant.PV -= ceil(pokemon_attaquant.PVMax / 2)
+            WriteInfo(pokemon_defenseur.name + " est maudit !")
             pokemon_defenseur.maudit = True
 
         else :
             if pokemon_attaquant.AttBuff < 6 :
+                WriteInfo("L'Attaque de " + pokemon_attaquant.name + " augmente !")
                 pokemon_attaquant.AttBuff += 1
             if pokemon_attaquant.DefBuff < 6 :
+                WriteInfo("La Défense de " + pokemon_attaquant.name + " augmente !")
                 pokemon_attaquant.DefBuff += 1
             if pokemon_attaquant.SpeedBuff > -6 :
+                WriteInfo("La Vitesse de " + pokemon_attaquant.name + " diminue !")
                 pokemon_attaquant.SpeedBuff -= 1
                 
             pokemon_attaquant.Att = pokemon_attaquant.AttInit * boost(pokemon_attaquant.AttBuff)
@@ -489,7 +544,7 @@ def Megaphone(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
         pokemon_attaquant.Att = pokemon_attaquant.Att / 2
 
     if pokemon_defenseur.abri :
-        print("Le Pokémon adverse se protège, l'attaque est sans effet.")
+        WriteInfo("Mégaphone passe outre le clone !")
 
     elif booleanAttaque :
         if Attaque.physique == 1 :
@@ -506,12 +561,15 @@ def Megaphone(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
         #Efficacité type
         eff = TableType(Attaque.Type, pokemon_defenseur.Type, pokemon_defenseur.Type2)
         if eff == 0 :
+            WriteInfo("Cela n'affecte pas " + pokemon_defenseur.name + " !")
             print("inefficace")
         elif eff == 0.25 or eff == 0.5 :
+            WriteInfo("Ce n'est pas très efficace !")
             print("peu efficace")
         elif eff == 1 :
             print("efficace")
         elif eff >= 2 :
+            WriteInfo("C'est super efficace !")
             print("super efficace")
         else : 
             print("problème efficacité")
@@ -520,6 +578,7 @@ def Megaphone(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
 
         #Crit
         if isCrit(Attaque) :
+            WriteInfo("Coup Critique !")
             print("Coup Critique")
             degats *= 2
 
@@ -576,6 +635,7 @@ def Picots(dresseurPokemonAttaquant, terrain, pokemon_attaquant, Attaque) :
         elif getattr(terrain, toChange) < 3 :
             setattr(terrain, toChange, initValue + 1)
         else :
+            WriteInfo("Il y a déjà le nombre maximum de Picots !")
             print("trop de picots")
 
     return terrain
@@ -591,6 +651,7 @@ def PicsToxik(dresseurPokemonAttaquant, terrain, pokemon_attaquant, Attaque) :
         if getattr(terrain, toChange) == None :
             setattr(terrain, toChange, 1)
         else :
+            WriteInfo("Il y a déjà les Pics Toxik !")
             print("déjà des Pics Toxik")
 
     return terrain
@@ -602,8 +663,17 @@ def PiedSaute(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     Attaque.effect = 0
     Attaque.probaEffect = None
 
-    if not MissWork(pokemon_attaquant, Attaque) or pokemon_defenseur.Type == "Spectre" or pokemon_defenseur.Type2 == "Spectre" or pokemon_defenseur.abri :
+    if not MissWork(pokemon_attaquant, Attaque) :
         pokemon_attaquant.PV = (pokemon_attaquant.PVMax / 2)
+        WriteInfo(pokemon_attaquant.name + " se blesse dans sa chute !")
+    elif pokemon_defenseur.Type == "Spectre" or pokemon_defenseur.Type2 == "Spectre" :
+        pokemon_attaquant.PV = (pokemon_attaquant.PVMax / 2)
+        WriteInfo("Cela n'affecte pas " + pokemon_defenseur.name + " !")
+        WriteInfo(pokemon_attaquant.name + " se blesse dans sa chute !")
+    elif pokemon_defenseur.abri :
+        pokemon_attaquant.PV = (pokemon_attaquant.PVMax / 2)
+        WriteInfo(pokemon_defenseur.name + " se protège, l'attaque est sans effet.")
+        WriteInfo(pokemon_attaquant.name + " se blesse dans sa chute !")
     else :
         if pokemon_attaquant.statut == "Brûlure" :
             pokemon_attaquant.Att = pokemon_attaquant.Att / 2
@@ -622,12 +692,15 @@ def PiedSaute(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
         #Efficacité type
         eff = TableType(Attaque.Type, pokemon_defenseur.Type, pokemon_defenseur.Type2)
         if eff == 0 :
+            WriteInfo("Cela n'affecte pas " + pokemon_defenseur.name + " !")
             print("inefficace")
         elif eff == 0.25 or eff == 0.5 :
+            WriteInfo("Ce n'est pas très efficace !")
             print("peu efficace")
         elif eff == 1 :
             print("efficace")
         elif eff >= 2 :
+            WriteInfo("C'est super efficace !")
             print("super efficace")
         else : 
             print("problème efficacité")
@@ -636,6 +709,7 @@ def PiedSaute(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
 
         #Crit
         if isCrit(Attaque) :
+            WriteInfo("Coup Critique !")
             print("Coup Critique")
             degats *= 2
 
@@ -663,8 +737,17 @@ def PiedVoltige(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     Attaque.effect = 0
     Attaque.probaEffect = None
 
-    if not MissWork(pokemon_attaquant, Attaque) or pokemon_defenseur.Type == "Spectre" or pokemon_defenseur.Type2 == "Spectre" or pokemon_defenseur.abri :
+    if not MissWork(pokemon_attaquant, Attaque) :
         pokemon_attaquant.PV = (pokemon_attaquant.PVMax / 2)
+        WriteInfo(pokemon_attaquant.name + " se blesse dans sa chute !")
+    elif pokemon_defenseur.Type == "Spectre" or pokemon_defenseur.Type2 == "Spectre" :
+        pokemon_attaquant.PV = (pokemon_attaquant.PVMax / 2)
+        WriteInfo("Cela n'affecte pas " + pokemon_defenseur.name + " !")
+        WriteInfo(pokemon_attaquant.name + " se blesse dans sa chute !")
+    elif pokemon_defenseur.abri :
+        pokemon_attaquant.PV = (pokemon_attaquant.PVMax / 2)
+        WriteInfo(pokemon_defenseur.name + " se protège, l'attaque est sans effet.")
+        WriteInfo(pokemon_attaquant.name + " se blesse dans sa chute !")
     else :
         if pokemon_attaquant.statut == "Brûlure" :
             pokemon_attaquant.Att = pokemon_attaquant.Att / 2
@@ -683,12 +766,15 @@ def PiedVoltige(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
         #Efficacité type
         eff = TableType(Attaque.Type, pokemon_defenseur.Type, pokemon_defenseur.Type2)
         if eff == 0 :
+            WriteInfo("Cela n'affecte pas " + pokemon_defenseur.name + " !")
             print("inefficace")
         elif eff == 0.25 or eff == 0.5 :
+            WriteInfo("Ce n'est pas très efficace !")
             print("peu efficace")
         elif eff == 1 :
             print("efficace")
         elif eff >= 2 :
+            WriteInfo("C'est super efficace !")
             print("super efficace")
         else : 
             print("problème efficacité")
@@ -697,6 +783,7 @@ def PiedVoltige(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
 
         #Crit
         if isCrit(Attaque) :
+            WriteInfo("Coup Critique !")
             print("Coup Critique")
             degats *= 2
 
@@ -728,6 +815,7 @@ def PiegeDeRoc(dresseurPokemonAttaquant, terrain, pokemon_attaquant, Attaque) :
         if getattr(terrain, toChange) == None :
             setattr(terrain, toChange, 1)
         else :
+            WriteInfo("Il y a déjà les Pièges de Roc !")
             print("déjà des pièges de Roc")
 
     return terrain
@@ -740,6 +828,7 @@ def Projection(dresseur, pokemonActuelNum) :
     if count > 1 :
         pokemonActuelNum = ChangeAdversaire(dresseur, pokemonActuelNum)
     else :
+        WriteInfo("Pas assez de pokémon en vie pour forcer un changment de pokémon !")
         print("problème de projection")
 
     return pokemonActuelNum
@@ -777,14 +866,21 @@ def Rapace(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
 
     pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
 
-    pokemon_attaquant.PV = ceil((PVAvantAttaque - pokemon_defenseur.PV) / 3)
+    WriteInfo(pokemon_attaquant.name + " est bléssé par le contrecoup !")
+
+    pokemon_attaquant.PV -= ceil((PVAvantAttaque - pokemon_defenseur.PV) / 3)
+    if pokemon_attaquant.PV < 0 :
+        pokemon_attaquant.PV = 0
 
     return pokemon_attaquant, pokemon_defenseur
 
 def Repos(pokemon_attaquant) :
     if pokemon_attaquant.PV == pokemon_attaquant.PVMax :
+        WriteInfo("Les PV de " + pokemon_attaquant.name + " son déjà au maximum !")
+
         print("La capacité échoue")
     else :
+        WriteInfo(pokemon_attaquant.name + " s'endort !")
         pokemon_attaquant.statut = "Sommeil"
         pokemon_attaquant.PV = pokemon_attaquant.PVMax
 
@@ -792,10 +888,12 @@ def Repos(pokemon_attaquant) :
 
 def Requiem(pokemon_attaquant, pokemon_defenseur) :
     if pokemon_attaquant.requiem != True :
+        WriteInfo(pokemon_attaquant.name + " sera K.O. dans 3 tours !")
         pokemon_attaquant.requiem = True
         pokemon_attaquant.requiemNum = 3
 
     if pokemon_defenseur.requiem != True :
+        WriteInfo(pokemon_defenseur.name + " sera K.O. dans 3 tours !")
         pokemon_defenseur.requiem = True
         pokemon_defenseur.requiemNum = 3
 
@@ -832,7 +930,9 @@ def Siphon(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
 def Souvenir(pokemon_attaquant, pokemon_defenseur) :
     pokemon_attaquant.PV = 0
     pokemon_defenseur.Att -= 2
+    WriteInfo("L'Attaque de " + pokemon_defenseur.name + " baisse beaucoup !")
     pokemon_defenseur.AttSpe -= 2
+    WriteInfo("L'Attaque Spéciale de " + pokemon_defenseur.name + " baisse beaucoup !")
 
     if pokemon_defenseur.AttBuff < -6 :
         pokemon_defenseur.AttBuff = -6
@@ -885,6 +985,7 @@ def Surchauffe(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
     if PVAvantAttaque != pokemon_defenseur.PV :        
         pokemon_attaquant.AttSpeBuff -= 2
+        WriteInfo("L'Attaque Spécial de " + pokemon_attaquant.name + " baisse beaucoup !")
         if pokemon_attaquant.AttSpeBuff < -6 :
             pokemon_attaquant.AttSpeBuff = -6
         
@@ -907,8 +1008,10 @@ def Surpuissance(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     if PVAvantAttaque != pokemon_defenseur.PV :        
         if pokemon_attaquant.DefBuff > -6 :
             pokemon_attaquant.DefBuff -= 1
+            WriteInfo("La Défense de " + pokemon_attaquant.name + " baisse !")
         if pokemon_attaquant.AttBuff > -6 :
             pokemon_attaquant.AttBuff -= 1
+            WriteInfo("L'Attaque de " + pokemon_attaquant.name + " baisse !")
         
         pokemon_attaquant.Def = pokemon_attaquant.DefInit * boost(pokemon_attaquant.DefBuff)
         pokemon_attaquant.Att = pokemon_attaquant.AttInit * boost(pokemon_attaquant.AttBuff)
@@ -918,6 +1021,7 @@ def Surpuissance(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     return pokemon_attaquant, pokemon_defenseur
 
 def Synthese(pokemon_attaquant, terrain) :
+    WriteInfo(pokemon_attaquant.name + " se soigne !")
     if terrain.climat == None :
         pokemon_attaquant.PV += (pokemon_attaquant.PVMax / 2)
     elif terrain.climat == "Soleil" :
@@ -954,11 +1058,13 @@ def TourRapide(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurP
 
     if PVAvantAttaque != pokemon_defenseur.PV :
         if dresseurPokemonAttaquant.person == "player" :
+            WriteInfo("Votre terrain a été nettoyé !")
             terrain.Picots = None
             terrain.PicsToxik = None
             terrain.PiegeDeRoc = None
             terrain.Vampigraine = None
         else :
+            WriteInfo("Le terrain adverse a été nettoyé !")
             terrain.PicotsAdverse = None
             terrain.PicsToxikAdverse = None
             terrain.PiegeDeRocAdverse = None
@@ -966,6 +1072,7 @@ def TourRapide(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurP
 
         if pokemon_attaquant.SpeedBuff < 6 :
             pokemon_attaquant.SpeedBuff += 1
+            WriteInfo("La Vitesse de " + pokemon_attaquant.name + " augmente !")
         
         pokemon_attaquant.Speed = pokemon_attaquant.SpeedInit * boost(pokemon_attaquant.SpeedBuff)
 
@@ -984,6 +1091,7 @@ def VampiPoing(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
 
     pokemon_attaquant.PV += (ceil((PVAvantAttaque - pokemon_defenseur.PV) / 2))
+
     if pokemon_attaquant.PV > pokemon_attaquant.PVMax :
         pokemon_attaquant.PV = pokemon_attaquant.PVMax
 
@@ -1014,7 +1122,8 @@ def Vampirisme(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     PVAvantAttaque = pokemon_defenseur.PV
 
     pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
-
+    
+    WriteInfo(pokemon_attaquant.name + " se soigne !")
     pokemon_attaquant.PV += (ceil((PVAvantAttaque - pokemon_defenseur.PV) / 2))
     if pokemon_attaquant.PV > pokemon_attaquant.PVMax :
         pokemon_attaquant.PV = pokemon_attaquant.PVMax
@@ -1023,6 +1132,12 @@ def Vampirisme(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
 
 def VentArriere(dresseurPokemonAttaquant, pokemon_attaquant, Attaque) :
     if MissWork(pokemon_attaquant, Attaque) :
+
+        if dresseurPokemonAttaquant.person == "player" :
+            WriteInfo("La Vitesse de toute votre équipe augmente beaucoup !")
+        else :
+            WriteInfo("La Vitesse de toute l'équipe adverse augmente beaucoup !")
+
     
         dresseurPokemonAttaquant.pokemons[0].SpeedBuff += 2
         dresseurPokemonAttaquant.pokemons[1].SpeedBuff += 2
@@ -1065,6 +1180,8 @@ def Voeu(pokemon_attaquant, Attaque, terrain, dresseurPokemonAttaquant) :
             toChange2 = "VoeuAdversePVHeal"
         
         if getattr(terrain, toChange) == None :
+            WriteInfo(pokemon_attaquant.name + " sera soigné dans 2 tours !")
+
             setattr(terrain, toChange, 2)
             setattr(terrain, toChange2, ceil(pokemon_attaquant.PVMax / 2))
 
@@ -1078,6 +1195,7 @@ def VoleForce(pokemon_attaquant, Attaque, pokemon_defenseur) :
 
         if pokemon_defenseur.AttBuff > -6 :
             pokemon_defenseur.AttBuff -= 1
+            WriteInfo(pokemon_attaquant.name + " vole la force de " + pokemon_defenseur.name + " !")
             pokemon_defenseur.Att = pokemon_defenseur.AttInit * boost(pokemon_defenseur.AttBuff)
 
             pokemon_attaquant.PV += pokemon_defenseur.Att
@@ -1085,6 +1203,7 @@ def VoleForce(pokemon_attaquant, Attaque, pokemon_defenseur) :
                 pokemon_attaquant.PV = pokemon_attaquant.PVMax
         
         else :
+            WriteInfo(pokemon_defenseur.name + " est trop faible !")
             print("le pokemon est trop faible")
 
     return pokemon_attaquant, pokemon_defenseur

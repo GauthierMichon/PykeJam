@@ -14,19 +14,6 @@ def ActionItemRes(dresseur, item) :
 
 
 def ChoosePokemonToRes(dresseur) :
-    """ pokemonNum = input("Quelle Pokemon utiliser ? (1 : {0}, 2 : {1}, 3 : {2}, 4 : {3}, 5 : {4}, 6 : {5})  ".format(
-        dresseur.pokemons[0].name,
-        dresseur.pokemons[1].name,
-        dresseur.pokemons[2].name,
-        dresseur.pokemons[3].name,
-        dresseur.pokemons[4].name,
-        dresseur.pokemons[5].name,
-    ))
-    pokemonNum = int(pokemonNum) - 1
-    if dresseur.pokemons[pokemonNum].PV > 0 :
-        print("Ce pokemon n'est pas K.O.")
-        return ChoosePokemonToRes(dresseur) """
-
     text_pokemon1 = font.render('{0}'.format(dresseur.pokemons[0].name), False, BLACK)
     text_pokemon2 = font.render('{0}'.format(dresseur.pokemons[1].name), False, BLACK)
     text_pokemon3 = font.render('{0}'.format(dresseur.pokemons[2].name), False, BLACK)
@@ -75,6 +62,7 @@ def ChoosePokemonToRes(dresseur) :
         if pokemonNum != None :
             if dresseur.pokemons[pokemonNum].PV > 0 :
                 print("Ce pokemon n'est pas K.O.")
+                pokemonNum = None
                 # return ChoosePokemonToRes(dresseur)
             else :
                 running = False

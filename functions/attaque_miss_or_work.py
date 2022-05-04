@@ -1,6 +1,7 @@
 from math import ceil
 from functions.boost_value import boost
 from functions.choose_random_num import rand
+from graph.write_info import WriteInfo
 
 # Fonction pour savoir si l'attaque est réussi ou échoue
 def MissWork(pokemon_attaquant, Attaque) :    
@@ -25,8 +26,12 @@ def MissWork(pokemon_attaquant, Attaque) :
                 if acc >= randNum :
                     booleanAttaque = True
                 else :
+                    WriteInfo(pokemon_attaquant.name + " est confus, il ne peut pas attaquer !")
+
                     booleanAttaque = False
         else :
+            WriteInfo(pokemon_attaquant.name + " est confus, il ne peut pas attaquer !")
+
             booleanAttaque = False
             degats = (100 * 0.4 + 2) * pokemon_attaquant.Att * 40
             degats = degats / (pokemon_attaquant.Def * 50) + 2
@@ -46,6 +51,8 @@ def MissWork(pokemon_attaquant, Attaque) :
             if acc >= randNum :
                 booleanAttaque = True
             else :
+                WriteInfo(pokemon_attaquant.name + " rate son attaque !")
+
                 booleanAttaque = False
 
     return booleanAttaque

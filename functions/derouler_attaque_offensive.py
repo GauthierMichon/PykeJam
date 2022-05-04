@@ -5,6 +5,7 @@ from functions.critique import isCrit
 from functions.effect_attaque_offensive import Effect
 from functions.table_types import TableType
 from math import *
+from graph.write_info import WriteInfo
 
 # Fonction qui gère les attaques offensives
 def Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
@@ -17,6 +18,9 @@ def Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
 
     # Si l'adversaire a utilisé abri
     if pokemon_defenseur.abri :
+        WriteInfo(pokemon_defenseur.name + " se protège, l'attaque est sans effet.")
+        booleanAttaque = False
+
         print("Le Pokémon adverse se protège, l'attaque est sans effet.")
 
     elif booleanAttaque :
@@ -38,12 +42,15 @@ def Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
         #Efficacité type
         eff = TableType(Attaque.Type, pokemon_defenseur.Type, pokemon_defenseur.Type2)
         if eff == 0 :
+            WriteInfo("Cela n'affecte pas " + pokemon_defenseur.name + " !")
             print("inefficace")
         elif eff == 0.25 or eff == 0.5 :
+            WriteInfo("Ce n'est pas très efficace !")
             print("peu efficace")
         elif eff == 1 :
             print("efficace")
         elif eff >= 2 :
+            WriteInfo("C'est super efficace !")
             print("super efficace")
         else : 
             print("problème efficacité")
@@ -52,6 +59,7 @@ def Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
 
         #Crit
         if isCrit(Attaque) :
+            WriteInfo("Coup Critique !")
             print("Coup Critique")
             degats *= 2
 

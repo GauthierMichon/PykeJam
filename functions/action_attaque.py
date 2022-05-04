@@ -10,9 +10,15 @@ from functions.derouler_attaque_heal import Heal
 from functions.derouler_attaque_statut import Statut
 from functions.derouler_attaque_offensive import Offensive
 import functions.derouler_attaque_autre as other
+from graph.write_info import WriteInfo
 
 # Fonction qui appelle la fonction correspondant au type d'attaque
 def ActionAttaque(pokemon_attaquant, pokemon_defenseur, numAttaque, terrain, dresseurPokemonAttaquant, pokemonActuelNum) :
+    if dresseurPokemonAttaquant.person == "player" :
+        WriteInfo(pokemon_attaquant.name + " utilise " + pokemon_attaquant.Attaques[numAttaque-1].name + " !")
+    else :
+        WriteInfo(pokemon_attaquant.name + " ennemi utilise " + pokemon_attaquant.Attaques[numAttaque-1].name + " !")
+        
     if type(pokemon_attaquant.Attaques[numAttaque-1]) is AttaqueOffensive :
         print("Attaque offensive")
         pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, pokemon_attaquant.Attaques[numAttaque-1], terrain)

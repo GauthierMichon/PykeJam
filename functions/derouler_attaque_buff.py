@@ -1,5 +1,6 @@
 from functions.attaque_miss_or_work import MissWork
 from functions.boost_value import boost
+from graph.write_info import WriteInfo
 
 # Fonction qui gère les attaques de buff
 def Buff(pokemon_attaquant, Attaque) :
@@ -23,5 +24,39 @@ def Buff(pokemon_attaquant, Attaque) :
             setattr(pokemon_attaquant, Attaque.statBuff[i], newStat)
             setattr(pokemon_attaquant, (Attaque.statBuff[i] + "Buff"), buff)
 
+            statText, buffText = TextBuff(i, Attaque)
+            WriteInfo(statText + pokemon_attaquant.name + buffText)
+            
 
     return pokemon_attaquant
+
+
+
+def TextBuff(i, Attaque) :
+    statText = ""
+    buffText = ""
+
+    if Attaque.statBuff[i] == "Att" :
+        statText = "L'Attaque de "
+    elif Attaque.statBuff[i] == "Def" :
+        statText = "La Défense de "
+    elif Attaque.statBuff[i] == "AttSpe" :
+        statText = "L'Attaque Spéciale de "
+    elif Attaque.statBuff[i] == "DefSpe" :
+        statText = "La Défense Spéciale de "
+    elif Attaque.statBuff[i] == "Speed" :
+        statText = "La Vitesse de "
+    else :
+        print()
+        statText = "La Précision de "
+
+    if Attaque.nombreBuff[i] == 1 :
+        buffText = " augmente !"
+    elif Attaque.nombreBuff[i] == -1 :
+        buffText = " baisse !"
+    elif Attaque.nombreBuff[i] == 2 :
+        buffText = " augmente beaucoup !"
+    elif Attaque.nombreBuff[i] == -2 :
+        buffText = " baisse beaucoup !"
+
+    return statText, buffText

@@ -5,15 +5,19 @@ from functions.action_attaque import ActionAttaque
 from functions.switch import Switch
 import functions.player_turn as player_turn
 from functions.switch_adversaire import ChangeAdversaire
+from graph.reload_graph_pokemons import ReloadGraphPokemons
+from graph.write_info import WriteInfo
+import time
 
 # Fonction du tour de l'adversaire
 def AdversaireTurn(player, adversaire, action, actionNum, action_adversaire, actionNum_adversaire, pokemonActualPlayerNumber, pokemonActualAdversNumber, terrain, beginner):
+    ReloadGraphPokemons(player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber])
+    
     # Si boolAttaque est True, l'attaque est effectuée
     boolAttaque = True
     
     # Si l'action est "Attaquer"
     if action_adversaire == 1 :
-
         # Si le pokemon adverse est gelé
         if adversaire.pokemons[pokemonActualAdversNumber].statut == "Gel" :
             # On fait un random entre 1 et 5
@@ -22,6 +26,7 @@ def AdversaireTurn(player, adversaire, action, actionNum, action_adversaire, act
                 adversaire.pokemons[pokemonActualAdversNumber].statut = None
                 print(adversaire.pokemons[pokemonActualAdversNumber].name + " n'est plus gelé !")
             else :
+                WriteInfo(adversaire.pokemons[pokemonActualAdversNumber].name + " est gelé ! Il ne peut pas attaquer !")
                 # Le pokemon reste gelé et il n'attaque pas
                 boolAttaque = False
                 print(adversaire.pokemons[pokemonActualAdversNumber].name + " est gelé ! Il ne peut pas attaquer !")
@@ -34,6 +39,7 @@ def AdversaireTurn(player, adversaire, action, actionNum, action_adversaire, act
                 adversaire.pokemons[pokemonActualAdversNumber].statut = None
                 print(adversaire.pokemons[pokemonActualAdversNumber].name + " n'est plus endormi !")
             else :
+                WriteInfo(adversaire.pokemons[pokemonActualAdversNumber].name + " est endormi ! Il ne peut pas attaquer !")
                 # Le pokemon reste endormi et il n'attaque pas
                 boolAttaque = False
                 print(adversaire.pokemons[pokemonActualAdversNumber].name + " est endormi ! Il ne peut pas attaquer !")
@@ -42,6 +48,7 @@ def AdversaireTurn(player, adversaire, action, actionNum, action_adversaire, act
         elif adversaire.pokemons[pokemonActualAdversNumber].statut == "Paralysie" :
             # On fait un random entre 1 et 4
             if rand(1, 4) == 1 :
+                WriteInfo(adversaire.pokemons[pokemonActualAdversNumber].name + " est paralysé ! Il ne peut pas attaquer !")
                 # Le pokemon souffre de la paralysie et il n'attaque pas
                 boolAttaque = False
                 print(adversaire.pokemons[pokemonActualAdversNumber].name + " est paralysé ! Il ne peut pas attaquer !")
@@ -53,7 +60,8 @@ def AdversaireTurn(player, adversaire, action, actionNum, action_adversaire, act
 
     # Si l'action est "Changer de Pokemon"
     elif action_adversaire == 2 :
-        print("votre adversaire envoie {}".format(adversaire.pokemons[actionNum_adversaire].name))
+        WriteInfo("Votre adversaire envoie {}".format(adversaire.pokemons[actionNum_adversaire].name))
+        ReloadGraphPokemons(player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber])
         # On appelle la fonction Switch qui réinitialise certaines données du pokemon actuel adverse
         adversaire = Switch(adversaire, pokemonActualAdversNumber)
         # Le pokemon adverse change

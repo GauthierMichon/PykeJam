@@ -1,3 +1,5 @@
+import time
+from graph.reload_graph_pokemons import ReloadGraphPokemons
 from functions.action_item import ActionItem
 from functions.after_switch import AfterSwitch
 from functions.choose_pokemon_change import ChoosePokemon
@@ -6,14 +8,15 @@ from functions.action_attaque import ActionAttaque
 from functions.switch import Switch
 import functions.adversaire_turn as adv_turn
 from functions.switch_adversaire import ChangeAdversaire
+from graph.write_info import WriteInfo
 
 # Fonction du tour du joueur
 def PlayerTurn(player, adversaire, action, actionNum, action_adversaire, actionNum_adversaire, pokemonActualPlayerNumber, pokemonActualAdversNumber, terrain, beginner):
+    
+    ReloadGraphPokemons(player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber])
+    
     # Si boolAttaque est True, l'attaque est effectuée
     boolAttaque = True
-    
-    
-        
     
     # Si l'action est "Attaquer"
     if action == 1 :
@@ -25,6 +28,7 @@ def PlayerTurn(player, adversaire, action, actionNum, action_adversaire, actionN
                 player.pokemons[pokemonActualPlayerNumber].statut = None
                 print(player.pokemons[pokemonActualPlayerNumber].name + " n'est plus gelé !")
             else :
+                WriteInfo(player.pokemons[pokemonActualPlayerNumber].name + " est gelé ! Il ne peut pas attaquer !")
                 # Le pokemon reste gelé et il n'attaque pas
                 boolAttaque = False
                 print(player.pokemons[pokemonActualPlayerNumber].name + " est gelé ! Il ne peut pas attaquer !")
@@ -37,6 +41,8 @@ def PlayerTurn(player, adversaire, action, actionNum, action_adversaire, actionN
                 player.pokemons[pokemonActualPlayerNumber].statut = None
                 print(player.pokemons[pokemonActualPlayerNumber].name + " n'est plus endormi !")
             else :
+                WriteInfo(player.pokemons[pokemonActualPlayerNumber].name + " est endormi ! Il ne peut pas attaquer !")
+
                 # Le pokemon reste endormi et il n'attaque pas
                 boolAttaque = False
                 print(player.pokemons[pokemonActualPlayerNumber].name + " est endormi ! Il ne peut pas attaquer !")
@@ -45,6 +51,7 @@ def PlayerTurn(player, adversaire, action, actionNum, action_adversaire, actionN
         elif player.pokemons[pokemonActualPlayerNumber].statut == "Paralysie" :
             # On fait un random entre 1 et 4
             if rand(1, 4) == 1 :
+                WriteInfo(player.pokemons[pokemonActualPlayerNumber].name + " est paralysé ! Il ne peut pas attaquer !")
                 # Le pokemon souffre de la paralysie et il n'attaque pas
                 boolAttaque = False
                 print(player.pokemons[pokemonActualPlayerNumber].name + " est paralysé ! Il ne peut pas attaquer !")
@@ -60,7 +67,8 @@ def PlayerTurn(player, adversaire, action, actionNum, action_adversaire, actionN
     # Si l'action est "Changer de Pokemon"
     elif action == 2 :
         print("\nVous avez choisi de changer de pokemon")
-        print("vous envoyé {}".format(player.pokemons[actionNum].name))
+        ReloadGraphPokemons(player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber])
+        WriteInfo("Vous envoyez {}".format(player.pokemons[actionNum].name))
         # On appelle la fonction Switch qui réinitialise certaines données du pokemon actuel du joueur
         player = Switch(player, pokemonActualPlayerNumber)
         # Le pokemon adverse change
@@ -78,6 +86,7 @@ def PlayerTurn(player, adversaire, action, actionNum, action_adversaire, actionN
     # Si l'action est "Utiliser un objet"
     elif action == 3 :
         print("\nVous avez choisi d'utiliser un objet")
+        WriteInfo(player.inventaire[actionNum - 1].name + " est utilisé")
         print(player.inventaire[actionNum - 1].name)
         player = ActionItem(player, actionNum - 1, pokemonActualPlayerNumber)
         print(player.inventaire, len(player.inventaire))
@@ -88,9 +97,11 @@ def PlayerTurn(player, adversaire, action, actionNum, action_adversaire, actionN
         if adversaire.pokemons[pokemonActualAdversNumber].PV <= 0 :
             # S'il reste au moins un pokemon à l'adversaire
             if adversaire.pokemons[0].PV > 0 or adversaire.pokemons[1].PV > 0 or adversaire.pokemons[2].PV > 0 or adversaire.pokemons[3].PV > 0 or adversaire.pokemons[4].PV > 0 or adversaire.pokemons[5].PV > 0 :
+                ReloadGraphPokemons(player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber])
                 # L'adversaire choisi un nouveau pokemon
                 action_adversaire = 2
                 actionNum_adversaire = ChangeAdversaire(adversaire, pokemonActualAdversNumber)
+
         
             else :
                 # L'adversaire perd
