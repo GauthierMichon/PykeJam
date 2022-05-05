@@ -35,7 +35,7 @@ def PlayerTurn(player, adversaire, action, actionNum, action_adversaire, actionN
                 print(player.pokemons[pokemonActualPlayerNumber].name + " est gelé ! Il ne peut pas attaquer !")
 
         # Si le pokemon du joueur est endormi
-        elif player.pokemons[pokemonActualPlayerNumber].statut == "Sommeil" :
+        elif player.pokemons[pokemonActualPlayerNumber].statut == "Sommeil" and player.pokemons[pokemonActualPlayerNumber].Attaques[actionNum-1].id != 12 :
             # On fait un random entre 1 et 5
             if rand(1, 5) == 1 :
                 # Le pokemon n'est plus endormi
@@ -63,7 +63,7 @@ def PlayerTurn(player, adversaire, action, actionNum, action_adversaire, actionN
             print(player.pokemons[pokemonActualPlayerNumber].name)
             print(player.pokemons[pokemonActualPlayerNumber].Attaques[actionNum - 1].name)
             # On appelle la fonction ActionAttaque
-            player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber], terrain, player, pokemonActualPlayerNumber = ActionAttaque(player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber], actionNum, terrain, player, pokemonActualPlayerNumber)
+            player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber], terrain, player, adversaire, pokemonActualPlayerNumber, pokemonActualAdversNumber = ActionAttaque(player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber], actionNum, terrain, player, adversaire, pokemonActualPlayerNumber, pokemonActualAdversNumber)
 
     # Si l'action est "Changer de Pokemon"
     elif action == 2 :

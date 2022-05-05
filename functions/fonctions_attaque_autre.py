@@ -23,6 +23,7 @@ import functions.derouler_attaque_autre as other
 from functions.switch_adversaire import ChangeAdversaire
 from functions.table_types import TableType
 from graph.write_info import WriteInfo
+from graph.change_pokemon_graph import ChangePokemonGraph
 
 
 def Abri(pokemon_attaquant, Attaque) :
@@ -820,18 +821,21 @@ def PiegeDeRoc(dresseurPokemonAttaquant, terrain, pokemon_attaquant, Attaque) :
 
     return terrain
 
-def Projection(dresseur, pokemonActuelNum) :
+def Projection(dresseur, dresseurAdverse, pokemonActuelNum, pokemonActuelNumDresseurAdverse) :
     count = 0
-    for i in range(len(dresseur.pokemons)) :
-        if dresseur.pokemons[i].PV > 0 :
+    for i in range(len(dresseurAdverse.pokemons)) :
+        if dresseurAdverse.pokemons[i].PV > 0 :
             count += 1
     if count > 1 :
-        pokemonActuelNum = ChangeAdversaire(dresseur, pokemonActuelNum)
+        pokemonActuelNumDresseurAdverse = ChangeAdversaire(dresseurAdverse, pokemonActuelNumDresseurAdverse)
+        if dresseur.person == "player" :
+            ChangePokemonGraph(dresseur.pokemons[pokemonActuelNum], dresseurAdverse.pokemons[pokemonActuelNumDresseurAdverse])
+        WriteInfo(dresseurAdverse.pokemons[pokemonActuelNumDresseurAdverse].name + " est envoyé !")
     else :
         WriteInfo("Pas assez de pokémon en vie pour forcer un changment de pokémon !")
         print("problème de projection")
 
-    return pokemonActuelNum
+    return pokemonActuelNumDresseurAdverse
 
 def PuissanceCachee(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     Attaque.puissance = 60

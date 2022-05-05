@@ -56,7 +56,7 @@ def AdversaireTurn(player, adversaire, action, actionNum, action_adversaire, act
         # Si boolAttaque est True, l'attaque est effectuée
         if boolAttaque :
             # On appelle la fonction ActionAttaque
-            adversaire.pokemons[pokemonActualAdversNumber], player.pokemons[pokemonActualPlayerNumber], terrain, adversaire, pokemonActualAdversNumber = ActionAttaque(adversaire.pokemons[pokemonActualAdversNumber], player.pokemons[pokemonActualPlayerNumber], actionNum_adversaire, terrain, adversaire, pokemonActualAdversNumber)
+            adversaire.pokemons[pokemonActualAdversNumber], player.pokemons[pokemonActualPlayerNumber], terrain, adversaire, player, pokemonActualAdversNumber, pokemonActualPlayerNumber = ActionAttaque(adversaire.pokemons[pokemonActualAdversNumber], player.pokemons[pokemonActualPlayerNumber], actionNum_adversaire, terrain, adversaire, player, pokemonActualAdversNumber, pokemonActualPlayerNumber)
 
     # Si l'action est "Changer de Pokemon"
     elif action_adversaire == 2 :

@@ -1,7 +1,7 @@
 from functions.fonctions_attaque_autre import Abri, AntiBrume, Balance, BallMeteo, BlablaDodo, BouleRoc, BouteFeu, CasseBrique, ChangeEclair, ChocPsy, Clairvoyance, Clonage, CloseCombat, Colere, Conversion, Damocles, DemiTour, DracoMeteore, EclairFou, Effort, Explosion, Facade, FrappeAtlas, GlasDeSoin, LanceSoleil, Malediction, Megaphone, NoeudHerbe, Picots, PicsToxik, PiedSaute, PiedVoltige, PiegeDeRoc, Projection, PuissanceCachee, Rapace, Repos, Requiem, Sabotage, Siphon, Souvenir, Stalactite, Surchauffe, Surpuissance, Synthese, TourDeMagie, TourRapide, VampiPoing, Vampigraine, Vampirisme, VentArriere, Voeu, VoleForce
 
 # Fonction qui gère les attaques autres en appelant leur fonction correspondante
-def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokemonAttaquant, numAttaque, pokemonActuelNum) :
+def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokemonAttaquant, dresseurPokemonDefenseur, numAttaque, pokemonActuelNum, pokemonActuelNumDresseurDefenseur) :
     if Attaque.id == 1 :
         pokemon_attaquant = Abri(pokemon_attaquant, Attaque)
     elif Attaque.id == 2 :
@@ -69,7 +69,7 @@ def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokem
     elif Attaque.id == 80 :
         terrain = PiegeDeRoc(dresseurPokemonAttaquant, terrain, pokemon_attaquant, Attaque)
     elif Attaque.id == 91 :
-        pokemonActuelNum = Projection(dresseurPokemonAttaquant, pokemonActuelNum)
+        pokemonActuelNumDresseurDefenseur = Projection(dresseurPokemonAttaquant, dresseurPokemonDefenseur, pokemonActuelNum, pokemonActuelNumDresseurDefenseur)
     elif Attaque.id == 93 :
         pokemon_defenseur = PuissanceCachee(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
     elif Attaque.id == 94 :
@@ -110,4 +110,4 @@ def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokem
         pokemon_attaquant, pokemon_defenseur = VoleForce(pokemon_attaquant, Attaque, pokemon_defenseur)
     
 
-    return pokemon_attaquant, pokemon_defenseur, terrain, dresseurPokemonAttaquant, pokemonActuelNum
+    return pokemon_attaquant, pokemon_defenseur, terrain, dresseurPokemonAttaquant, dresseurPokemonDefenseur, pokemonActuelNum, pokemonActuelNumDresseurDefenseur
