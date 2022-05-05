@@ -47,21 +47,21 @@ rect_3      = pygame.Rect((645, 585), (295, 45))
 action1     = pygame.Surface((295, 45))
 action1.fill('WHITE')
 
-text_action1 = font.render('Attaque', False, BLACK)
+text_action1 = font.render('Attaque (1)', False, BLACK)
 
 # Action 2
-rect_4      = pygame.Rect((645, 640), (295, 45))
-action2     = pygame.Surface((295, 45))
-action2.fill('WHITE')
-
-text_action2 = font.render('Pokémons', False, BLACK)
-
-# Action 3
-rect_5      = pygame.Rect((950, 585), (295, 45))
+rect_5      = pygame.Rect((645, 640), (295, 45))
 action3     = pygame.Surface((295, 45))
 action3.fill('WHITE')
 
-text_action3 = font.render('Objets', False, BLACK)
+text_action2 = font.render('Pokémons (2)', False, BLACK)
+
+# Action 3
+rect_4      = pygame.Rect((950, 585), (295, 45))
+action2     = pygame.Surface((295, 45))
+action2.fill('WHITE')
+
+text_action3 = font.render('Objets (3)', False, BLACK)
 
 # Action 4
 rect_6      = pygame.Rect((950, 640), (295, 45))

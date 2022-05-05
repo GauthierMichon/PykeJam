@@ -11,10 +11,10 @@ def ChooseAttaque(pokemon_actuel_player) :
         pokemon_actuel_player.Attaques[3].name
     )) """
 
-    text_attaque1 = font.render('{0}'.format(pokemon_actuel_player.Attaques[0].name), False, BLACK)
-    text_attaque2 = font.render('{0}'.format(pokemon_actuel_player.Attaques[1].name), False, BLACK)
-    text_attaque3 = font.render('{0}'.format(pokemon_actuel_player.Attaques[2].name), False, BLACK)
-    text_attaque4 = font.render('{0}'.format(pokemon_actuel_player.Attaques[3].name), False, BLACK)
+    text_attaque1 = font.render('{0}'.format(pokemon_actuel_player.Attaques[0].name + " (1)"), False, BLACK)
+    text_attaque2 = font.render('{0}'.format(pokemon_actuel_player.Attaques[1].name + " (2)"), False, BLACK)
+    text_attaque3 = font.render('{0}'.format(pokemon_actuel_player.Attaques[2].name + " (3)"), False, BLACK)
+    text_attaque4 = font.render('{0}'.format(pokemon_actuel_player.Attaques[3].name + " (4)"), False, BLACK)
 
     actionNum = None
     running   = True

@@ -5,12 +5,12 @@ import time
 # Fonction permettant de choisir un pokemon
 def ChoosePokemon(player, pokemonActualDresseurNum) :
 
-    text_pokemon1 = font.render('{0}'.format(player.pokemons[0].name), False, BLACK)
-    text_pokemon2 = font.render('{0}'.format(player.pokemons[1].name), False, BLACK)
-    text_pokemon3 = font.render('{0}'.format(player.pokemons[2].name), False, BLACK)
-    text_pokemon4 = font.render('{0}'.format(player.pokemons[3].name), False, BLACK)
-    text_pokemon5 = font.render('{0}'.format(player.pokemons[4].name), False, BLACK)
-    text_pokemon6 = font.render('{0}'.format(player.pokemons[5].name), False, BLACK)
+    text_pokemon1 = font.render('{0}'.format(player.pokemons[0].name + " (1)"), False, BLACK)
+    text_pokemon2 = font.render('{0}'.format(player.pokemons[1].name + " (2)"), False, BLACK)
+    text_pokemon3 = font.render('{0}'.format(player.pokemons[2].name + " (3)"), False, BLACK)
+    text_pokemon4 = font.render('{0}'.format(player.pokemons[3].name + " (4)"), False, BLACK)
+    text_pokemon5 = font.render('{0}'.format(player.pokemons[4].name + " (5)"), False, BLACK)
+    text_pokemon6 = font.render('{0}'.format(player.pokemons[5].name + " (6)"), False, BLACK)
     text_pokemon_PV_player = pokemon_PV_player.render('{0} / {1}'.format(player.pokemons[pokemonActualDresseurNum].PV, player.pokemons[pokemonActualDresseurNum].PVMax), False, BLACK)
     text_pokemon_name_player = pokemon_name_player.render('{0}'.format(player.pokemons[pokemonActualDresseurNum].name), False, BLACK)
 

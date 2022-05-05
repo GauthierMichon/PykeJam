@@ -12,11 +12,11 @@ def ChooseItem(player) :
 
     for i in range(len(player.inventaire)) :
         if i == 0 :
-            text_objet1 = font.render('{0}'.format(player.inventaire[0].name), False, BLACK)
+            text_objet1 = font.render('{0}'.format(player.inventaire[0].name + " (1)"), False, BLACK)
         elif i == 1 :
-            text_objet2 = font.render('{0}'.format(player.inventaire[1].name), False, BLACK)
+            text_objet2 = font.render('{0}'.format(player.inventaire[1].name + " (2)"), False, BLACK)
         elif i == 2 :
-            text_objet3 = font.render('{0}'.format(player.inventaire[2].name), False, BLACK)
+            text_objet3 = font.render('{0}'.format(player.inventaire[2].name + " (3)"), False, BLACK)
 
 
     actionNum = None
