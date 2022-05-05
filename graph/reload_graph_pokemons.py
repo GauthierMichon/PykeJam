@@ -35,6 +35,9 @@ def ReloadGraphPokemons(pokemon_actuel_player, pokemon_actuel_adversaire) :
     if pokemon_actuel_player.statut!= None :
         graph.screen.blit(statut_pokemon_player, (775, 450))
 
+
+    
+
     pygame.display.flip() 
 
     

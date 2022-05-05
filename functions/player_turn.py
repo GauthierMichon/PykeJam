@@ -9,6 +9,7 @@ from functions.switch import Switch
 import functions.adversaire_turn as adv_turn
 from functions.switch_adversaire import ChangeAdversaire
 from graph.write_info import WriteInfo
+from graph.change_pokemon_graph import ChangePokemonGraph
 
 # Fonction du tour du joueur
 def PlayerTurn(player, adversaire, action, actionNum, action_adversaire, actionNum_adversaire, pokemonActualPlayerNumber, pokemonActualAdversNumber, terrain, beginner):
@@ -67,8 +68,10 @@ def PlayerTurn(player, adversaire, action, actionNum, action_adversaire, actionN
     # Si l'action est "Changer de Pokemon"
     elif action == 2 :
         print("\nVous avez choisi de changer de pokemon")
-        ReloadGraphPokemons(player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber])
+        ChangePokemonGraph(player.pokemons[actionNum], adversaire.pokemons[pokemonActualAdversNumber])
         WriteInfo("Vous envoyez {}".format(player.pokemons[actionNum].name))
+        
+
         # On appelle la fonction Switch qui réinitialise certaines données du pokemon actuel du joueur
         player = Switch(player, pokemonActualPlayerNumber)
         # Le pokemon adverse change

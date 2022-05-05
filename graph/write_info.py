@@ -8,6 +8,7 @@ def WriteInfo(info) :
     graph.screen.blit(infos_render, rect_infos)
 
     pygame.display.flip()
+    
 
     time.sleep(2)
 
