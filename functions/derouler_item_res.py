@@ -1,12 +1,15 @@
 from math import ceil
 import graph.graph as graph
 from graph.graph_containers import *
+from graph.write_info import WriteInfo
 
 
 def ActionItemRes(dresseur, item) :
 
     pokemonNum = ChoosePokemonToRes(dresseur)
-    dresseur.pokemons[pokemonNum].PV = ceil(dresseur.pokemons[pokemonNum].PVMax * item.PV)
+    dresseur.pokemons[pokemonNum].PV = ceil(dresseur.pokemons[pokemonNum].PVMax * item.PV / 100)
+    WriteInfo(dresseur.pokemons[pokemonNum].name + " n'est plus K.O. !")
+
 
     return dresseur
 

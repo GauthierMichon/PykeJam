@@ -33,7 +33,7 @@ def game() :
     pokemon_4 = deepcopy(pokemonList[int(pokemon_4) - 1])
     pokemon_5 = deepcopy(pokemonList[int(pokemon_5) - 1])
     pokemon_6 = deepcopy(pokemonList[int(pokemon_6) - 1]) """
-    pokemon_1 = deepcopy(pokemonList[58])
+    pokemon_1 = deepcopy(pokemonList[13])
     pokemon_2 = deepcopy(pokemonList[randint(0, 77)])
     pokemon_3 = deepcopy(pokemonList[randint(0, 77)])
     pokemon_4 = deepcopy(pokemonList[randint(0, 77)])
@@ -53,7 +53,7 @@ def game() :
     allPokemonChoose = [pokemon_1, pokemon_2, pokemon_3, pokemon_4, pokemon_5, pokemon_6, adversaire_1, adversaire_2, adversaire_3, adversaire_4, adversaire_5, adversaire_6]
     # Random de shiny
     for i in range(len(allPokemonChoose)) :
-        if rand(1, 2) == 1 :
+        if rand(1, 100) == 1 :
             allPokemonChoose[i].sprite = allPokemonChoose[i].sprite[:-4] + '_shiny.gif'
             allPokemonChoose[i].spriteDos = allPokemonChoose[i].spriteDos[:-4] + '_shiny.png'
             allPokemonChoose[i].PV = ceil(allPokemonChoose[i].PV * 1.10)

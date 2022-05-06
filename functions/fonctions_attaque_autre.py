@@ -665,14 +665,14 @@ def PiedSaute(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     Attaque.probaEffect = None
 
     if not MissWork(pokemon_attaquant, Attaque) :
-        pokemon_attaquant.PV = (pokemon_attaquant.PVMax / 2)
+        pokemon_attaquant.PV = ceil(pokemon_attaquant.PVMax / 2)
         WriteInfo(pokemon_attaquant.name + " se blesse dans sa chute !")
     elif pokemon_defenseur.Type == "Spectre" or pokemon_defenseur.Type2 == "Spectre" :
-        pokemon_attaquant.PV = (pokemon_attaquant.PVMax / 2)
+        pokemon_attaquant.PV = ceil(pokemon_attaquant.PVMax / 2)
         WriteInfo("Cela n'affecte pas " + pokemon_defenseur.name + " !")
         WriteInfo(pokemon_attaquant.name + " se blesse dans sa chute !")
     elif pokemon_defenseur.abri :
-        pokemon_attaquant.PV = (pokemon_attaquant.PVMax / 2)
+        pokemon_attaquant.PV = ceil(pokemon_attaquant.PVMax / 2)
         WriteInfo(pokemon_defenseur.name + " se protège, l'attaque est sans effet.")
         WriteInfo(pokemon_attaquant.name + " se blesse dans sa chute !")
     else :
@@ -739,14 +739,14 @@ def PiedVoltige(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     Attaque.probaEffect = None
 
     if not MissWork(pokemon_attaquant, Attaque) :
-        pokemon_attaquant.PV = (pokemon_attaquant.PVMax / 2)
+        pokemon_attaquant.PV = ceil(pokemon_attaquant.PVMax / 2)
         WriteInfo(pokemon_attaquant.name + " se blesse dans sa chute !")
     elif pokemon_defenseur.Type == "Spectre" or pokemon_defenseur.Type2 == "Spectre" :
-        pokemon_attaquant.PV = (pokemon_attaquant.PVMax / 2)
+        pokemon_attaquant.PV = ceil(pokemon_attaquant.PVMax / 2)
         WriteInfo("Cela n'affecte pas " + pokemon_defenseur.name + " !")
         WriteInfo(pokemon_attaquant.name + " se blesse dans sa chute !")
     elif pokemon_defenseur.abri :
-        pokemon_attaquant.PV = (pokemon_attaquant.PVMax / 2)
+        pokemon_attaquant.PV = ceil(pokemon_attaquant.PVMax / 2)
         WriteInfo(pokemon_defenseur.name + " se protège, l'attaque est sans effet.")
         WriteInfo(pokemon_attaquant.name + " se blesse dans sa chute !")
     else :

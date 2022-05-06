@@ -90,6 +90,8 @@ def AdversaireTurn(player, adversaire, action, actionNum, action_adversaire, act
                 action = 2
                 actionNum = ChoosePokemon(player, pokemonActualPlayerNumber)
                 print("vous envoyé {}".format(player.pokemons[actionNum].name))
+                player.actionOblig = None
+                player.actionOblig = None
                 
             else :
                 # Le joueur perd

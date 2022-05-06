@@ -104,6 +104,8 @@ def PlayerTurn(player, adversaire, action, actionNum, action_adversaire, actionN
                 # L'adversaire choisi un nouveau pokemon
                 action_adversaire = 2
                 actionNum_adversaire = ChangeAdversaire(adversaire, pokemonActualAdversNumber)
+                adversaire.actionOblig = None
+                adversaire.actionOblig = None
 
         
             else :

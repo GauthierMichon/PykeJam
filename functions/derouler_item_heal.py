@@ -1,5 +1,6 @@
 import graph.graph as graph
 from graph.graph_containers import *
+from graph.write_info import WriteInfo
 
 def ActionItemHeal(dresseur, item) :
     
@@ -7,6 +8,8 @@ def ActionItemHeal(dresseur, item) :
     dresseur.pokemons[pokemonNum].PV += item.PVHeal
     if dresseur.pokemons[pokemonNum].PV > dresseur.pokemons[pokemonNum].PVMax :
         dresseur.pokemons[pokemonNum].PV = dresseur.pokemons[pokemonNum].PVMax
+
+    WriteInfo(dresseur.pokemons[pokemonNum].name + " est soigné !")
 
     return dresseur
 
