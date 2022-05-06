@@ -43,3 +43,5 @@ def TextBuff(item) :
         statText = "La Précision de "
 
     buffText = " augmente !"
+
+    return statText, buffText

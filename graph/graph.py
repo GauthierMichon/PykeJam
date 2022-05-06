@@ -43,9 +43,6 @@ while running:
 
             game()
 
-            
-
-
     pygame.display.flip() 
 
 print("Exited the game loop. Game will quit...")

@@ -1,3 +1,4 @@
+from math import ceil
 from BDD.conn import conn
 from classes.attaque_autre import AttaqueAutre
 from classes.attaque_buff import AttaqueBuff
@@ -168,7 +169,7 @@ def initPokemon(attaqueList) :
             Type2 = data_type[i[5]-1][1]
 
         nature = data_nature[i[6]-1][1]
-        PV = ((2 * i[7] + 31) * 100) / 100 + 110
+        PV = ceil(((2 * i[7] + 31) * 100) / 100 + 110)
         Att = ((2 * i[8] + 31) * 100) / 100 + 5
         Def = ((2 * i[9] + 31) * 100) / 100 + 5
         AttSpe = ((2 * i[10] + 31) * 100) / 100 + 5

@@ -50,7 +50,7 @@ def AntiBrume(pokemon_attaquant, Attaque, terrain) :
 def Balance(pokemon_attaquant, pokemon_defenseur, Attaque) :
     if MissWork(pokemon_attaquant, Attaque) :
         WriteInfo("Les PV des pokemons s'équilibre !")
-        newPV = ceil((pokemon_attaquant.PV + pokemon_defenseur.PV) / 2)
+        newPV = int(ceil((pokemon_attaquant.PV + pokemon_defenseur.PV) / 2))
         if pokemon_attaquant.PVMax > newPV :
             pokemon_attaquant.PV = pokemon_attaquant.PVMax
         else :
@@ -175,7 +175,7 @@ def BouteFeu(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     
     WriteInfo(pokemon_attaquant.name + " est bléssé par le contrecoup !")
 
-    pokemon_attaquant.PV -= ceil((PVAvantAttaque - pokemon_defenseur.PV) / 3)
+    pokemon_attaquant.PV -= int(ceil((PVAvantAttaque - pokemon_defenseur.PV) / 3))
     if pokemon_attaquant.PV < 0 :
         pokemon_attaquant.PV = 0
 
@@ -258,9 +258,9 @@ def ChocPsy(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
         degats *= (rand(85, 100) / 100)
 
         if pokemon_defenseur.clone == False :
-            pokemon_defenseur.PV -= ceil(degats)
+            pokemon_defenseur.PV -= int(ceil(degats))
         else :
-            pokemon_defenseur.clonePV -= ceil(degats)
+            pokemon_defenseur.clonePV -= int(ceil(degats))
             if pokemon_defenseur.clonePV <= 0 :
                 pokemon_defenseur.clone = False
                 pokemon_defenseur.clonePV = None
@@ -281,10 +281,10 @@ def Clairvoyance(pokemon_attaquant, Attaque) :
     return pokemon_attaquant
 
 def Clonage(pokemon_attaquant) :
-    if pokemon_attaquant.PV > ceil(pokemon_attaquant.PV / 4) :
-        pokemon_attaquant.PV -= ceil(pokemon_attaquant.PV / 4)
+    if pokemon_attaquant.PV > int(ceil(pokemon_attaquant.PV / 4)) :
+        pokemon_attaquant.PV -= int(ceil(pokemon_attaquant.PV / 4))
         pokemon_attaquant.clone = True
-        pokemon_attaquant.clonePV = ceil(pokemon_attaquant.PV / 4)
+        pokemon_attaquant.clonePV = int(ceil(pokemon_attaquant.PV / 4))
         WriteInfo(pokemon_attaquant.name + " se cache derrière un clone !")
     else :
         WriteInfo(pokemon_attaquant.name + " n'a pas assez de PV pour utiliser clonage !")
@@ -362,7 +362,7 @@ def Damocles(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
 
     WriteInfo(pokemon_attaquant.name + " est blessé par le contrecoup !")
 
-    pokemon_attaquant.PV -= ceil((PVAvantAttaque - pokemon_defenseur.PV) / 3)
+    pokemon_attaquant.PV -= int(ceil((PVAvantAttaque - pokemon_defenseur.PV) / 3))
     if pokemon_attaquant.PV < 0 :
         pokemon_attaquant.PV = 0
     if pokemon_defenseur.PV < 0 :
@@ -422,7 +422,7 @@ def EclairFou(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
 
     WriteInfo(pokemon_attaquant.name + " est bléssé par le contrecoup !")
-    pokemon_attaquant.PV -= ceil((PVAvantAttaque - pokemon_defenseur.PV) / 4)
+    pokemon_attaquant.PV -= int(ceil((PVAvantAttaque - pokemon_defenseur.PV) / 4))
     if pokemon_attaquant.PV < 0 :
         pokemon_attaquant.PV = 0
 
@@ -514,7 +514,7 @@ def Malediction(pokemon_attaquant, pokemon_defenseur, Attaque) :
 
         if pokemon_attaquant.Type == "Spectre" or pokemon_attaquant.Type2 == "Spectre" :
             WriteInfo(pokemon_attaquant.name + " perd la moitié de ses PV maximum !")
-            pokemon_attaquant.PV -= ceil(pokemon_attaquant.PVMax / 2)
+            pokemon_attaquant.PV -= int(ceil(pokemon_attaquant.PVMax / 2))
             WriteInfo(pokemon_defenseur.name + " est maudit !")
             pokemon_defenseur.maudit = True
 
@@ -590,7 +590,7 @@ def Megaphone(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
         #Random num entre 0.85 et 1
         degats *= (rand(85, 100) / 100)
 
-        pokemon_defenseur.PV -= ceil(degats)
+        pokemon_defenseur.PV -= int(ceil(degats))
 
     else :
         print("miss")
@@ -665,14 +665,14 @@ def PiedSaute(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     Attaque.probaEffect = None
 
     if not MissWork(pokemon_attaquant, Attaque) :
-        pokemon_attaquant.PV = ceil(pokemon_attaquant.PVMax / 2)
+        pokemon_attaquant.PV = int(ceil(pokemon_attaquant.PVMax / 2))
         WriteInfo(pokemon_attaquant.name + " se blesse dans sa chute !")
     elif pokemon_defenseur.Type == "Spectre" or pokemon_defenseur.Type2 == "Spectre" :
-        pokemon_attaquant.PV = ceil(pokemon_attaquant.PVMax / 2)
+        pokemon_attaquant.PV = int(ceil(pokemon_attaquant.PVMax / 2))
         WriteInfo("Cela n'affecte pas " + pokemon_defenseur.name + " !")
         WriteInfo(pokemon_attaquant.name + " se blesse dans sa chute !")
     elif pokemon_defenseur.abri :
-        pokemon_attaquant.PV = ceil(pokemon_attaquant.PVMax / 2)
+        pokemon_attaquant.PV = int(ceil(pokemon_attaquant.PVMax / 2))
         WriteInfo(pokemon_defenseur.name + " se protège, l'attaque est sans effet.")
         WriteInfo(pokemon_attaquant.name + " se blesse dans sa chute !")
     else :
@@ -722,9 +722,9 @@ def PiedSaute(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
         degats *= (rand(85, 100) / 100)
 
         if pokemon_defenseur.clone == False :
-            pokemon_defenseur.PV -= ceil(degats)
+            pokemon_defenseur.PV -= int(ceil(degats))
         else :
-            pokemon_defenseur.clonePV -= ceil(degats)
+            pokemon_defenseur.clonePV -= int(ceil(degats))
             if pokemon_defenseur.clonePV <= 0 :
                 pokemon_defenseur.clone = False
                 pokemon_defenseur.clonePV = None
@@ -739,14 +739,14 @@ def PiedVoltige(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     Attaque.probaEffect = None
 
     if not MissWork(pokemon_attaquant, Attaque) :
-        pokemon_attaquant.PV = ceil(pokemon_attaquant.PVMax / 2)
+        pokemon_attaquant.PV = int(ceil(pokemon_attaquant.PVMax / 2))
         WriteInfo(pokemon_attaquant.name + " se blesse dans sa chute !")
     elif pokemon_defenseur.Type == "Spectre" or pokemon_defenseur.Type2 == "Spectre" :
-        pokemon_attaquant.PV = ceil(pokemon_attaquant.PVMax / 2)
+        pokemon_attaquant.PV = int(ceil(pokemon_attaquant.PVMax / 2))
         WriteInfo("Cela n'affecte pas " + pokemon_defenseur.name + " !")
         WriteInfo(pokemon_attaquant.name + " se blesse dans sa chute !")
     elif pokemon_defenseur.abri :
-        pokemon_attaquant.PV = ceil(pokemon_attaquant.PVMax / 2)
+        pokemon_attaquant.PV = int(ceil(pokemon_attaquant.PVMax / 2))
         WriteInfo(pokemon_defenseur.name + " se protège, l'attaque est sans effet.")
         WriteInfo(pokemon_attaquant.name + " se blesse dans sa chute !")
     else :
@@ -796,9 +796,9 @@ def PiedVoltige(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
         degats *= (rand(85, 100) / 100)
 
         if pokemon_defenseur.clone == False :
-            pokemon_defenseur.PV -= ceil(degats)
+            pokemon_defenseur.PV -= int(ceil(degats))
         else :
-            pokemon_defenseur.clonePV -= ceil(degats)
+            pokemon_defenseur.clonePV -= int(ceil(degats))
             if pokemon_defenseur.clonePV <= 0 :
                 pokemon_defenseur.clone = False
                 pokemon_defenseur.clonePV = None
@@ -872,7 +872,7 @@ def Rapace(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
 
     WriteInfo(pokemon_attaquant.name + " est bléssé par le contrecoup !")
 
-    pokemon_attaquant.PV -= ceil((PVAvantAttaque - pokemon_defenseur.PV) / 3)
+    pokemon_attaquant.PV -= int(ceil((PVAvantAttaque - pokemon_defenseur.PV) / 3))
     if pokemon_attaquant.PV < 0 :
         pokemon_attaquant.PV = 0
 
@@ -1094,7 +1094,7 @@ def VampiPoing(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
 
     pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
 
-    pokemon_attaquant.PV += (ceil((PVAvantAttaque - pokemon_defenseur.PV) / 2))
+    pokemon_attaquant.PV += (int(ceil((PVAvantAttaque - pokemon_defenseur.PV) / 2)))
 
     if pokemon_attaquant.PV > pokemon_attaquant.PVMax :
         pokemon_attaquant.PV = pokemon_attaquant.PVMax
@@ -1128,7 +1128,7 @@ def Vampirisme(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
     pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
     
     WriteInfo(pokemon_attaquant.name + " se soigne !")
-    pokemon_attaquant.PV += (ceil((PVAvantAttaque - pokemon_defenseur.PV) / 2))
+    pokemon_attaquant.PV += (int(ceil((PVAvantAttaque - pokemon_defenseur.PV) / 2)))
     if pokemon_attaquant.PV > pokemon_attaquant.PVMax :
         pokemon_attaquant.PV = pokemon_attaquant.PVMax
 
@@ -1187,7 +1187,7 @@ def Voeu(pokemon_attaquant, Attaque, terrain, dresseurPokemonAttaquant) :
             WriteInfo(pokemon_attaquant.name + " sera soigné dans 2 tours !")
 
             setattr(terrain, toChange, 2)
-            setattr(terrain, toChange2, ceil(pokemon_attaquant.PVMax / 2))
+            setattr(terrain, toChange2, int(ceil(pokemon_attaquant.PVMax / 2)))
 
         else :
             print("vous avez déjà fait un voeu")

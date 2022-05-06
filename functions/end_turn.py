@@ -24,7 +24,7 @@ def EndTurn(dresseur, pokemonActualNumber, terrain) :
         WriteInfo("Siphon fait perdre des PV à {} !".format(dresseur.pokemons[pokemonActualNumber].name))
 
         # Le pokemon perd 1/8 de ses PV maximum
-        dresseur.pokemons[pokemonActualNumber].PV -= ceil(dresseur.pokemons[pokemonActualNumber].PVMax / 8)
+        dresseur.pokemons[pokemonActualNumber].PV -= int(ceil(dresseur.pokemons[pokemonActualNumber].PVMax / 8))
         # On diminue le temps de l'attaque siphon
         dresseur.pokemons[pokemonActualNumber].siphonNum -= 1
         if dresseur.pokemons[pokemonActualNumber].siphonNum == 0 :
@@ -35,7 +35,7 @@ def EndTurn(dresseur, pokemonActualNumber, terrain) :
     if dresseur.pokemons[pokemonActualNumber].maudit :
         WriteInfo("{} perd des PV à cause de la malédiction !".format(dresseur.pokemons[pokemonActualNumber].name))
         # Le pokemon perd 1/4 de ses PV maximum
-        dresseur.pokemons[pokemonActualNumber].PV -= ceil(dresseur.pokemons[pokemonActualNumber].PVMax / 4)
+        dresseur.pokemons[pokemonActualNumber].PV -= int(ceil(dresseur.pokemons[pokemonActualNumber].PVMax / 4))
 
     # Si le pokemon soumis à l'attque requiem
     if dresseur.pokemons[pokemonActualNumber].requiem :
@@ -51,13 +51,13 @@ def EndTurn(dresseur, pokemonActualNumber, terrain) :
     if dresseur.pokemons[pokemonActualNumber].statut == "Brûlure" :
         WriteInfo("{} perd des PV à cause de sa brûlure !".format(dresseur.pokemons[pokemonActualNumber].name))
         # Le pokemon perd 1/16 de ses PV maximum
-        dresseur.pokemons[pokemonActualNumber].PV -= ceil(dresseur.pokemons[pokemonActualNumber].PVMax / 16)
+        dresseur.pokemons[pokemonActualNumber].PV -= int(ceil(dresseur.pokemons[pokemonActualNumber].PVMax / 16))
 
     # Si le pokemon est empoisonné
     if dresseur.pokemons[pokemonActualNumber].statut == "Empoisonnement" :
         WriteInfo("{} perd des PV à cause de son empoisonnement !".format(dresseur.pokemons[pokemonActualNumber].name))
         # Le pokemon perd 1/8 de ses PV maximum
-        dresseur.pokemons[pokemonActualNumber].PV -= ceil(dresseur.pokemons[pokemonActualNumber].PVMax / 8)
+        dresseur.pokemons[pokemonActualNumber].PV -= int(ceil(dresseur.pokemons[pokemonActualNumber].PVMax / 8))
 
     # Si le pokemon est K.O.
     if dresseur.pokemons[pokemonActualNumber].PV <= 0 :

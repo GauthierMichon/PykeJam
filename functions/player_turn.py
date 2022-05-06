@@ -25,6 +25,8 @@ def PlayerTurn(player, adversaire, action, actionNum, action_adversaire, actionN
         if player.pokemons[pokemonActualPlayerNumber].statut == "Gel" :
             # On fait un random entre 1 et 5
             if rand(1, 5) == 1 :
+                ReloadGraphPokemons(player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber])
+                WriteInfo(player.pokemons[pokemonActualPlayerNumber].name + " n'est plus gelé !")
                 # Le pokemon n'est plus gelé
                 player.pokemons[pokemonActualPlayerNumber].statut = None
                 print(player.pokemons[pokemonActualPlayerNumber].name + " n'est plus gelé !")
@@ -38,6 +40,8 @@ def PlayerTurn(player, adversaire, action, actionNum, action_adversaire, actionN
         elif player.pokemons[pokemonActualPlayerNumber].statut == "Sommeil" and player.pokemons[pokemonActualPlayerNumber].Attaques[actionNum-1].id != 12 :
             # On fait un random entre 1 et 5
             if rand(1, 5) == 1 :
+                ReloadGraphPokemons(player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber])
+                WriteInfo(player.pokemons[pokemonActualPlayerNumber].name + " n'est plus endormi !")
                 # Le pokemon n'est plus endormi
                 player.pokemons[pokemonActualPlayerNumber].statut = None
                 print(player.pokemons[pokemonActualPlayerNumber].name + " n'est plus endormi !")
@@ -64,6 +68,7 @@ def PlayerTurn(player, adversaire, action, actionNum, action_adversaire, actionN
             print(player.pokemons[pokemonActualPlayerNumber].Attaques[actionNum - 1].name)
             # On appelle la fonction ActionAttaque
             player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber], terrain, player, adversaire, pokemonActualPlayerNumber, pokemonActualAdversNumber = ActionAttaque(player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber], actionNum, terrain, player, adversaire, pokemonActualPlayerNumber, pokemonActualAdversNumber)
+            ChangePokemonGraph(player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber])
 
     # Si l'action est "Changer de Pokemon"
     elif action == 2 :
@@ -89,9 +94,9 @@ def PlayerTurn(player, adversaire, action, actionNum, action_adversaire, actionN
     # Si l'action est "Utiliser un objet"
     elif action == 3 :
         print("\nVous avez choisi d'utiliser un objet")
-        WriteInfo(player.inventaire[actionNum - 1].name + " est utilisé")
         print(player.inventaire[actionNum - 1].name)
         player = ActionItem(player, actionNum - 1, pokemonActualPlayerNumber)
+        WriteInfo(player.inventaire[actionNum - 1].name + " est utilisé")
         print(player.inventaire, len(player.inventaire))
 
     # Si le joueur a joué en premier
@@ -100,7 +105,10 @@ def PlayerTurn(player, adversaire, action, actionNum, action_adversaire, actionN
         if adversaire.pokemons[pokemonActualAdversNumber].PV <= 0 :
             # S'il reste au moins un pokemon à l'adversaire
             if adversaire.pokemons[0].PV > 0 or adversaire.pokemons[1].PV > 0 or adversaire.pokemons[2].PV > 0 or adversaire.pokemons[3].PV > 0 or adversaire.pokemons[4].PV > 0 or adversaire.pokemons[5].PV > 0 :
-                ReloadGraphPokemons(player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber])
+                
+                ChangePokemonGraph(player.pokemons[actionNum], adversaire.pokemons[pokemonActualAdversNumber])
+                (player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber])
+                WriteInfo(adversaire.pokemons[pokemonActualAdversNumber].name + " est K.O.")
                 # L'adversaire choisi un nouveau pokemon
                 action_adversaire = 2
                 actionNum_adversaire = ChangeAdversaire(adversaire, pokemonActualAdversNumber)

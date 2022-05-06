@@ -35,7 +35,7 @@ def MissWork(pokemon_attaquant, Attaque) :
             booleanAttaque = False
             degats = (100 * 0.4 + 2) * pokemon_attaquant.Att * 40
             degats = degats / (pokemon_attaquant.Def * 50) + 2
-            pokemon_attaquant.PV -= ceil(degats)
+            pokemon_attaquant.PV -= int(ceil(degats))
 
     else : 
         # Si l'attaque ne peut pas échouer

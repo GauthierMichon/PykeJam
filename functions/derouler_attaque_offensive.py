@@ -71,13 +71,13 @@ def Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
 
         if pokemon_defenseur.clone == False :
             # Infilge les dégats
-            pokemon_defenseur.PV -= ceil(degats)
+            pokemon_defenseur.PV -= int(ceil(degats))
             # Appelle la fonction d'effet de l'attaque
             pokemon_attaquant, pokemon_defenseur = Effect(pokemon_attaquant, pokemon_defenseur, Attaque)
         # Si le pokemon defenseur est caché derrière un clone
         else :
             # Le clone prend les dégats
-            pokemon_defenseur.clonePV -= ceil(degats)
+            pokemon_defenseur.clonePV -= int(ceil(degats))
             # Si le clone est mort
             if pokemon_defenseur.clonePV <= 0 :
                 pokemon_defenseur.clone = False
@@ -85,6 +85,9 @@ def Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain) :
 
     else :
         print("miss")
+
+    if pokemon_defenseur.PV < 0 :
+        pokemon_defenseur.PV = 0
     
     return pokemon_defenseur
 

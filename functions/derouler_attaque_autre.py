@@ -108,6 +108,11 @@ def Autres(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseurPokem
         terrain = Voeu(pokemon_attaquant, Attaque, terrain, dresseurPokemonAttaquant)
     elif Attaque.id == 128 :
         pokemon_attaquant, pokemon_defenseur = VoleForce(pokemon_attaquant, Attaque, pokemon_defenseur)
+
+    if pokemon_attaquant.PV < 0 :
+        pokemon_attaquant.PV = 0
+    if pokemon_defenseur.PV < 0 :
+        pokemon_defenseur.PV = 0
     
 
     return pokemon_attaquant, pokemon_defenseur, terrain, dresseurPokemonAttaquant, dresseurPokemonDefenseur, pokemonActuelNum, pokemonActuelNumDresseurDefenseur

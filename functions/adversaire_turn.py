@@ -8,6 +8,7 @@ from functions.switch_adversaire import ChangeAdversaire
 from graph.reload_graph_pokemons import ReloadGraphPokemons
 from graph.write_info import WriteInfo
 import time
+from graph.change_pokemon_graph import ChangePokemonGraph
 
 # Fonction du tour de l'adversaire
 def AdversaireTurn(player, adversaire, action, actionNum, action_adversaire, actionNum_adversaire, pokemonActualPlayerNumber, pokemonActualAdversNumber, terrain, beginner):
@@ -22,6 +23,8 @@ def AdversaireTurn(player, adversaire, action, actionNum, action_adversaire, act
         if adversaire.pokemons[pokemonActualAdversNumber].statut == "Gel" :
             # On fait un random entre 1 et 5
             if rand(1, 5) == 1 :
+                ReloadGraphPokemons(player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber])
+                WriteInfo(adversaire.pokemons[pokemonActualAdversNumber].name + " n'est plus gelé !")
                 # Le pokemon n'est plus gelé
                 adversaire.pokemons[pokemonActualAdversNumber].statut = None
                 print(adversaire.pokemons[pokemonActualAdversNumber].name + " n'est plus gelé !")
@@ -35,6 +38,8 @@ def AdversaireTurn(player, adversaire, action, actionNum, action_adversaire, act
         elif adversaire.pokemons[pokemonActualAdversNumber].statut == "Sommeil" :
             # On fait un random entre 1 et 5
             if rand(1, 5) == 1 :
+                ReloadGraphPokemons(player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber])
+                WriteInfo(adversaire.pokemons[pokemonActualAdversNumber].name + " n'est plus endormi !")
                 # Le pokemon n'est plus endormi
                 adversaire.pokemons[pokemonActualAdversNumber].statut = None
                 print(adversaire.pokemons[pokemonActualAdversNumber].name + " n'est plus endormi !")
@@ -57,6 +62,7 @@ def AdversaireTurn(player, adversaire, action, actionNum, action_adversaire, act
         if boolAttaque :
             # On appelle la fonction ActionAttaque
             adversaire.pokemons[pokemonActualAdversNumber], player.pokemons[pokemonActualPlayerNumber], terrain, adversaire, player, pokemonActualAdversNumber, pokemonActualPlayerNumber = ActionAttaque(adversaire.pokemons[pokemonActualAdversNumber], player.pokemons[pokemonActualPlayerNumber], actionNum_adversaire, terrain, adversaire, player, pokemonActualAdversNumber, pokemonActualPlayerNumber)
+            ChangePokemonGraph(player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber])
 
     # Si l'action est "Changer de Pokemon"
     elif action_adversaire == 2 :
@@ -86,6 +92,8 @@ def AdversaireTurn(player, adversaire, action, actionNum, action_adversaire, act
         if player.pokemons[pokemonActualPlayerNumber].PV <= 0 :
             # S'il reste au moins un pokemon au joueur
             if player.pokemons[0].PV > 0 or player.pokemons[1].PV > 0 or player.pokemons[2].PV > 0 or player.pokemons[3].PV > 0 or player.pokemons[4].PV > 0 or player.pokemons[5].PV > 0 :
+                ChangePokemonGraph(player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber])
+                WriteInfo(player.pokemons[pokemonActualPlayerNumber].name + " est K.O.")
                 # Le joueur choisi un nouveau pokemon
                 action = 2
                 actionNum = ChoosePokemon(player, pokemonActualPlayerNumber)

@@ -7,7 +7,7 @@ def VampigraineCheck(player, adversaire, pokemonActualPlayerNumber, pokemonActua
     # Si le joueur a utilisé vampigraine
     if terrain.Vampigraine :
         WriteInfo("Vampigraine draine les PV du pokémon adverse !")
-        drainPV = ceil(adversaire.pokemons[pokemonActualAdversNumber].PVMax / 8)
+        drainPV = int(ceil(adversaire.pokemons[pokemonActualAdversNumber].PVMax / 8))
         if drainPV > adversaire.pokemons[pokemonActualAdversNumber].PV :
             drainPV = adversaire.pokemons[pokemonActualAdversNumber].PV
         player.pokemons[pokemonActualPlayerNumber].PV += drainPV
@@ -16,7 +16,7 @@ def VampigraineCheck(player, adversaire, pokemonActualPlayerNumber, pokemonActua
     # Si l'adversaire a utilisé vampigraine
     if terrain.VampigraineAdverse :
         WriteInfo("Vampigraine draine les PV de votre pokémon !")
-        drainPV = ceil(player.pokemons[pokemonActualPlayerNumber].PVMax / 8)
+        drainPV = int(ceil(player.pokemons[pokemonActualPlayerNumber].PVMax / 8))
         if drainPV > player.pokemons[pokemonActualPlayerNumber].PV :
             drainPV = player.pokemons[pokemonActualPlayerNumber].PV
         adversaire.pokemons[pokemonActualAdversNumber].PV += drainPV

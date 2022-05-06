@@ -33,7 +33,7 @@ def game() :
     pokemon_4 = deepcopy(pokemonList[int(pokemon_4) - 1])
     pokemon_5 = deepcopy(pokemonList[int(pokemon_5) - 1])
     pokemon_6 = deepcopy(pokemonList[int(pokemon_6) - 1]) """
-    pokemon_1 = deepcopy(pokemonList[13])
+    pokemon_1 = deepcopy(pokemonList[randint(0, 77)])
     pokemon_2 = deepcopy(pokemonList[randint(0, 77)])
     pokemon_3 = deepcopy(pokemonList[randint(0, 77)])
     pokemon_4 = deepcopy(pokemonList[randint(0, 77)])
@@ -53,21 +53,21 @@ def game() :
     allPokemonChoose = [pokemon_1, pokemon_2, pokemon_3, pokemon_4, pokemon_5, pokemon_6, adversaire_1, adversaire_2, adversaire_3, adversaire_4, adversaire_5, adversaire_6]
     # Random de shiny
     for i in range(len(allPokemonChoose)) :
-        if rand(1, 100) == 1 :
+        if rand(1, 1) == 1 :
             allPokemonChoose[i].sprite = allPokemonChoose[i].sprite[:-4] + '_shiny.gif'
             allPokemonChoose[i].spriteDos = allPokemonChoose[i].spriteDos[:-4] + '_shiny.png'
-            allPokemonChoose[i].PV = ceil(allPokemonChoose[i].PV * 1.10)
-            allPokemonChoose[i].PVMax = ceil(allPokemonChoose[i].PVMax * 1.10)
-            allPokemonChoose[i].Att = ceil(allPokemonChoose[i].Att * 1.10)
-            allPokemonChoose[i].AttInit = ceil(allPokemonChoose[i].AttInit * 1.10)
-            allPokemonChoose[i].Def = ceil(allPokemonChoose[i].Def * 1.10)
-            allPokemonChoose[i].DefInit = ceil(allPokemonChoose[i].DefInit * 1.10)
-            allPokemonChoose[i].AttSpe = ceil(allPokemonChoose[i].AttSpe * 1.10)
-            allPokemonChoose[i].AttSpeInit = ceil(allPokemonChoose[i].AttSpeInit * 1.10)
-            allPokemonChoose[i].DefSpe = ceil(allPokemonChoose[i].DefSpe * 1.10)
-            allPokemonChoose[i].DefSpeInit = ceil(allPokemonChoose[i].DefSpeInit * 1.10)
-            allPokemonChoose[i].Speed = ceil(allPokemonChoose[i].Speed * 1.10)
-            allPokemonChoose[i].SpeedInit = ceil(allPokemonChoose[i].SpeedInit * 1.10)
+            allPokemonChoose[i].PV = int(ceil(allPokemonChoose[i].PV * 1.10))
+            allPokemonChoose[i].PVMax = int(ceil(allPokemonChoose[i].PVMax * 1.10))
+            allPokemonChoose[i].Att = int(ceil(allPokemonChoose[i].Att * 1.10))
+            allPokemonChoose[i].AttInit = int(ceil(allPokemonChoose[i].AttInit * 1.10))
+            allPokemonChoose[i].Def = int(ceil(allPokemonChoose[i].Def * 1.10))
+            allPokemonChoose[i].DefInit = int(ceil(allPokemonChoose[i].DefInit * 1.10))
+            allPokemonChoose[i].AttSpe = int(ceil(allPokemonChoose[i].AttSpe * 1.10))
+            allPokemonChoose[i].AttSpeInit = int(ceil(allPokemonChoose[i].AttSpeInit * 1.10))
+            allPokemonChoose[i].DefSpe = int(ceil(allPokemonChoose[i].DefSpe * 1.10))
+            allPokemonChoose[i].DefSpeInit = int(ceil(allPokemonChoose[i].DefSpeInit * 1.10))
+            allPokemonChoose[i].Speed = int(ceil(allPokemonChoose[i].Speed * 1.10))
+            allPokemonChoose[i].SpeedInit = int(ceil(allPokemonChoose[i].SpeedInit * 1.10))
 
     # Initialisation des dresseurs
     player = Dresseur(pseudo, [pokemon_1, pokemon_2, pokemon_3, pokemon_4, pokemon_5, pokemon_6], "player", objets)

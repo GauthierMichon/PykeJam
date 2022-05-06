@@ -9,7 +9,7 @@ def Heal(pokemon_attaquant, Attaque) :
     if MissWork(pokemon_attaquant, Attaque) :
         WriteInfo(pokemon_attaquant.name + " se soigne !")
         # On calcule les PV soignés
-        recupPV = ceil(Attaque.PVHeal * pokemon_attaquant.PVMax / 100)
+        recupPV = int(ceil(Attaque.PVHeal * pokemon_attaquant.PVMax / 100))
         if recupPV + pokemon_attaquant.PV > pokemon_attaquant.PVMax :
             pokemon_attaquant.PV = pokemon_attaquant.PVMax
         else :

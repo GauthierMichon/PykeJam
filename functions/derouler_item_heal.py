@@ -14,12 +14,12 @@ def ActionItemHeal(dresseur, item) :
     return dresseur
 
 def ChoosePokemonToHeal(dresseur) :
-    text_pokemon1 = font.render('{0}'.format(dresseur.pokemons[0].name), False, BLACK)
-    text_pokemon2 = font.render('{0}'.format(dresseur.pokemons[1].name), False, BLACK)
-    text_pokemon3 = font.render('{0}'.format(dresseur.pokemons[2].name), False, BLACK)
-    text_pokemon4 = font.render('{0}'.format(dresseur.pokemons[3].name), False, BLACK)
-    text_pokemon5 = font.render('{0}'.format(dresseur.pokemons[4].name), False, BLACK)
-    text_pokemon6 = font.render('{0}'.format(dresseur.pokemons[5].name), False, BLACK)
+    text_pokemon1 = font.render('{0} (1)'.format(dresseur.pokemons[0].name), False, BLACK)
+    text_pokemon2 = font.render('{0} (2)'.format(dresseur.pokemons[1].name), False, BLACK)
+    text_pokemon3 = font.render('{0} (3)'.format(dresseur.pokemons[2].name), False, BLACK)
+    text_pokemon4 = font.render('{0} (4)'.format(dresseur.pokemons[3].name), False, BLACK)
+    text_pokemon5 = font.render('{0} (5)'.format(dresseur.pokemons[4].name), False, BLACK)
+    text_pokemon6 = font.render('{0} (6)'.format(dresseur.pokemons[5].name), False, BLACK)
 
     pokemonNum = None
     running = True
