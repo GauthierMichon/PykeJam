@@ -31,12 +31,16 @@ def chooseAction(player, adversaire, pokemon_actuel_player, pokemon_actuel_adver
         
         graph.screen.blit(infos_combat, rect_1)
         graph.screen.blit(actions, rect_2)
+        action1.fill(WHITE)
         graph.screen.blit(action1, rect_3)
         graph.screen.blit(text_action1, rect_3)
+        action2.fill(WHITE)
         graph.screen.blit(action2, rect_4)
         graph.screen.blit(text_action2, rect_4)
+        action3.fill(WHITE)
         graph.screen.blit(action3, rect_5)
         graph.screen.blit(text_action3, rect_5)
+        action4.fill(WHITE)
         graph.screen.blit(action4, rect_6)
 
         

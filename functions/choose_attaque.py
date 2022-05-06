@@ -1,4 +1,5 @@
 from cProfile import run
+from graph.color_attaques import ColorAttaque
 import graph.graph as graph
 from graph.graph_containers import *
 import time
@@ -20,12 +21,16 @@ def ChooseAttaque(pokemon_actuel_player) :
     running   = True
     while running:
         graph.screen.blit(actions, rect_2)
+        action1.fill(ColorAttaque(pokemon_actuel_player.Attaques[0].Type))
         graph.screen.blit(action1, rect_3)
         graph.screen.blit(text_attaque1, rect_3)
+        action2.fill(ColorAttaque(pokemon_actuel_player.Attaques[1].Type))
         graph.screen.blit(action2, rect_4)
         graph.screen.blit(text_attaque2, rect_4)
+        action3.fill(ColorAttaque(pokemon_actuel_player.Attaques[2].Type))
         graph.screen.blit(action3, rect_5)
         graph.screen.blit(text_attaque3, rect_5)
+        action4.fill(ColorAttaque(pokemon_actuel_player.Attaques[3].Type))
         graph.screen.blit(action4, rect_6)
         graph.screen.blit(text_attaque4, rect_6)
 
