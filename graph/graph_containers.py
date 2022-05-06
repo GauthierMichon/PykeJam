@@ -80,6 +80,12 @@ text_pokemon_name_adversaire = pokemon_name_adversaire.render('Makogneur', False
 statut_pokemon_adversaire = pygame.image.load("assets/statuts/Gel.png")
 statut_pokemon_adversaire = pygame.transform.scale(statut_pokemon_adversaire, (80, 40))
 
+type1_pokemon_adversaire = pygame.image.load("assets/types/Glace.png")
+type1_pokemon_adversaire = pygame.transform.scale(type1_pokemon_adversaire, (102, 22))
+
+type2_pokemon_adversaire = pygame.image.load("assets/types/Vol.png")
+type2_pokemon_adversaire = pygame.transform.scale(type2_pokemon_adversaire, (102, 22))
+
 rect_pokemon_adversaire_PV = pygame.Rect((450, 110), (450, 45), )
 pokemon_PV_adversaire = pygame.font.SysFont('arial', 25)
 text_pokemon_PV_adversaire = pokemon_PV_adversaire.render('179 / 179', False, BLACK)
@@ -97,6 +103,12 @@ text_pokemon_name_player = pokemon_name_player.render('Tortank', False, BLACK)
 
 statut_pokemon_player = pygame.image.load("assets/statuts/Gel.png")
 statut_pokemon_player = pygame.transform.scale(statut_pokemon_player, (80, 40))
+
+type1_pokemon_player = pygame.image.load("assets/types/Glace.png")
+type1_pokemon_player = pygame.transform.scale(type1_pokemon_player, (102, 22))
+
+type2_pokemon_player = pygame.image.load("assets/types/Vol.png")
+type2_pokemon_player = pygame.transform.scale(type2_pokemon_player, (102, 22))
 
 rect_pokemon_player_PV = pygame.Rect((1025, 470), (450, 45), )
 pokemon_PV_player = pygame.font.SysFont('arial', 25)

@@ -12,6 +12,8 @@ def VampigraineCheck(player, adversaire, pokemonActualPlayerNumber, pokemonActua
             drainPV = adversaire.pokemons[pokemonActualAdversNumber].PV
         player.pokemons[pokemonActualPlayerNumber].PV += drainPV
         adversaire.pokemons[pokemonActualAdversNumber].PV -= drainPV
+        if player.pokemons[pokemonActualAdversNumber].PV > player.pokemons[pokemonActualAdversNumber].PVMax :
+            player.pokemons[pokemonActualAdversNumber].PV = player.pokemons[pokemonActualAdversNumber].PVMax
 
     # Si l'adversaire a utilisé vampigraine
     if terrain.VampigraineAdverse :
@@ -21,6 +23,8 @@ def VampigraineCheck(player, adversaire, pokemonActualPlayerNumber, pokemonActua
             drainPV = player.pokemons[pokemonActualPlayerNumber].PV
         adversaire.pokemons[pokemonActualAdversNumber].PV += drainPV
         player.pokemons[pokemonActualPlayerNumber].PV -= drainPV
+        if adversaire.pokemons[pokemonActualAdversNumber].PV > adversaire.pokemons[pokemonActualAdversNumber].PVMax :
+            adversaire.pokemons[pokemonActualAdversNumber].PV = adversaire.pokemons[pokemonActualAdversNumber].PVMax
 
     ReloadGraphPokemons(player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber])
     return player, adversaire

@@ -95,8 +95,8 @@ def PlayerTurn(player, adversaire, action, actionNum, action_adversaire, actionN
     elif action == 3 :
         print("\nVous avez choisi d'utiliser un objet")
         print(player.inventaire[actionNum - 1].name)
-        player = ActionItem(player, actionNum - 1, pokemonActualPlayerNumber)
         WriteInfo(player.inventaire[actionNum - 1].name + " est utilisé")
+        player = ActionItem(player, actionNum - 1, pokemonActualPlayerNumber)
         print(player.inventaire, len(player.inventaire))
 
     # Si le joueur a joué en premier
@@ -106,7 +106,7 @@ def PlayerTurn(player, adversaire, action, actionNum, action_adversaire, actionN
             # S'il reste au moins un pokemon à l'adversaire
             if adversaire.pokemons[0].PV > 0 or adversaire.pokemons[1].PV > 0 or adversaire.pokemons[2].PV > 0 or adversaire.pokemons[3].PV > 0 or adversaire.pokemons[4].PV > 0 or adversaire.pokemons[5].PV > 0 :
                 
-                ChangePokemonGraph(player.pokemons[actionNum], adversaire.pokemons[pokemonActualAdversNumber])
+                ChangePokemonGraph(player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber])
                 (player.pokemons[pokemonActualPlayerNumber], adversaire.pokemons[pokemonActualAdversNumber])
                 WriteInfo(adversaire.pokemons[pokemonActualAdversNumber].name + " est K.O.")
                 # L'adversaire choisi un nouveau pokemon

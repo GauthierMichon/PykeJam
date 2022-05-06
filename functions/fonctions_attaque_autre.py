@@ -22,6 +22,7 @@ from functions.initiation import initAttaque
 import functions.derouler_attaque_autre as other
 from functions.switch_adversaire import ChangeAdversaire
 from functions.table_types import TableType
+from graph.reload_graph_pokemons import ReloadGraphPokemons
 from graph.write_info import WriteInfo
 from graph.change_pokemon_graph import ChangePokemonGraph
 
@@ -202,6 +203,7 @@ def ChangeEclair(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseu
     pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
     WriteInfo(pokemon_attaquant.name + " va être remplacé par un autre pokémon !")
 
+    ReloadGraphPokemons(pokemon_attaquant, pokemon_defenseur)
     if dresseur.person == "player" :
         newPokemonActuelNum = ChoosePokemon(dresseur, pokemonActuelNum)
     else :
@@ -378,6 +380,7 @@ def DemiTour(pokemon_attaquant, pokemon_defenseur, Attaque, terrain, dresseur, p
     Attaque.probaEffect = None
 
     pokemon_defenseur = Offensive(pokemon_attaquant, pokemon_defenseur, Attaque, terrain)
+    ReloadGraphPokemons(pokemon_attaquant, pokemon_defenseur)
     if dresseur.person == "player" :
         WriteInfo(pokemon_attaquant.name + " est renvoyé !")
         newPokemonActuelNum = ChoosePokemon(dresseur, pokemonActuelNum)
@@ -1029,9 +1032,9 @@ def Synthese(pokemon_attaquant, terrain) :
     if terrain.climat == None :
         pokemon_attaquant.PV += (pokemon_attaquant.PVMax / 2)
     elif terrain.climat == "Soleil" :
-        pokemon_attaquant.PV += (2 * pokemon_attaquant.PVMax / 3)
+        pokemon_attaquant.PV += int(ceil(2 * pokemon_attaquant.PVMax / 3))
     else :
-        pokemon_attaquant.PV += (pokemon_attaquant.PVMax / 4)
+        pokemon_attaquant.PV += int(ceil(pokemon_attaquant.PVMax / 4))
 
     if pokemon_attaquant.PV > pokemon_attaquant.PVMax :
         pokemon_attaquant.PV = pokemon_attaquant.PVMax
@@ -1202,7 +1205,7 @@ def VoleForce(pokemon_attaquant, Attaque, pokemon_defenseur) :
             WriteInfo(pokemon_attaquant.name + " vole la force de " + pokemon_defenseur.name + " !")
             pokemon_defenseur.Att = pokemon_defenseur.AttInit * boost(pokemon_defenseur.AttBuff)
 
-            pokemon_attaquant.PV += pokemon_defenseur.Att
+            pokemon_attaquant.PV += int(pokemon_defenseur.Att)
             if pokemon_attaquant.PV > pokemon_attaquant.PVMax :
                 pokemon_attaquant.PV = pokemon_attaquant.PVMax
         

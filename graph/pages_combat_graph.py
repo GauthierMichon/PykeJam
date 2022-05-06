@@ -92,6 +92,12 @@ while running:
 
     screen.blit(statut_pokemon_adversaire, (200, 90))
     screen.blit(statut_pokemon_player, (775, 450))
+
+    screen.blit(type1_pokemon_player, (945, 425))
+    screen.blit(type2_pokemon_player, (1065, 425))
+
+    screen.blit(type1_pokemon_player, (370, 70))
+    screen.blit(type2_pokemon_player, (490, 70))
     
 
     for event in pygame.event.get():
