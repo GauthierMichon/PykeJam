@@ -19,9 +19,9 @@
 
 **Sommaire :**
 
-[I. Installation](https://github.com/GauthierMichon/PykeJam/Documentation/Installation.md)
+[I. Installation](https://github.com/GauthierMichon/PykeJam/blob/main/Documentation/Installation.md)
 
-[II. Utilisation](https://github.com/GauthierMichon/PykeJam/Documentation/Utilisation.md)
+[II. Utilisation](https://github.com/GauthierMichon/PykeJam/blob/main/Documentation/Utilisation.md)
 
 **Liste de tout ce qui marche 📝 :**
 

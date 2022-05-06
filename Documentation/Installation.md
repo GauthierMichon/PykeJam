@@ -19,6 +19,6 @@ python main.py
 
 ---
 
-**➔ Suite :** [Utilisation](https://github.com/GauthierMichon/PykeJam/Documentation/Utilisation.md)
+**➔ Suite :** [Utilisation](https://github.com/GauthierMichon/PykeJam/blob/main/Documentation/Utilisation.md)
 
 **➔ Informations :** [README](https://github.com/GauthierMichon/PykeJam)
