@@ -37,7 +37,8 @@ def ColorAttaque(type) :
     elif type == "Fee" :
         color = (236, 146, 228)
 
-
+    if color == None :
+        color = (255, 255, 255)
     return color
 
     
