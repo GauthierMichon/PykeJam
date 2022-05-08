@@ -33,7 +33,7 @@ def game() :
     pokemon_4 = deepcopy(pokemonList[int(pokemon_4) - 1])
     pokemon_5 = deepcopy(pokemonList[int(pokemon_5) - 1])
     pokemon_6 = deepcopy(pokemonList[int(pokemon_6) - 1]) """
-    pokemon_1 = deepcopy(pokemonList[9])
+    pokemon_1 = deepcopy(pokemonList[randint(0, 77)])
     pokemon_2 = deepcopy(pokemonList[randint(0, 77)])
     pokemon_3 = deepcopy(pokemonList[randint(0, 77)])
     pokemon_4 = deepcopy(pokemonList[randint(0, 77)])

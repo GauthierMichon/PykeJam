@@ -1,8 +1,13 @@
 **Comment installer le jeu 🛠 :**
 
-1. Installer la machine avec les Prérequis.
+1. Installer les Prérequis.
 
 Pour installer le langage Python ➔ [Python Install](https://www.python.org/downloads/)
+
+Puis dans un de commande sur votre ordinateur (Powershell, etc..), tapez :
+```bash
+pip install pygame
+```
 
 2. Cloner le repo via un terminal de commande sur votre ordinateur (Powershell, etc..)
 

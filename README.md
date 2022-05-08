@@ -1,6 +1,10 @@
 # Pykemon
 
-![alt text](Documentation/capture_combat.png)
+![jeu](Documentation/capture_combat.png)
+
+**Présentation du projet :**
+
+Notre Projet est un simulateur de combat Pokémon au tour par tour.
 
 ---
 🟢 = Terminé
@@ -21,6 +25,11 @@
     - Utiliser un objet 🟢
 - Possibilité de revenir en arrière pendant le choix des actions 🟢
 - Le code gère la possibilité de rater son attaque 🟢
+- Le code gère la personne qui joue en premier 🟢 :
+    - Si le joueur change de pokemon ou utilise un objet, il joue en premier 🟢
+    - Si les 2 pokémons attaque, le pokémon qui a la meilleure vitesse est le premier à attaquer 🟢
+    - Si l'attaque utilisée est une attaque de priorité, le pokémon qui l'a utilisé attaque en premier 🟢
+    - Si la vitesse est égale, le pokémon qui attaque en premier est random 🟢
 - Le code gère les problèmes de statuts 🟢 :
     - Poison 🟢
     - Gel 🟢
@@ -30,7 +39,7 @@
 - Le code gère les attaques offensives :
     - Si le pokémon est brûlé, divise sa puissance d'attaque physique par 2 🟢
     - Si le pokémon adverse a utilisé abri, ne lui inflige pas de dommages 🟢
-    - Gère si l'attaque est physique ou spéciale
+    - Gère si l'attaque est physique ou spéciale 🟢
     - Gère le STAB (si l'attaque et le pokémon qui le lance sont de même type, dommages x1,5) 🟢
     - Gère la table des types 🟢
     ![alt text](Documentation/table-des-types.jpg)
@@ -67,6 +76,7 @@
 - Gestion des PP des Attaques (nombre maximum d'utilisation) 🔴
 - Graphique 🟢
 - Animation d'attaque 🔴
+- Page de Win et de Lose 🟢
 
 
 ---
